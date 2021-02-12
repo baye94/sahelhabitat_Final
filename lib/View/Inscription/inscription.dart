@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'Animation/FadeAnimation.dart';
+import 'package:sahelhabitat/View/Authentification/Inscription/Animation/FadeAnimation.dart';
 import '../../Service/serviceFirebase.dart';
 
 class inscription extends StatefulWidget {
