@@ -2,20 +2,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sahelhabitat/Service/serviceFirebase.dart';
+import 'package:sahelhabitat/View/Admin/SideBarNavigationAdmin/sidebar/sidebar_layout.dart';
 import 'package:sahelhabitat/View/Authentification/Inscription/Animation/FadeAnimation.dart';
 import 'package:sahelhabitat/View/Authentification/Inscription/inscription.dart';
 import 'package:sahelhabitat/View/Authentification/resetPassword.dart';
 import 'package:sahelhabitat/View/SideBarNavigation/sidebar/sidebar_layout.dart';
-
-
-
 class connexion extends StatefulWidget {
-   
-
-  @override
+   @override
   _connexionState createState() => _connexionState();
 }
-
 class _connexionState extends State<connexion> {
   final _forminskey =GlobalKey<FormState>();
   String _emailC ;
@@ -217,6 +212,13 @@ class _connexionState extends State<connexion> {
     email: _emailC,
     password: _passC
   );
+  if(_emailC=="admin@sahelhabitat.com" && _passC=="admin@2021"){
+     Navigator.push(
+    context,
+     MaterialPageRoute(builder: (context) => SideBarLayoutAdmin()),
+     );
+
+  }else
    Navigator.push(
     context,
      MaterialPageRoute(builder: (context) => SideBarLayout()),

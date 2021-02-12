@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sahelhabitat/Service/serviceFirebase.dart';
 import 'package:sahelhabitat/View/Authentification/Connexion/connexion.dart';
-import 'package:sahelhabitat/View/Model/Users.dart';
 import 'Animation/FadeAnimation.dart';
 
 
