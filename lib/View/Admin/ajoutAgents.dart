@@ -1,3 +1,4 @@
+
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -13,24 +14,36 @@ class ajoutAgents extends StatefulWidget {
 }
 
 class _ajoutAgentsState extends State<ajoutAgents> {
-  
 String imageUrl;
+FirebaseStorage _storage = FirebaseStorage.instance;
+final _picker = ImagePicker();
+ File _image;
+ File imageAgentAvantSAve;
+PickedFile image;
+ Future getImage2() async {
+     await Permission.photos.request();
+     var permissionStatus = await Permission.photos.status;
+     if(permissionStatus.isGranted){
+       image = await _picker.getImage(source: ImageSource.gallery);
+       _image = File(image.path) ;
+       setState(() {
+         imageAgentAvantSAve =_image ;
+
+       });
+     }
+
+    }
    uploadImage() async {
-    FirebaseStorage _storage = FirebaseStorage.instance;
-    final _picker = ImagePicker();
-    PickedFile image;
-
-
+    // FirebaseStorage _storage = FirebaseStorage.instance;
+    // final _picker = ImagePicker();
+    // PickedFile image;
     //Check Permissions
     await Permission.photos.request();
-
     var permissionStatus = await Permission.photos.status;
-
     if (permissionStatus.isGranted){
       //Select Image
       image = await _picker.getImage(source: ImageSource.gallery);
       var file = File(image.path);
-
       if (image != null){
         //Upload to Firebase
         var snapshot = await _storage.ref()
@@ -38,9 +51,7 @@ String imageUrl;
         .putFile(file);
         // .onComplete;
         // snapshot t = await snapshot.onComplete
-
         var downloadUrl = await snapshot.ref.getDownloadURL();
-
         setState(() {
           imageUrl = downloadUrl;
         });
@@ -51,11 +62,7 @@ String imageUrl;
     } else {
       print('Grant Permissions and try again');
     }
-
-    
-
-    
-  }
+ }
   @override
   Widget build(BuildContext context) {
     final agentProvider = Provider.of<AgentProvider>(context);
@@ -71,7 +78,6 @@ String imageUrl;
                           height: 100,
                         ),
                       ]
-            
                   ),
                   body: SingleChildScrollView(
                           child: Center(
@@ -92,8 +98,8 @@ String imageUrl;
                         child: new SizedBox(
                           width: 185.0,
                           height: 185.0,
-                          child: (_image!=null)?Image.file(
-                            _image,
+                          child: ( imageAgentAvantSAve!=null)?Image.file(
+                            File(imageAgentAvantSAve.path),
                             fit: BoxFit.fill,
                           ):Image.network(
                             "https://images.unsplash.com/photo-1502164980785-f8aa41d53611?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
@@ -104,7 +110,7 @@ String imageUrl;
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(right: 10,top: 120.0),
+                    padding: EdgeInsets.only(top: 100.0),
                     child: IconButton(
                       icon: Icon(
                         FontAwesomeIcons.camera,
@@ -112,8 +118,8 @@ String imageUrl;
                         color: Colors.orange[900],
                       ),
                       onPressed: () {
-                        // getImage();
-                        uploadImage() ;
+                         getImage2();
+                        // uploadImage() ;
                       },
                     ),
                   ),
@@ -248,6 +254,7 @@ String imageUrl;
                                               
                                             },
                                          onChanged: (value){
+                                            value ="baye cheikh fall";
                                             agentProvider.changeUrlPhoto(value);
                                          },
                                         ),
