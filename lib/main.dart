@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
+import 'package:sahelhabitat/Provider/agent_provider.dart';
+import 'Provider/maison_provider.dart';
 import 'View/Home/home2.dart';
 
 void main()  async{
@@ -17,7 +19,12 @@ class MyApp extends StatelessWidget {
   @override
   
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MultiProvider(
+      providers: [
+            ChangeNotifierProvider(create: (context) => AgentProvider()),
+            // StreamProvider(create: (context)=> firestoreService.getProducts()),
+          ],
+          child: MaterialApp(
       debugShowCheckedModeBanner: false ,
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -25,6 +32,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(title: 'Flutter Page'),
+          ),
     );
   }
 }
