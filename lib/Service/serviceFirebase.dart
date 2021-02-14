@@ -14,7 +14,7 @@ class serviceFirebase {
    return  auth.signInWithEmailAndPassword(email: email, password: password);
   }
   Future<void>saveAgent(AgentModel agentModel){
-     return _db.collection('Agent').doc(agentModel.idAgent).set(agentModel.toMap());
+     return _db.collection('Agent').doc(agentModel.nomCompletAgent).set(agentModel.toMap());
   }
   
 }

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 class AgentModel {
   final String idAgent;
   final String nomCompletAgent ;
@@ -11,7 +13,7 @@ class AgentModel {
   Map<String , dynamic> toMap(){
     return{
       'AgentId':idAgent ,
-      'Nom' : nomCompletAgent,
+      'NomComplet' : nomCompletAgent,
       'Telephone':telephoneAgent,
       'Pays':paysAgent,
       'Url_photo': urlPhotoAgant,

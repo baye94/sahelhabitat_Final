@@ -9,52 +9,55 @@ import 'package:sahelhabitat/Provider/agent_provider.dart';
 import 'package:provider/provider.dart';
 
 class ajoutAgents extends StatefulWidget {
+  
   @override
   _ajoutAgentsState createState() => _ajoutAgentsState();
 }
 
 class _ajoutAgentsState extends State<ajoutAgents> {
+  
 String imageUrl;
+String photo ="";
 FirebaseStorage _storage = FirebaseStorage.instance;
 final _picker = ImagePicker();
- File _image;
+ File _image ;
  File imageAgentAvantSAve;
 PickedFile image;
+final _frisky2 = GlobalKey<FormState>();
+
  Future getImage2() async {
      await Permission.photos.request();
      var permissionStatus = await Permission.photos.status;
      if(permissionStatus.isGranted){
        image = await _picker.getImage(source: ImageSource.gallery);
        _image = File(image.path) ;
-       setState(() {
-         imageAgentAvantSAve =_image ;
-
-       });
+       imageAgentAvantSAve =_image ;
+      //  setState(() {
+      //    imageAgentAvantSAve =_image ;
+      //    });
      }
+     
 
     }
-   uploadImage() async {
-    // FirebaseStorage _storage = FirebaseStorage.instance;
-    // final _picker = ImagePicker();
-    // PickedFile image;
-    //Check Permissions
+   uploadImage(String agent) async {
+      
     await Permission.photos.request();
     var permissionStatus = await Permission.photos.status;
     if (permissionStatus.isGranted){
-      //Select Image
-      image = await _picker.getImage(source: ImageSource.gallery);
-      var file = File(image.path);
-      if (image != null){
+      
+      if ( imageAgentAvantSAve!= null){
         //Upload to Firebase
         var snapshot = await _storage.ref()
-        .child('Agents/imageName')
-        .putFile(file);
+        .child('Agents/$agent')
+        .putFile( imageAgentAvantSAve);
         // .onComplete;
         // snapshot t = await snapshot.onComplete
         var downloadUrl = await snapshot.ref.getDownloadURL();
-        setState(() {
-          imageUrl = downloadUrl;
-        });
+        imageUrl = downloadUrl;
+        // setState(() {
+         
+          
+        //    });
       } else {
         print('No Path Received');
       }
@@ -65,8 +68,9 @@ PickedFile image;
  }
   @override
   Widget build(BuildContext context) {
+    
     final agentProvider = Provider.of<AgentProvider>(context);
-    var _forminskey;
+    // var _forminskey;
         File _image;
                 return Scaffold(
                   appBar: AppBar(
@@ -118,8 +122,8 @@ PickedFile image;
                         color: Colors.orange[900],
                       ),
                       onPressed: () {
-                         getImage2();
-                        // uploadImage() ;
+                        //  getImage2();
+                       
                       },
                     ),
                   ),
@@ -128,135 +132,142 @@ PickedFile image;
               SizedBox(
                 height: 20.0,
               ),
-                                         Form(
-                                              key: _forminskey,
-                                          child: Column(
-                                            children: <Widget>[
-                                               Container(
+                                         Center(
+                                           child: Form(
+                                             
+                                             key: _frisky2,
+                                            child: Column(
+                                              children: <Widget>[
+                                                 Container(
                                         padding: EdgeInsets.all(10),
                                         decoration: BoxDecoration(
-                                            border: Border(
-                                                bottom: BorderSide(
-                                                    color: Colors.grey[200]))),
+                                              border: Border(
+                                                  bottom: BorderSide(
+                                                      color: Colors.grey[200]))),
                                         child: TextFormField(
-                                          decoration: InputDecoration(
-                                              hintText: "Nom complet  ",
-                                              hintStyle:
-                                              TextStyle(color: Colors.grey),
-                                              border: InputBorder.none
-                                          ),
-                                          validator: (val){
-                                              if(val.isEmpty){
-                                                return ' Nom complet';
-                                              }
-                                              
-                                            },
-                                         onChanged: (value){
-                                            agentProvider.changeNomAgent(value);
-                                         },
+                                            decoration: InputDecoration(
+                                                hintText: "Nom complet  ",
+                                                hintStyle:
+                                                TextStyle(color: Colors.grey),
+                                                border: InputBorder.none
+                                            ),
+                                            validator: (val){
+                                                if(val.isEmpty){
+                                                  return ' Nom complet';
+                                                }
+                                                
+                                              },
+                                           onChanged: (value){
+                                              agentProvider.changeNomAgent(value);
+                                           },
                                         ),
                                       ),
                                       
                                       Container(
                                         padding: EdgeInsets.all(10),
                                         decoration: BoxDecoration(
-                                            border: Border(
-                                                bottom: BorderSide(
-                                                    color: Colors.grey[200]))),
+                                              border: Border(
+                                                  bottom: BorderSide(
+                                                      color: Colors.grey[200]))),
                                         child: TextFormField(
-                                          decoration: InputDecoration(
-                                              hintText: "Telephone",
-                                              hintStyle:
-                                              TextStyle(color: Colors.grey),
-                                              border: InputBorder.none
-                                          ),
-                                           validator: (val){
-                                              if(val.isEmpty){
-                                                return 'Telephone';
-                                              }
-                                              
-                                            },
-                                         onChanged: (value){
-                                            agentProvider.changeTelephoneAgent(value);
-                                         },
+                                            decoration: InputDecoration(
+                                                hintText: "Telephone",
+                                                hintStyle:
+                                                TextStyle(color: Colors.grey),
+                                                border: InputBorder.none
+                                            ),
+                                             validator: (val){
+                                                if(val.isEmpty){
+                                                  return 'Telephone';
+                                                }
+                                                
+                                              },
+                                           onChanged: (value){
+                                              agentProvider.changeTelephoneAgent(value);
+                                           },
                                         ),
                                       ),
                                       Container(
                                         padding: EdgeInsets.all(10),
                                         decoration: BoxDecoration(
-                                            border: Border(
-                                                bottom: BorderSide(
-                                                    color: Colors.grey[200]))),
+                                              border: Border(
+                                                  bottom: BorderSide(
+                                                      color: Colors.grey[200]))),
                                         child:TextFormField(
-                                          decoration: InputDecoration(
-                                              hintText: "Email",
-                                              hintStyle:
-                                              TextStyle(color: Colors.grey),
-                                              border: InputBorder.none
-                                          ),
-                                          validator: (val){
-                                              if(val.isEmpty){
-                                                return ' Email ?';
-                                              }
-                                              if (val.contains('@')==false) {
-                                                return ' respect email foromat @';
-                                              }
-                                            },
-                                         onChanged: (value){
-                                           agentProvider.changeEmail(value);
-                                          
-                                         },
-                                          
-                                         obscureText: true,
+                                            decoration: InputDecoration(
+                                                hintText: "Email",
+                                                hintStyle:
+                                                TextStyle(color: Colors.grey),
+                                                border: InputBorder.none
+                                            ),
+                                           
+                                            validator: (val){
+                                                if(val.isEmpty){
+                                                  return ' Email ?';
+                                                }
+                                                if (val.contains('@')==false) {
+                                                  return ' respect email foromat @';
+                                                }
+                                              },
+                                           onChanged: (value){
+                                             agentProvider.changeEmail(value);
+                                            
+                                           },
+
                                         ),
                                       ),
                                        Container(
                                         padding: EdgeInsets.all(10),
                                         decoration: BoxDecoration(
-                                            border: Border(
-                                                bottom: BorderSide(
-                                                    color: Colors.grey[200]))),
+                                              border: Border(
+                                                  bottom: BorderSide(
+                                                      color: Colors.grey[200]))),
                                         child:TextFormField(
-                                          decoration: InputDecoration(
-                                              hintText: " Pays residence",
-                                              hintStyle:
-                                              TextStyle(color: Colors.grey),
-                                              border: InputBorder.none
-                                          ),
-                                          validator: (val){
-                                              if(val.isEmpty){
-                                                return 'Pays residence';
-                                              }
-                                              
-                                            },
-                                         onChanged: (value){
-                                            agentProvider.changePaysAgent(value);
-                                         },
+                                            decoration: InputDecoration(
+                                                hintText: " Pays residence",
+                                                hintStyle:
+                                                TextStyle(color: Colors.grey),
+                                                border: InputBorder.none
+                                            ),
+                                            validator: (val){
+                                                if(val.isEmpty){
+                                                  return 'Pays residence';
+                                                }
+                                                
+                                              },
+                                           onChanged: (value){
+                                              agentProvider.changePaysAgent(value);
+                                           },
                                         ),
                                       ),
                                        Container(
                                         padding: EdgeInsets.all(10),
                                         decoration: BoxDecoration(
-                                            border: Border(
-                                                bottom: BorderSide(
-                                                    color: Colors.grey[200]))),
+                                              border: Border(
+                                                  bottom: BorderSide(
+                                                      color: Colors.grey[200]))),
                                         child:TextFormField(
-                                          decoration: InputDecoration(
-                                              hintText: " photo",
-                                              hintStyle:
-                                              TextStyle(color: Colors.grey),
-                                              border: InputBorder.none
-                                          ),
-                                          validator: (val){
-                                              if(val.isEmpty){
-                                                return ' Photo';
-                                              }
-                                              
+                                            decoration: InputDecoration(
+                                                hintText: " phot",
+                                                hintStyle:
+                                                TextStyle(color: Colors.grey),
+                                                border: InputBorder.none
+                                            ),
+                                             onTap: (){
+                                               if(getImage2()!=null){
+                                                 photo ="urlphoto";                                               }
                                             },
-                                         onChanged: (value){
-                                            value ="baye cheikh fall";
-                                            agentProvider.changeUrlPhoto(value);
-                                         },
+                                            validator: (val){
+                                              val = photo;
+                                              if(val.isEmpty){
+                                                  return ' Photo';
+                                                }
+
+                                              },
+
+                                           onChanged: (imageUrl){
+                                             agentProvider.changeUrlPhoto(imageUrl);
+                                           },
                                         ),
                                         
                                       ),
@@ -271,27 +282,36 @@ PickedFile image;
                                     color: Colors.orange[900]),
                                 child: Center(
                                   child: FlatButton(
-                                    onPressed:(){
-                                      
-                                    } ,
-                                    child: FlatButton(
-                                       onPressed: () { 
-                                         agentProvider.saveAgent();   
-                                        },
+                                     onPressed: () {
+                                       if (_frisky2.currentState.validate()){
+                                        // var upload = uploadImage(agentProvider.nomA);
+                                         
+                                         if(uploadImage(agentProvider.nomA)!= null){
+                                           
+                                               agentProvider.saveAgent();
+                                              print('heureusement que ' );
+                                              print( ' baye cheikh  $imageUrl');
+                                              setState(() {
+                                                imageUrl="";
+                                              });
+                                               
+                                            
+                                             }
+                                           }
+                                       },
                                                       child: Text(
-                                        "Ajouter Agent",
-                                        style: TextStyle(
+                                      "Ajouter Agent",
+                                      style: TextStyle(
                                             color: Colors.white,
                                             fontWeight: FontWeight.bold),
-                                      ),
                                     ),
-
                                   ),
                                 ),
                               ),
                                     ],
                                   ),
                                 ),
+                                         ),
                               ],
                             ),
                
