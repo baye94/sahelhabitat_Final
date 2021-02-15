@@ -1,7 +1,6 @@
 
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
@@ -34,10 +33,10 @@ final _frisky2 = GlobalKey<FormState>();
      if(permissionStatus.isGranted){
        image = await _picker.getImage(source: ImageSource.gallery);
        _image = File(image.path) ;
-      imageAgentAvantSAve =_image ;
-      //  setState(() {
-      //    imageAgentAvantSAve =_image ;
-      //    });
+      // imageAgentAvantSAve =_image ;
+       setState(() {
+         imageAgentAvantSAve =_image ;
+         });
      }
      
 
@@ -49,26 +48,24 @@ final _frisky2 = GlobalKey<FormState>();
     if (permissionStatus.isGranted){
       
       if ( imageAgentAvantSAve.path.isNotEmpty){
-        //  Reference ref = FirebaseStorage.instance.ref().child('Agents/$agent');
-        // UploadTask uploadTask = ref.putFile(imageAgentAvantSAve).whenComplete(() => print('envoie vers la base de bonnee est fait storage') );
-        // TaskSnapshot taskSnapshot=await uploadTask.whenComplete(() => print('df'));
-
-        //Upload to Firebase
+       
         TaskSnapshot snapshot = await _storage.ref()
         .child('Agents/$agent')
         .putFile(imageAgentAvantSAve).whenComplete(() => 
         print('envoie vers la base de bonnee est fait storage')
         );
-        
-        
-         downloadUrl =  await snapshot.ref.getDownloadURL().whenComplete(() => print(' est tres birn fini merci'));
+        downloadUrl =  await snapshot.ref.getDownloadURL().whenComplete(() => print(' est tres birn fini merci'));
          
           //  imageUrl = await downloadUrl;
            print('path recuperer de download Url $downloadUrl');
-        // setState(() {
-        //  imageUrl = downloadUrl;
+      //      setState(() {
+      //     print("Profile Picture uploaded");
+      //     Scaffold.of(context).showSnackBar(SnackBar(content: Text('Profile Picture Uploaded')));
+      //  });
+        setState(() {
+         imageUrl = downloadUrl;
           
-        //    });
+           });
           //  return imageUrl;
       } else {
         print('No Path Received');
@@ -82,8 +79,7 @@ final _frisky2 = GlobalKey<FormState>();
   Widget build(BuildContext context) {
   
     final agentProvider = Provider.of<AgentProvider>(context);
-    // var _forminskey;
-        File _image;
+    
                 return Scaffold(
                   appBar: AppBar(
                       elevation: 0.0,
@@ -274,8 +270,8 @@ final _frisky2 = GlobalKey<FormState>();
                                                   return ' Photo';
                                                 }
                                               //  imageUrl =  uploadImage(agentProvider.nomA);
-                                               agentProvider.changeUrlPhoto(downloadUrl);
-                                               uploadImage(agentProvider.nomA);
+                                               agentProvider.changeUrlPhoto( imageUrl );
+                                              //  uploadImage(agentProvider.nomA);
                                                 print('Url Avant uploasd $downloadUrl');
 
                                               },
@@ -304,6 +300,7 @@ final _frisky2 = GlobalKey<FormState>();
                                        if (_frisky2.currentState.validate()){
                                          agentProvider.saveAgent();
                                       print( ' Url images  apres dowload $downloadUrl');
+                                     
                                       //  Navigator.of(context).pop();
                                       print('file path $imageAgentAvantSAve');
                                               print('heureusement que ' );
