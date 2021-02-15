@@ -2,7 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sahelhabitat/Provider/agent_provider.dart';
-import 'Provider/maison_provider.dart';
+import 'package:sahelhabitat/Service/serviceFirebase.dart';
+import 'Service/serviceFirebase.dart';
 import 'View/Home/home2.dart';
 
 void main()  async{
@@ -19,10 +20,11 @@ class MyApp extends StatelessWidget {
   @override
   
   Widget build(BuildContext context) {
+    final servicefirestore = ServiceFirebase();
     return MultiProvider(
       providers: [
             ChangeNotifierProvider(create: (context) => AgentProvider()),
-            // StreamProvider(create: (context)=> firestoreService.getProducts()),
+            StreamProvider(create: (context)=> servicefirestore.getAgents()),
           ],
           child: MaterialApp(
       debugShowCheckedModeBanner: false ,

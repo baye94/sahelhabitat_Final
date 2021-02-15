@@ -1,9 +1,11 @@
+
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:sahelhabitat/Model/agentModel.dart';
 
 
-class serviceFirebase {
+class ServiceFirebase {
   FirebaseAuth auth = FirebaseAuth.instance;
   FirebaseFirestore _db = FirebaseFirestore.instance;
  
@@ -16,5 +18,8 @@ class serviceFirebase {
   Future<void>saveAgent(AgentModel agentModel){
      return _db.collection('Agent').doc(agentModel.nomCompletAgent).set(agentModel.toMap());
   }
-  
+   Stream<List<AgentModel>> getAgents(){
+    return _db.collection('Agent').snapshots().map((snapshot) => snapshot.docs.map((document) => AgentModel.fromFirestore(document.data())).toList());
+
+  }
 }

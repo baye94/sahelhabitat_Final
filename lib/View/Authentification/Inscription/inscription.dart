@@ -19,7 +19,7 @@ class _inscriptionState extends State<inscription> {
   String emailU = '';
   int ok =0;
   var resulte ;
-   final db = new serviceFirebase()  ;
+   final db = new ServiceFirebase()  ;
    @override
   
    

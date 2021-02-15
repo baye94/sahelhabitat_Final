@@ -12,7 +12,7 @@ class _resetPasswordState extends State<resetPassword> {
    final _forminskey =GlobalKey<FormState>();
   String _emailR ;
 
-   final db = new serviceFirebase()  ;
+   final db = new ServiceFirebase()  ;
   @override
   Widget build(BuildContext context) {
      return Scaffold(

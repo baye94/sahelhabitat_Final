@@ -16,7 +16,7 @@ class _connexionState extends State<connexion> {
   String _emailC ;
   String _passC;
    var resulte ;
-   final db = new serviceFirebase()  ;
+   final db = new ServiceFirebase()  ;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

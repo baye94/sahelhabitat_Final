@@ -12,7 +12,7 @@ class AgentProvider extends ChangeNotifier {
   String _urlPhotoAgent;
   String _emailAgent;
    var uuid = Uuid();
-   final firebaseservice = serviceFirebase();
+   final firebaseservice = ServiceFirebase();
   //Getters
   String get nomA => _nomCompletAgent ;
   String get telephoneA => _telephoneAgent ;

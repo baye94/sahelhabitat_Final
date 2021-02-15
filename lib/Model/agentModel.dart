@@ -21,4 +21,12 @@ class AgentModel {
 
     };
    }
-}
+   AgentModel.fromFirestore( Map<String ,dynamic > firestore)
+     : idAgent = firestore['AgentId'],
+        nomCompletAgent= firestore['NomComplet'],
+        telephoneAgent = firestore['Telephone'],
+        urlPhotoAgant= firestore['Url_photo'],
+        paysAgent = firestore['Pays'],
+        emailAgent = firestore['Email'];
+  
+} 
