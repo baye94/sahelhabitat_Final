@@ -1,6 +1,7 @@
 
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
@@ -15,7 +16,8 @@ class ajoutAgents extends StatefulWidget {
 }
 
 class _ajoutAgentsState extends State<ajoutAgents> {
-  
+ 
+// String imageUrl='https://firebasestorage.googleapis.com/v0/b/projetsahelhabitat.appspot.com/o/Agents%2Flogo.png?alt=media&token=322ba732-b926-494e-bdb0-f616a3a77b7d' ;
 String imageUrl;
 String photo ="";
 FirebaseStorage _storage = FirebaseStorage.instance;
@@ -23,6 +25,7 @@ final _picker = ImagePicker();
  File _image ;
  File imageAgentAvantSAve;
 PickedFile image;
+String downloadUrl ;
 final _frisky2 = GlobalKey<FormState>();
 
  Future getImage2() async {
@@ -31,7 +34,7 @@ final _frisky2 = GlobalKey<FormState>();
      if(permissionStatus.isGranted){
        image = await _picker.getImage(source: ImageSource.gallery);
        _image = File(image.path) ;
-       imageAgentAvantSAve =_image ;
+      imageAgentAvantSAve =_image ;
       //  setState(() {
       //    imageAgentAvantSAve =_image ;
       //    });
@@ -39,25 +42,34 @@ final _frisky2 = GlobalKey<FormState>();
      
 
     }
-   uploadImage(String agent) async {
-      
-    await Permission.photos.request();
+ uploadImage(String agent) async {
+   
+   Permission.photos.request();
     var permissionStatus = await Permission.photos.status;
     if (permissionStatus.isGranted){
       
-      if ( imageAgentAvantSAve!= null){
+      if ( imageAgentAvantSAve.path.isNotEmpty){
+        //  Reference ref = FirebaseStorage.instance.ref().child('Agents/$agent');
+        // UploadTask uploadTask = ref.putFile(imageAgentAvantSAve).whenComplete(() => print('envoie vers la base de bonnee est fait storage') );
+        // TaskSnapshot taskSnapshot=await uploadTask.whenComplete(() => print('df'));
+
         //Upload to Firebase
-        var snapshot = await _storage.ref()
+        TaskSnapshot snapshot = await _storage.ref()
         .child('Agents/$agent')
-        .putFile( imageAgentAvantSAve);
-        // .onComplete;
-        // snapshot t = await snapshot.onComplete
-        var downloadUrl = await snapshot.ref.getDownloadURL();
-        imageUrl = downloadUrl;
-        // setState(() {
+        .putFile(imageAgentAvantSAve).whenComplete(() => 
+        print('envoie vers la base de bonnee est fait storage')
+        );
+        
+        
+         downloadUrl =  await snapshot.ref.getDownloadURL().whenComplete(() => print(' est tres birn fini merci'));
          
+          //  imageUrl = await downloadUrl;
+           print('path recuperer de download Url $downloadUrl');
+        // setState(() {
+        //  imageUrl = downloadUrl;
           
         //    });
+          //  return imageUrl;
       } else {
         print('No Path Received');
       }
@@ -68,7 +80,7 @@ final _frisky2 = GlobalKey<FormState>();
  }
   @override
   Widget build(BuildContext context) {
-    
+  
     final agentProvider = Provider.of<AgentProvider>(context);
     // var _forminskey;
         File _image;
@@ -122,7 +134,7 @@ final _frisky2 = GlobalKey<FormState>();
                         color: Colors.orange[900],
                       ),
                       onPressed: () {
-                        //  getImage2();
+                        getImage2();
                        
                       },
                     ),
@@ -149,15 +161,17 @@ final _frisky2 = GlobalKey<FormState>();
                                                 hintText: "Nom complet  ",
                                                 hintStyle:
                                                 TextStyle(color: Colors.grey),
-                                                border: InputBorder.none
+                                                border: InputBorder.none,
+                                               
                                             ),
                                             validator: (val){
                                                 if(val.isEmpty){
                                                   return ' Nom complet';
                                                 }
-                                                
+                                               
                                               },
                                            onChanged: (value){
+                                             
                                               agentProvider.changeNomAgent(value);
                                            },
                                         ),
@@ -180,8 +194,7 @@ final _frisky2 = GlobalKey<FormState>();
                                                 if(val.isEmpty){
                                                   return 'Telephone';
                                                 }
-                                                
-                                              },
+                                                },
                                            onChanged: (value){
                                               agentProvider.changeTelephoneAgent(value);
                                            },
@@ -205,7 +218,7 @@ final _frisky2 = GlobalKey<FormState>();
                                                 if(val.isEmpty){
                                                   return ' Email ?';
                                                 }
-                                                if (val.contains('@')==false) {
+                                                else if (val.contains('@')==false) {
                                                   return ' respect email foromat @';
                                                 }
                                               },
@@ -248,26 +261,29 @@ final _frisky2 = GlobalKey<FormState>();
                                                       color: Colors.grey[200]))),
                                         child:TextFormField(
                                             decoration: InputDecoration(
-                                                hintText: " phot",
+                                                hintText: " photo",
                                                 hintStyle:
                                                 TextStyle(color: Colors.grey),
-                                                border: InputBorder.none
+                                                border: InputBorder.none,
+                                                
                                             ),
-                                             onTap: (){
-                                               if(getImage2()!=null){
-                                                 photo ="urlphoto";                                               }
-                                            },
+                                          
                                             validator: (val){
-                                              val = photo;
+                                              val = imageAgentAvantSAve.path;
                                               if(val.isEmpty){
                                                   return ' Photo';
                                                 }
+                                              //  imageUrl =  uploadImage(agentProvider.nomA);
+                                               agentProvider.changeUrlPhoto(downloadUrl);
+                                               uploadImage(agentProvider.nomA);
+                                                print('Url Avant uploasd $downloadUrl');
 
                                               },
 
-                                           onChanged: (imageUrl){
-                                             agentProvider.changeUrlPhoto(imageUrl);
-                                           },
+                                          //  onChanged: (value){
+                                          //    value = "fall";
+                                          //    agentProvider.changeUrlPhoto(value);
+                                          //  },
                                         ),
                                         
                                       ),
@@ -282,21 +298,16 @@ final _frisky2 = GlobalKey<FormState>();
                                     color: Colors.orange[900]),
                                 child: Center(
                                   child: FlatButton(
-                                     onPressed: () {
+                                   
+                                     onPressed: ()  async{
+                                        await uploadImage(agentProvider.nomA);
                                        if (_frisky2.currentState.validate()){
-                                        // var upload = uploadImage(agentProvider.nomA);
-                                         
-                                         if(uploadImage(agentProvider.nomA)!= null){
-                                           
-                                               agentProvider.saveAgent();
+                                         agentProvider.saveAgent();
+                                      print( ' Url images  apres dowload $downloadUrl');
+                                      //  Navigator.of(context).pop();
+                                      print('file path $imageAgentAvantSAve');
                                               print('heureusement que ' );
-                                              print( ' baye cheikh  $imageUrl');
-                                              setState(() {
-                                                imageUrl="";
-                                              });
-                                               
-                                            
-                                             }
+                                             
                                            }
                                        },
                                                       child: Text(
