@@ -1,10 +1,13 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sahelhabitat/Model/agentModel.dart';
 import 'package:sahelhabitat/View/Admin/ajoutAgents.dart';
+import 'package:sahelhabitat/View/Admin/editAgent.dart';
 import '../bloc.navigation_bloc/navigation_bloc.dart';
 import 'package:grouped_list/grouped_list.dart';
 import 'package:provider/provider.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 List   _data =[
   {
     'id':1,
@@ -86,12 +89,10 @@ class _MyAccountsPageState extends State<MyAccountsPage> {
       appBar: AppBar(
           elevation: 0.0,
           backgroundColor: Colors.white,
-          // title: new  Text("fall"),
-          // leading:  Image.asset('assets/logo.png', height: 52.0,),
+          
           actions: <Widget>[
             Image(image: AssetImage('assets/logo.png'),
-              // fit: BoxFit.values(100,122),
-              width: 100,
+            width: 100,
               height: 100,
               
             ),
@@ -102,14 +103,89 @@ class _MyAccountsPageState extends State<MyAccountsPage> {
         ? ListView.builder(
           itemCount: agents.length,
           itemBuilder:(context,index){
-           
-                        print(agents[index].toMap());
-                        // return 
-                       
-          return
+            return
            Column(
              children:<Widget> [
-                  Row(
+               ListTile(
+                  onTap: (){
+                    print(agents[index].nomCompletAgent.toUpperCase());
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => EditAgent(agents[index])));
+                  },
+                  title: Text(agents[index].nomCompletAgent.toUpperCase()),
+                  subtitle: Container(
+                    child: Card(
+               elevation: 8.0,
+               margin: EdgeInsets.symmetric(horizontal: 10 , vertical: 6),
+               child: Container(
+                     padding: EdgeInsets.all(8),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Expanded (
+                            flex: 4, 
+                            child: CachedNetworkImage(
+                              fit: BoxFit.cover,
+                              height: 100,
+                              width: 250,
+                               imageUrl: agents[index].urlPhotoAgant,
+                               errorWidget: (context, url, error) => Icon(Icons.error),
+),
+       
+                            ),
+                          Expanded(
+                            flex: 8,
+                              child: Container(
+                                
+                                padding: EdgeInsets.only(bottom: 8),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                 
+                                    Padding(padding: EdgeInsets.only(left: 8) ,child: Text(agents[index].nomCompletAgent,style:TextStyle(fontWeight: FontWeight.bold , fontSize: 16),
+                                     maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,),),
+                                    Padding(padding: EdgeInsets.all( 8) ,
+                                      child: Row(
+                                        mainAxisSize:MainAxisSize.max ,
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          Icon(Icons.account_circle_sharp , color: Colors.orange, size: 16,),
+                                          Container(
+                                            margin: EdgeInsets.only(left: 8,),
+                                            child: Text('${agents[index].telephoneAgent}'),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    Padding(padding: EdgeInsets.all( 8) ,
+                                      child: Row(
+                                        mainAxisSize:MainAxisSize.max ,
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          Icon(Icons.calendar_today  , color: Colors.orange, size: 16,),
+                                          Container(
+                                            margin: EdgeInsets.only(left: 8,),
+                                            child: Text('${agents[index].paysAgent}'),
+                                          )
+                                        ],
+                                      ),
+                                    )
+
+                                  ],
+                                ),
+                              )
+                          )
+                        ],
+                      ),
+               ),
+
+             ),
+                  ),
+                ) ,
+              Row(
             mainAxisAlignment:  MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -121,98 +197,24 @@ class _MyAccountsPageState extends State<MyAccountsPage> {
                   Container(
                     width: 8,
                     height: 8,
-                    decoration: BoxDecoration(shape: BoxShape.circle , color: Colors.orange),
+                    decoration: BoxDecoration(shape: BoxShape.circle , color: Colors.orange[900]),
                   ) ,
                   Expanded(
                     child: Divider(
                       color: Colors.orange[900],
                      
                     )
-                    )
+                    ),
+                     Container(
+                    width: 8,
+                    height: 8,
+                    decoration: BoxDecoration(shape: BoxShape.circle , color: Colors.orange[900]),
+                  ) ,
                 ],
               )
               )
             ],
           ),
-                Card(
-               elevation: 8.0,
-               margin: EdgeInsets.symmetric(horizontal: 10 , vertical: 6),
-               child: Container(
-                 padding: EdgeInsets.all(8),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded (
-                      
-                        flex: 4, 
-                        child: ClipRect(
-                           child: Image.network('${agents[index].urlPhotoAgant}',
-                          fit: BoxFit.cover,
-                          height: 100,
-                          width: 100,
-                          ),
-                          // borderRadius : BorderRadius.all(Radius.circular(4))
-                        ) 
-                        ,
-                    //       child: ClipRect(
-                    //         Image.network('',),
-                    //       //   child:Image:(
-                             
-                    //       // //  Image.network()  , 
-                    //       //      fit: BoxFit.cover, ) ,
-                    //  borderRadius : BorderRadius.all(Radius.circular(4))
-                    //       )
-                        ),
-                      Expanded(
-                        flex: 8,
-                          child: Container(
-                            
-                            padding: EdgeInsets.only(bottom: 8),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                             
-                                Padding(padding: EdgeInsets.only(left: 8) ,child: Text(agents[index].nomCompletAgent,style:TextStyle(fontWeight: FontWeight.bold , fontSize: 16),
-                                 maxLines: 2,
-                                overflow: TextOverflow.ellipsis,),),
-                                Padding(padding: EdgeInsets.all( 8) ,
-                                  child: Row(
-                                    mainAxisSize:MainAxisSize.max ,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Icon(Icons.account_circle_sharp , color: Colors.orange, size: 16,),
-                                      Container(
-                                        margin: EdgeInsets.only(left: 8,),
-                                        child: Text('${agents[index].emailAgent}'),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                Padding(padding: EdgeInsets.all( 8) ,
-                                  child: Row(
-                                    mainAxisSize:MainAxisSize.max ,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Icon(Icons.calendar_today  , color: Colors.orange, size: 16,),
-                                      Container(
-                                        margin: EdgeInsets.only(left: 8,),
-                                        child: Text('${agents[index].paysAgent}'),
-                                      )
-                                    ],
-                                  ),
-                                )
-
-                              ],
-                            ),
-                          )
-                      )
-                    ],
-                  ),
-               ),
-
-             ) ,
              ],
            );
 
@@ -232,3 +234,4 @@ class _MyAccountsPageState extends State<MyAccountsPage> {
     );
   }
 }
+

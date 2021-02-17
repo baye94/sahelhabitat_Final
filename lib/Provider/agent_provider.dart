@@ -52,4 +52,12 @@ class AgentProvider extends ChangeNotifier {
      );
    firebaseservice.saveAgent(newagentModel);
   }
+  loadValues(AgentModel agentModel){
+    _nomCompletAgent = agentModel.nomCompletAgent;
+    _emailAgent = agentModel.emailAgent;
+    _telephoneAgent = agentModel.telephoneAgent ;
+    _paysAgent = agentModel.paysAgent;
+    _urlPhotoAgent = agentModel.urlPhotoAgant;
+    
+  }
 }

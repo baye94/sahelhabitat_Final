@@ -5,19 +5,71 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:sahelhabitat/Model/agentModel.dart';
 import 'package:sahelhabitat/Provider/agent_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:provider/provider.dart';import 'package:flutter/cupertino.dart';
 
-class ajoutAgents extends StatefulWidget {
-  
+class EditAgent extends StatefulWidget {
+  final AgentModel agentModel;
+  EditAgent([this.agentModel]);
   @override
-  _ajoutAgentsState createState() => _ajoutAgentsState();
+  _EditAgentState createState() => _EditAgentState();
 }
 
-class _ajoutAgentsState extends State<ajoutAgents> {
- 
-// String imageUrl='https://firebasestorage.googleapis.com/v0/b/projetsahelhabitat.appspot.com/o/Agents%2Flogo.png?alt=media&token=322ba732-b926-494e-bdb0-f616a3a77b7d' ;
-String imageUrl;
+class _EditAgentState extends State<EditAgent> {
+  
+final nameController = TextEditingController();
+final telephoneController = TextEditingController();
+final emailController = TextEditingController();
+final paysController = TextEditingController();
+final phototoController = TextEditingController();
+
+@override
+  void dispose() {
+    nameController.dispose();
+    telephoneController.dispose();
+    emailController.dispose();
+    paysController.dispose();
+    phototoController.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    if (widget.agentModel == null) {
+      //New Record
+      nameController.text = "";
+      telephoneController.text = "";
+      emailController.text= "";
+      paysController.text = "";
+      phototoController.text = "" ;
+            new Future.delayed(Duration.zero, () {
+        // final productProvider = Provider.of<ProductProvider>(context,listen: false);
+         final agentProvider = Provider.of<AgentProvider>(context,listen: false);
+        agentProvider.loadValues(AgentModel());
+      });
+    } else {
+      //Controller Update
+      nameController.text=widget.agentModel.nomCompletAgent;
+      telephoneController.text=widget.agentModel.telephoneAgent.toString();
+      emailController.text = widget.agentModel.emailAgent;
+      paysController.text = widget.agentModel.paysAgent;
+      phototoController.text = widget.agentModel.urlPhotoAgant;
+      //State Update
+      new Future.delayed(Duration.zero, () {
+        
+        final agentProvider = Provider.of<AgentProvider>(context,listen: false);
+        agentProvider.loadValues(widget.agentModel);
+      });
+      
+    }
+
+    super.initState();
+
+  }
+
+
+  String imageUrl;
 String photo ="";
 FirebaseStorage _storage = FirebaseStorage.instance;
 final _picker = ImagePicker();
@@ -71,12 +123,11 @@ final _frisky2 = GlobalKey<FormState>();
       print('Grant Permissions and try again');
     }
  }
+ 
   @override
   Widget build(BuildContext context) {
-  
     final agentProvider = Provider.of<AgentProvider>(context);
-    
-                return Scaffold(
+    return Scaffold(
                   appBar: AppBar(
                       elevation: 0.0,
                       backgroundColor: Colors.white,
@@ -150,6 +201,7 @@ final _frisky2 = GlobalKey<FormState>();
                                                   bottom: BorderSide(
                                                       color: Colors.grey[200]))),
                                         child: TextFormField(
+                                          controller: nameController,
                                             decoration: InputDecoration(
                                                 hintText: "Nom complet  ",
                                                 hintStyle:
@@ -177,6 +229,7 @@ final _frisky2 = GlobalKey<FormState>();
                                                   bottom: BorderSide(
                                                       color: Colors.grey[200]))),
                                         child: TextFormField(
+                                          controller: telephoneController,
                                             decoration: InputDecoration(
                                                 hintText: "Telephone",
                                                 hintStyle:
@@ -200,6 +253,7 @@ final _frisky2 = GlobalKey<FormState>();
                                                   bottom: BorderSide(
                                                       color: Colors.grey[200]))),
                                         child:TextFormField(
+                                          controller: emailController,
                                             decoration: InputDecoration(
                                                 hintText: "Email",
                                                 hintStyle:
@@ -229,8 +283,9 @@ final _frisky2 = GlobalKey<FormState>();
                                                   bottom: BorderSide(
                                                       color: Colors.grey[200]))),
                                         child:TextFormField(
+                                          controller: paysController,
                                             decoration: InputDecoration(
-                                                hintText: " Pays residence",
+                                                hintText: " Pays  edit residence",
                                                 hintStyle:
                                                 TextStyle(color: Colors.grey),
                                                 border: InputBorder.none
@@ -253,6 +308,7 @@ final _frisky2 = GlobalKey<FormState>();
                                                   bottom: BorderSide(
                                                       color: Colors.grey[200]))),
                                         child:TextFormField(
+                                          controller: phototoController,
                                             decoration: InputDecoration(
                                                 hintText: " photo",
                                                 hintStyle:
