@@ -109,6 +109,7 @@ class _MyAccountsPageState extends State<MyAccountsPage> {
                ListTile(
                   onTap: (){
                     print(agents[index].nomCompletAgent.toUpperCase());
+                    print(agents[index].idAgent);
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => EditAgent(agents[index])));
                   },

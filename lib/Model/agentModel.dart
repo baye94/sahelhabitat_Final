@@ -21,6 +21,17 @@ class AgentModel {
 
     };
    }
+   Map<String , dynamic> toMapUpdate(){
+    return{
+      
+      'NomComplet' : nomCompletAgent,
+      'Telephone':telephoneAgent,
+      'Pays':paysAgent,
+      'Url_photo': urlPhotoAgant,
+      'Email':emailAgent
+
+    };
+   }
    AgentModel.fromFirestore( Map<String ,dynamic > firestore)
      : idAgent = firestore['AgentId'],
         nomCompletAgent= firestore['NomComplet'],

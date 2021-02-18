@@ -1,5 +1,6 @@
 
 import 'dart:io';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -7,7 +8,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:sahelhabitat/Model/agentModel.dart';
 import 'package:sahelhabitat/Provider/agent_provider.dart';
-import 'package:provider/provider.dart';import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter/cupertino.dart';
 
 class EditAgent extends StatefulWidget {
   final AgentModel agentModel;
@@ -58,7 +60,7 @@ final phototoController = TextEditingController();
       //State Update
       new Future.delayed(Duration.zero, () {
         
-        final agentProvider = Provider.of<AgentProvider>(context,listen: false);
+        final agentProvider = Provider.of<AgentProvider>(context,listen:false);
         agentProvider.loadValues(widget.agentModel);
       });
       
@@ -160,8 +162,11 @@ final _frisky2 = GlobalKey<FormState>();
                           child: ( imageAgentAvantSAve!=null)?Image.file(
                             File(imageAgentAvantSAve.path),
                             fit: BoxFit.fill,
-                          ):Image.network(
-                            "https://images.unsplash.com/photo-1502164980785-f8aa41d53611?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+                          ):CachedNetworkImage(
+                             imageUrl:agentProvider.urlPhotoAgent,
+
+                            
+                            // "https://images.unsplash.com/photo-1502164980785-f8aa41d53611?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
                             fit: BoxFit.fill,
                             filterQuality: FilterQuality.low,
                           ),
@@ -188,7 +193,7 @@ final _frisky2 = GlobalKey<FormState>();
               SizedBox(
                 height: 20.0,
               ),
-                                         Center(
+                        Center(
                                            child: Form(
                                              
                                              key: _frisky2,
@@ -349,7 +354,7 @@ final _frisky2 = GlobalKey<FormState>();
                                   child: FlatButton(
                                    
                                      onPressed: ()  async{
-                                        await uploadImage(agentProvider.nomA);
+                                        await uploadImage(agentProvider.idA);
                                        if (_frisky2.currentState.validate()){
                                         agentProvider.saveAgent();
                                          Navigator.of(context).pop();
@@ -357,7 +362,7 @@ final _frisky2 = GlobalKey<FormState>();
                                               }
                                        },
                                                       child: Text(
-                                      "Ajouter Agent",
+                                      "Ajouter AgentS",
                                       style: TextStyle(
                                             color: Colors.white,
                                             fontWeight: FontWeight.bold),

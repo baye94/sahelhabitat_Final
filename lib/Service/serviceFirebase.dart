@@ -16,7 +16,10 @@ class ServiceFirebase {
    return  auth.signInWithEmailAndPassword(email: email, password: password);
   }
   Future<void>saveAgent(AgentModel agentModel){
-     return _db.collection('Agent').doc(agentModel.idAgent).set(agentModel.toMap());
+     return _db.collection('Agent').doc(agentModel.idAgent).set(agentModel.toMap(),);
+  }
+   Future<void>updateAgent(AgentModel agentModel){
+     return _db.collection('Agent').doc(agentModel.idAgent).update(agentModel.toMapUpdate(),);
   }
    Stream<List<AgentModel>> getAgents(){
     return _db.collection('Agent').snapshots().map((snapshot) => snapshot.docs.map((document) => AgentModel.fromFirestore(document.data())).toList());

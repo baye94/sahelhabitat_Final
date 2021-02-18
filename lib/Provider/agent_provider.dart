@@ -14,6 +14,7 @@ class AgentProvider extends ChangeNotifier {
    var uuid = Uuid();
    final firebaseservice = ServiceFirebase();
   //Getters
+  String get idA => _idAgent;
   String get nomA => _nomCompletAgent ;
   String get telephoneA => _telephoneAgent ;
   String get paysA => _paysAgent;
@@ -41,8 +42,13 @@ class AgentProvider extends ChangeNotifier {
     _emailAgent = value ;
     notifyListeners();
   }
+  // Save fonction permet de faire une mise a jours un ajout de nouvelles donnees dans la base de donnee firestore cloud
+
   saveAgent(){
-   var newagentModel = AgentModel(
+   // save data in firestore cloud
+   print('bonjours $_idAgent');
+   if(_idAgent== null){
+    var newagentModel = AgentModel(
      idAgent:uuid.v4(),
      nomCompletAgent:nomA , 
      telephoneAgent: telephoneA,
@@ -50,8 +56,34 @@ class AgentProvider extends ChangeNotifier {
      urlPhotoAgant: urlPhotoAgent,
      emailAgent: emailAgent
      );
-   firebaseservice.saveAgent(newagentModel);
-  }
+    firebaseservice.saveAgent(newagentModel);
+    }
+    //update data from firestore cloud
+    else{
+      var updateAgent = AgentModel(
+     idAgent: _idAgent,
+     nomCompletAgent:_nomCompletAgent , 
+     telephoneAgent: _telephoneAgent,
+     paysAgent: _paysAgent,
+     urlPhotoAgant: _urlPhotoAgent,
+     emailAgent: _emailAgent
+     );
+     firebaseservice.saveAgent(updateAgent);
+
+    }
+    }
+    updateAgent(){
+       var updateAgent = AgentModel(
+     idAgent: _idAgent,
+     nomCompletAgent:_nomCompletAgent , 
+     telephoneAgent: _telephoneAgent,
+     paysAgent: _paysAgent,
+     urlPhotoAgant: _urlPhotoAgent,
+     emailAgent: _emailAgent
+     );
+     firebaseservice.updateAgent(updateAgent);
+      
+    }
   loadValues(AgentModel agentModel){
     _nomCompletAgent = agentModel.nomCompletAgent;
     _emailAgent = agentModel.emailAgent;
