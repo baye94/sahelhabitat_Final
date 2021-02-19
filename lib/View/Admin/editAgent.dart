@@ -1,4 +1,3 @@
-
 import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -14,6 +13,7 @@ import 'package:flutter/cupertino.dart';
 class EditAgent extends StatefulWidget {
   final AgentModel agentModel;
   EditAgent([this.agentModel]);
+
   @override
   _EditAgentState createState() => _EditAgentState();
 }
@@ -105,20 +105,23 @@ final _frisky2 = GlobalKey<FormState>();
        
         TaskSnapshot snapshot = await _storage.ref()
         .child('Agents/$agent')
-        .putFile(imageAgentAvantSAve)
-        ;
+        .putFile(imageAgentAvantSAve);
         downloadUrl =  await snapshot.ref.getDownloadURL();
-         
-          
-      //  imageUrl = downloadUrl;
-      
-        setState(() {
+        //  imageUrl = downloadUrl;
+         setState(() {
          imageUrl = downloadUrl;
           
            });
          
       } else {
         print('No Path Received');
+        // downloadUrl = phototoController.text;
+       
+        //  imageUrl = downloadUrl;
+         setState(() {
+         imageUrl = phototoController.text;
+          
+           });
       }
 
     } else {
@@ -163,7 +166,7 @@ final _frisky2 = GlobalKey<FormState>();
                             File(imageAgentAvantSAve.path),
                             fit: BoxFit.fill,
                           ):CachedNetworkImage(
-                             imageUrl:agentProvider.urlPhotoAgent,
+                             imageUrl: phototoController.text ,
 
                             
                             // "https://images.unsplash.com/photo-1502164980785-f8aa41d53611?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
@@ -328,16 +331,16 @@ final _frisky2 = GlobalKey<FormState>();
                                                   return ' Photo';
                                                 }
                                               //  imageUrl =  uploadImage(agentProvider.nomA);
-                                               agentProvider.changeUrlPhoto( imageUrl );
+                                              //  agentProvider.changeUrlPhoto( imageUrl );
                                               //  uploadImage(agentProvider.nomA);
                                               
 
                                               },
 
-                                          //  onChanged: (value){
-                                          //    value = "fall";
-                                          //    agentProvider.changeUrlPhoto(value);
-                                          //  },
+                                           onChanged: (value){
+                                             value = imageUrl;
+                                             agentProvider.changeUrlPhoto(value);
+                                           },
                                         ),
                                         
                                       ),
@@ -354,9 +357,12 @@ final _frisky2 = GlobalKey<FormState>();
                                   child: FlatButton(
                                    
                                      onPressed: ()  async{
+                                       print('la modification');
+                                         agentProvider.testfunction();
                                         await uploadImage(agentProvider.idA);
                                        if (_frisky2.currentState.validate()){
                                         agentProvider.saveAgent();
+                                        agentProvider.testfunction();
                                          Navigator.of(context).pop();
                                     
                                               }

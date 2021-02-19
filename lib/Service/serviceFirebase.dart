@@ -9,10 +9,10 @@ class ServiceFirebase {
   FirebaseAuth auth = FirebaseAuth.instance;
   FirebaseFirestore _db = FirebaseFirestore.instance;
  
- Future<void> SaveUsers( String  email , String password ) {
+ Future<void> saveUsers( String  email , String password ) {
    return  auth.createUserWithEmailAndPassword(email: email, password: password);
    }
-  Future<void>Singin(String email , String password){
+  Future<void>singin(String email , String password){
    return  auth.signInWithEmailAndPassword(email: email, password: password);
   }
   Future<void>saveAgent(AgentModel agentModel){

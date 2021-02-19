@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:sahelhabitat/Model/agentModel.dart';
 import 'package:sahelhabitat/Service/serviceFirebase.dart';
@@ -18,8 +16,8 @@ class AgentProvider extends ChangeNotifier {
   String get nomA => _nomCompletAgent ;
   String get telephoneA => _telephoneAgent ;
   String get paysA => _paysAgent;
-  String get urlPhotoAgent => _urlPhotoAgent;
-  String get emailAgent => _emailAgent;
+  String get urlPhotoAgentA => _urlPhotoAgent;
+  String get emailAgentA => _emailAgent;
   
   //Setteurs
   changeNomAgent(String value){
@@ -47,19 +45,21 @@ class AgentProvider extends ChangeNotifier {
   saveAgent(){
    // save data in firestore cloud
    print('bonjours $_idAgent');
-   if(_idAgent== null){
+   print('n a fait un ajout de nouveau agent');
+   if(idA == null){
     var newagentModel = AgentModel(
      idAgent:uuid.v4(),
      nomCompletAgent:nomA , 
      telephoneAgent: telephoneA,
      paysAgent: paysA,
-     urlPhotoAgant: urlPhotoAgent,
-     emailAgent: emailAgent
+     urlPhotoAgant: urlPhotoAgentA,
+     emailAgent: emailAgentA
      );
     firebaseservice.saveAgent(newagentModel);
     }
     //update data from firestore cloud
     else{
+      print('n a fait une mise jours');
       var updateAgent = AgentModel(
      idAgent: _idAgent,
      nomCompletAgent:_nomCompletAgent , 
@@ -85,11 +85,20 @@ class AgentProvider extends ChangeNotifier {
       
     }
   loadValues(AgentModel agentModel){
+    _idAgent =agentModel.idAgent;
     _nomCompletAgent = agentModel.nomCompletAgent;
     _emailAgent = agentModel.emailAgent;
     _telephoneAgent = agentModel.telephoneAgent ;
     _paysAgent = agentModel.paysAgent;
     _urlPhotoAgent = agentModel.urlPhotoAgant;
     
+  }
+  testfunction(){
+    print('id$idA');
+    print('nom $_nomCompletAgent');
+      print('email$_emailAgent');
+        print('telephone $_telephoneAgent');
+          print('pays $_paysAgent');
+            print('nom $_urlPhotoAgent');
   }
 }

@@ -84,6 +84,7 @@ class _MyAccountsPageState extends State<MyAccountsPage> {
   
   @override
   Widget build(BuildContext context) {
+   
     final agents = Provider.of<List<AgentModel>>(context);
     return Scaffold(
       appBar: AppBar(
@@ -108,8 +109,11 @@ class _MyAccountsPageState extends State<MyAccountsPage> {
              children:<Widget> [
                ListTile(
                   onTap: (){
+                    print('Avant la modification des donnees');
                     print(agents[index].nomCompletAgent.toUpperCase());
                     print(agents[index].idAgent);
+                    print(agents[index].telephoneAgent);
+                    print(agents[index].urlPhotoAgant);
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => EditAgent(agents[index])));
                   },

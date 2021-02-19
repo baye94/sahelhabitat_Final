@@ -1,4 +1,3 @@
-import 'dart:io';
 
 class AgentModel {
   final String idAgent;

@@ -161,7 +161,7 @@ final _frisky2 = GlobalKey<FormState>();
                                                 if(val.isEmpty){
                                                   return ' Nom complet';
                                                 }
-                                               
+                                              
                                               },
                                            onChanged: (value){
                                              
@@ -293,7 +293,7 @@ final _frisky2 = GlobalKey<FormState>();
                                   child: FlatButton(
                                    
                                      onPressed: ()  async{
-                                        await uploadImage(agentProvider.nomA);
+                                        await uploadImage(agentProvider.idA);
                                        if (_frisky2.currentState.validate()){
                                         agentProvider.saveAgent();
                                          Navigator.of(context).pop();
