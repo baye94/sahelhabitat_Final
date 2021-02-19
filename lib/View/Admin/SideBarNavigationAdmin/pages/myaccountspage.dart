@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sahelhabitat/Model/agentModel.dart';
 import 'package:sahelhabitat/View/Admin/Agents/ajoutAgents.dart';
+import 'package:sahelhabitat/View/Admin/Agents/detailAgent.dart';
 import 'package:sahelhabitat/View/Admin/editAgent.dart';
 import '../bloc.navigation_bloc/navigation_bloc.dart';
 import 'package:grouped_list/grouped_list.dart';
@@ -114,8 +115,9 @@ class _MyAccountsPageState extends State<MyAccountsPage> {
                     print(agents[index].idAgent);
                     print(agents[index].telephoneAgent);
                     print(agents[index].urlPhotoAgant);
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => EditAgent(agents[index])));
+                      // Navigator.of(context).push(MaterialPageRoute(
+                      //     builder: (context) => EditAgent(agents[index])));
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) =>DetailAgent(agents[index])));
                   },
                   title: Text(agents[index].nomCompletAgent.toUpperCase()),
                   subtitle: Container(
