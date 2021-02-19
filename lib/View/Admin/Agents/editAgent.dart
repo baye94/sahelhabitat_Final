@@ -76,8 +76,9 @@ String photo ="";
 FirebaseStorage _storage = FirebaseStorage.instance;
 final _picker = ImagePicker();
  File _image ;
- File imageAgentAvantSAve;
+ File imageAgentAvantSAve ;
 PickedFile image;
+
 String downloadUrl ;
 final _frisky2 = GlobalKey<FormState>();
 
@@ -115,13 +116,7 @@ final _frisky2 = GlobalKey<FormState>();
          
       } else {
         print('No Path Received');
-        // downloadUrl = phototoController.text;
        
-        //  imageUrl = downloadUrl;
-         setState(() {
-         imageUrl = phototoController.text;
-          
-           });
       }
 
     } else {
@@ -177,20 +172,20 @@ final _frisky2 = GlobalKey<FormState>();
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 100.0),
-                    child: IconButton(
-                      icon: Icon(
-                        FontAwesomeIcons.camera,
-                        size: 30.0,
-                        color: Colors.orange[900],
-                      ),
-                      onPressed: () {
-                        getImage2();
+                  // Padding(
+                  //   padding: EdgeInsets.only(top: 100.0),
+                  //   child: IconButton(
+                  //     icon: Icon(
+                  //       FontAwesomeIcons.camera,
+                  //       size: 30.0,
+                  //       color: Colors.orange[900],
+                  //     ),
+                  //     onPressed: () {
+                  //       getImage2();
                        
-                      },
-                    ),
-                  ),
+                  //     },
+                  //   ),
+                  // ),
                 ],
               ),
               SizedBox(
@@ -316,26 +311,29 @@ final _frisky2 = GlobalKey<FormState>();
                                                   bottom: BorderSide(
                                                       color: Colors.grey[200]))),
                                         child:TextFormField(
+                                          readOnly: true,
                                           controller: phototoController,
+                                          
                                             decoration: InputDecoration(
                                                 hintText: " photo",
                                                 hintStyle:
                                                 TextStyle(color: Colors.grey),
                                                 border: InputBorder.none,
+                                               
                                                 
                                             ),
                                           
-                                            validator: (val){
-                                              val = imageAgentAvantSAve.path;
-                                              if(val.isEmpty){
-                                                  return ' Photo';
-                                                }
+                                            // validator: (val){
+                                            //   val = imageAgentAvantSAve.path;
+                                            //   if(val.isEmpty){
+                                            //       return ' Photo';
+                                            //     }
                                               //  imageUrl =  uploadImage(agentProvider.nomA);
                                               //  agentProvider.changeUrlPhoto( imageUrl );
                                               //  uploadImage(agentProvider.nomA);
                                               
 
-                                              },
+                                              // },
 
                                            onChanged: (value){
                                              value = imageUrl;
@@ -359,7 +357,7 @@ final _frisky2 = GlobalKey<FormState>();
                                      onPressed: ()  async{
                                        print('la modification');
                                          agentProvider.testfunction();
-                                        await uploadImage(agentProvider.idA);
+                                        // await uploadImage(agentProvider.idA);
                                        if (_frisky2.currentState.validate()){
                                         agentProvider.saveAgent();
                                         agentProvider.testfunction();
