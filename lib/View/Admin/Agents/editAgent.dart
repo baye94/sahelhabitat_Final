@@ -2,13 +2,14 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:sahelhabitat/Model/agentModel.dart';
 import 'package:sahelhabitat/Provider/agent_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:sahelhabitat/View/Admin/SideBarNavigationAdmin/pages/myaccountspage.dart';
+
 
 class EditAgent extends StatefulWidget {
   final AgentModel agentModel;
@@ -361,7 +362,7 @@ final _frisky2 = GlobalKey<FormState>();
                                        if (_frisky2.currentState.validate()){
                                         agentProvider.saveAgent();
                                         agentProvider.testfunction();
-                                         Navigator.of(context).pop();
+                                         Navigator.of(context).push(MaterialPageRoute(builder: (context)=> MyAccountsPage() ));
                                     
                                               }
                                        },

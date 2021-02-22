@@ -93,6 +93,9 @@ class AgentProvider extends ChangeNotifier {
     _urlPhotoAgent = agentModel.urlPhotoAgant;
     
   }
+  removeAgent(String idAgent){
+    firebaseservice.removeAgent(idAgent);
+  }
   testfunction(){
     print('id$idA');
     print('nom $_nomCompletAgent');

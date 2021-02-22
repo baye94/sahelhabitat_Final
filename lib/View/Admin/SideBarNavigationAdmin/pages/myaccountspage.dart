@@ -4,77 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:sahelhabitat/Model/agentModel.dart';
 import 'package:sahelhabitat/View/Admin/Agents/ajoutAgents.dart';
 import 'package:sahelhabitat/View/Admin/Agents/detailAgent.dart';
-import 'package:sahelhabitat/View/Admin/editAgent.dart';
 import '../bloc.navigation_bloc/navigation_bloc.dart';
-import 'package:grouped_list/grouped_list.dart';
 import 'package:provider/provider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-List   _data =[
-  {
-    'id':1,
-    'nom': 'Diop',
-    'prenom': 'fallou',
-    'Pays':'Senegal',
-    'numero': '778012345',
-    'email': 'fallou@sahelhabitat.com',
-    'image': 'assets/fall.jpg'
-  },
-  {
-    'id':2,
-    'nom': 'Diouf',
-    'prenom': 'birame',
-    'Pays':'Senegal',
-    'numero': '777777777',
-    'email': 'fallou@sahelhabitat.com',
-    'image': 'assets/back1.jpg'
-  },
-  {
-    'id':3,
-    'nom': 'Diouf',
-    'prenom': 'fallilou',
-    'Pays':'belgique',
-    'numero': '778934567',
-    'email': 'fallilou@sahelhabitat.com',
-    'image': 'assets/back2.jpg'
-  },
-  {
-    'id':4,
-    'nom': 'fall',
-    'prenom': 'cheikh',
-    'Pays':'canada',
-    'numero': '7789345676',
-    'email': 'cheikh@sahelhabitat.com',
-    'image': 'assets/back3.jpg'
-  },
-  {
-    'id':5,
-    'nom': 'fall',
-    'prenom': 'cheikh',
-    'Pays':'canada',
-    'numero': '778934562',
-    'email': 'cheikh@sahelhabitat.com',
-    'image': 'assets/back2.jpg'
-  },
-  {
-    'id':6,
-    'nom': 'fall',
-    'prenom': 'cheikh',
-    'Pays':'cana',
-    'numero': '778934',
-    'email': 'cheikh@sahelhabitat.com',
-    'image': 'assets/back1.jpg'
-  },
-  {
-    'id':7,
-    'nom': 'fall',
-    'prenom': 'cheikh',
-    'Pays':'canada',
-    'numero': '77892324',
-    'email': 'cheikh@sahelhabitat.com',
-    'image': 'assets/back3.jpg'
-  },
 
-];
 class MyAccountsPage extends StatefulWidget with NavigationStates {
   
   @override

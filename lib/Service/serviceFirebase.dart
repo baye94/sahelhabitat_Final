@@ -25,4 +25,7 @@ class ServiceFirebase {
     return _db.collection('Agent').snapshots().map((snapshot) => snapshot.docs.map((document) => AgentModel.fromFirestore(document.data())).toList());
 
   }
+   Future<void> removeAgent(String agentId){
+    return _db.collection('Agent').doc(agentId).delete();
+  }
 }

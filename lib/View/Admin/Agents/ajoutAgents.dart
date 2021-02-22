@@ -8,12 +8,14 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:sahelhabitat/Provider/agent_provider.dart';
 import 'package:provider/provider.dart';
 
+// ignore: camel_case_types
 class ajoutAgents extends StatefulWidget {
   
   @override
   _ajoutAgentsState createState() => _ajoutAgentsState();
 }
 
+// ignore: camel_case_types
 class _ajoutAgentsState extends State<ajoutAgents> {
  
 // String imageUrl='https://firebasestorage.googleapis.com/v0/b/projetsahelhabitat.appspot.com/o/Agents%2Flogo.png?alt=media&token=322ba732-b926-494e-bdb0-f616a3a77b7d' ;
@@ -183,6 +185,7 @@ final _frisky2 = GlobalKey<FormState>();
                                                 TextStyle(color: Colors.grey),
                                                 border: InputBorder.none
                                             ),
+                                             // ignore: missing_return
                                              validator: (val){
                                                 if(val.isEmpty){
                                                   return 'Telephone';
