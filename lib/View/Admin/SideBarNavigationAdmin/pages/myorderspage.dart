@@ -2,7 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sahelhabitat/Model/terrainModel.dart';
+import 'package:sahelhabitat/Provider/terrain_provider.dart';
 import 'package:sahelhabitat/View/Admin/Terrain/ajoutTerrain.dart';
+import 'package:sahelhabitat/View/Admin/Terrain/detaillTerrain.dart';
 import '../bloc.navigation_bloc/navigation_bloc.dart';
 
 class MyOrdersPage extends StatefulWidget with NavigationStates {
@@ -45,9 +47,8 @@ class _MyOrdersPageState extends State<MyOrdersPage> {
                     print(terrains[index].urlPhotoTerrain);
                       // Navigator.of(context).push(MaterialPageRoute(
                       //     builder: (context) => EditAgent(agents[index])));
-                      // Navigator.of(context).push(MaterialPageRoute(builder: (context) =>DetailAgent(agents[index])));
-                  },
-                  title: Text(terrains[index].localiteTerrain.toUpperCase()),
+ Navigator.of(context).push(MaterialPageRoute(builder: (context) =>DetailTerrain(terrains[index])));                  },
+                  // title: Text(terrains[index].localiteTerrain.toUpperCase()),
                   subtitle: Container(
                     child: Card(
                elevation: 8.0,
@@ -119,6 +120,7 @@ class _MyOrdersPageState extends State<MyOrdersPage> {
 
              ),
                   ),
+                  
                 ) ,
               Row(
             mainAxisAlignment:  MainAxisAlignment.start,
@@ -150,6 +152,7 @@ class _MyOrdersPageState extends State<MyOrdersPage> {
               )
             ],
           ),
+          Text(terrains[index].descriptionTerrain),
              ],
            );
 

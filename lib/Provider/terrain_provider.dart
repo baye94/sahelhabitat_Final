@@ -77,5 +77,8 @@ class TerrainProvider extends ChangeNotifier{
 
       }
     }
+    removeTerrain(String idTerrain){
+    firebaseservice.removeTerrain(idTerrain);
+  }
 
 }
