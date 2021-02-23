@@ -2,9 +2,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sahelhabitat/Provider/agent_provider.dart';
+import 'package:sahelhabitat/Provider/terrain_provider.dart';
 import 'package:sahelhabitat/Service/serviceFirebase.dart';
 import 'Service/serviceFirebase.dart';
 import 'View/Home/home2.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'generated/l10n.dart';
 
 void main()  async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,6 +25,8 @@ class MyApp extends StatelessWidget {
       providers: [
             ChangeNotifierProvider(create: (context) => AgentProvider()),
             StreamProvider(create: (context)=> servicefirestore.getAgents()),
+            ChangeNotifierProvider(create: (context)=> TerrainProvider()),
+            StreamProvider(create: (context) => servicefirestore.getTerrain()),
           ],
           child: MaterialApp(
       debugShowCheckedModeBanner: false ,
@@ -30,6 +35,13 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
+            localizationsDelegates: [
+              S.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: S.delegate.supportedLocales,
       home: MyHomePage(title: 'Flutter Page'),
           ),
     );
@@ -47,7 +59,12 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   @override
-  Widget build(BuildContext context) {  
+  Widget build(BuildContext context) {
+    setState(() {
+      S.load(Locale(S.of(context).localeName, ''));
+      
+    });
+    
      return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

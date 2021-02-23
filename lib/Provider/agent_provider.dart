@@ -72,18 +72,7 @@ class AgentProvider extends ChangeNotifier {
 
     }
     }
-    updateAgent(){
-       var updateAgent = AgentModel(
-     idAgent: _idAgent,
-     nomCompletAgent:_nomCompletAgent , 
-     telephoneAgent: _telephoneAgent,
-     paysAgent: _paysAgent,
-     urlPhotoAgant: _urlPhotoAgent,
-     emailAgent: _emailAgent
-     );
-     firebaseservice.updateAgent(updateAgent);
-      
-    }
+   
   loadValues(AgentModel agentModel){
     _idAgent =agentModel.idAgent;
     _nomCompletAgent = agentModel.nomCompletAgent;

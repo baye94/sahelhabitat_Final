@@ -52,6 +52,8 @@ dependencies:
   expansion_card: ^0.1.0
   readmore: ^1.0.0
   url_launcher: ^5.7.10
+  flutter_localizations:
+    sdk: flutter
 
   
    
@@ -106,3 +108,5 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+flutter_intl:
+  enabled: true
