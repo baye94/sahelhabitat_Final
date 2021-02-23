@@ -260,31 +260,7 @@ final _frisky2 = GlobalKey<FormState>();
                                            },
                                         ),
                                       ),
-                                       Container(
-                                        padding: EdgeInsets.all(10),
-                                        decoration: BoxDecoration(
-                                              border: Border(
-                                                  bottom: BorderSide(
-                                                      color: Colors.grey[200]))),
-                                        child: TextFormField(
-                                            decoration: InputDecoration(
-                                                hintText: "Description ",
-                                                hintStyle:
-                                                TextStyle(color: Colors.grey),
-                                                border: InputBorder.none,
-                                               
-                                            ),
-                                            validator: (val){
-                                                if(val.isEmpty){
-                                                  return ' description';
-                                                }
-                                              
-                                              },
-                                           onChanged: (value){
-                                             terrainProvider.changeDescription(value);
-                                           },
-                                        ),
-                                      ),
+                                      
                                     
                                        Container(
                                         padding: EdgeInsets.all(10),
@@ -320,6 +296,32 @@ final _frisky2 = GlobalKey<FormState>();
                                           //  },
                                         ),
                                         
+                                      ),
+                                       Container(
+                                        padding: EdgeInsets.all(10),
+                                        decoration: BoxDecoration(
+                                              border: Border(
+                                                  bottom: BorderSide(
+                                                      color: Colors.grey[200]))),
+                                        child: TextFormField(
+                                          maxLines: 20,
+                                            decoration: InputDecoration(
+                                                hintText: "Description ",
+                                                hintStyle:
+                                                TextStyle(color: Colors.grey),
+                                                border: InputBorder.none,
+                                               
+                                            ),
+                                            validator: (val){
+                                                if(val.isEmpty){
+                                                  return ' description';
+                                                }
+                                              
+                                              },
+                                           onChanged: (value){
+                                             terrainProvider.changeDescription(value);
+                                           },
+                                        ),
                                       ),
                                         SizedBox(
                           height: 10,
