@@ -335,10 +335,10 @@ final _frisky2 = GlobalKey<FormState>();
                                 child: Center(
                                   child: FlatButton(
                                      onPressed: ()  async{
-                                        await uploadImage(terrainProvider.idT);
+                                        // await uploadImage(terrainProvider.idT);
                                        if (_frisky2.currentState.validate()){
                                         await terrainProvider.saveTerrain();
-                                       print(terrainProvider.descriptionT);
+                                       print(terrainProvider.idT);
                                         return 'falll';
                                     
                                               }

@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:readmore/readmore.dart';
 import 'package:sahelhabitat/Model/terrainModel.dart';
 import 'package:sahelhabitat/Provider/terrain_provider.dart';
+import 'package:sahelhabitat/View/Admin/Terrain/editTerrain.dart';
 
 class DetailTerrain extends StatefulWidget {
   final TerrainModel terrainModel;
@@ -76,7 +77,7 @@ class _DetailTerrainState extends State<DetailTerrain> {
                     Icons.mode_edit,
                     color: Colors.orange,),
                     onTap: (){
-                    //  Navigator.of(context).push(MaterialPageRoute(builder: (contex) => EditAgent(widget.agentModel)));
+                     Navigator.of(context).push(MaterialPageRoute(builder: (contex) => EditTerrain(widget.terrainModel)));
                      AlertDialog(
                        title: Text('aliou'),
                      );

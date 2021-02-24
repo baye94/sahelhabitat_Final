@@ -52,7 +52,8 @@ class TerrainProvider extends ChangeNotifier{
       notifyListeners();
     }
     saveTerrain(){
-      if(idT==null){
+    
+      if(idT == null){
         var newTerrain = TerrainModel(
           idTerrain:uuid.v4(),
           localiteTerrain: localiteT,
@@ -63,6 +64,7 @@ class TerrainProvider extends ChangeNotifier{
           surface: surfaceT,
           suffixeSurface: sufficesurfaceT,);
         firebaseservice.saveTerrain(newTerrain);
+        
       }else{
          var updateTerrain = TerrainModel(
           idTerrain:_idTerrain,
@@ -79,6 +81,17 @@ class TerrainProvider extends ChangeNotifier{
     }
     removeTerrain(String idTerrain){
     firebaseservice.removeTerrain(idTerrain);
+  }
+  loadValues(TerrainModel terrainModel){
+    _idTerrain = terrainModel.idTerrain;
+    _localiteTerrain =terrainModel.localiteTerrain;
+    _prixTerrain = terrainModel.prixTerrain;
+    _devicePrixTerrain = terrainModel.devicePrixTerrain;
+    _descriptionTerrain = terrainModel.devicePrixTerrain;
+    _urlPhotoTerrain =terrainModel.urlPhotoTerrain;
+    _surface = terrainModel.surface;
+    _suffixeSurface = terrainModel.suffixeSurface;
+    
   }
 
 }

@@ -152,7 +152,7 @@ class _MyOrdersPageState extends State<MyOrdersPage> {
               )
             ],
           ),
-          Text(terrains[index].descriptionTerrain),
+         
              ],
            );
 
