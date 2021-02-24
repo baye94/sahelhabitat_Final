@@ -357,11 +357,11 @@ final _frisky2 = GlobalKey<FormState>();
                                    
                                      onPressed: ()  async{
                                        print('la modification');
-                                         agentProvider.testfunction();
+                                       
                                         // await uploadImage(agentProvider.idA);
                                        if (_frisky2.currentState.validate()){
                                         agentProvider.saveAgent();
-                                        agentProvider.testfunction();
+                                      
                                          Navigator.of(context).push(MaterialPageRoute(builder: (context)=> MyAccountsPage() ));
                                     
                                               }

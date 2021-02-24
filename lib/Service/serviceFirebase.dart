@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:sahelhabitat/Model/agentModel.dart';
+import 'package:sahelhabitat/Model/maisonVendre.dart';
 import 'package:sahelhabitat/Model/terrainModel.dart';
 
 
@@ -20,9 +21,7 @@ class ServiceFirebase {
   Future<void>saveAgent(AgentModel agentModel){
      return _db.collection('Agent').doc(agentModel.idAgent).set(agentModel.toMap(),);
   }
-   Future<void>updateAgent(AgentModel agentModel){
-     return _db.collection('Agent').doc(agentModel.idAgent).update(agentModel.toMapUpdate(),);
-  }
+   
    Stream<List<AgentModel>> getAgents(){
     return _db.collection('Agent').snapshots().map((snapshot) => snapshot.docs.map((document) => AgentModel.fromFirestore(document.data())).toList());
 
@@ -39,5 +38,15 @@ class ServiceFirebase {
   }
   Future<void> removeTerrain(String idTerrain){
     return _db.collection('Terrain').doc(idTerrain).delete();
+  }
+  //gestion maison a vendre
+   Future<void> saveMaison(MaisonVendre maisonVendre){
+    return _db.collection('Maison A Vendre').doc(maisonVendre.idMaisonVendre).set(maisonVendre.toMap());
+  }
+  Stream<List<MaisonVendre>> getMaisonVendre(){
+    return _db.collection('Maison A Vendre').snapshots().map((snapshots) => snapshots.docs.map((document) => MaisonVendre.fromFirestore(document.data())).toList());
+  }
+  Future<void> removeMaisonVendre(String idTerrain){
+    return _db.collection('Maison A Vendre').doc(idTerrain).delete();
   }
 }

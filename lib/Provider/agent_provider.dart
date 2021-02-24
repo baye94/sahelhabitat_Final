@@ -18,8 +18,7 @@ class AgentProvider extends ChangeNotifier {
   String get paysA => _paysAgent;
   String get urlPhotoAgentA => _urlPhotoAgent;
   String get emailAgentA => _emailAgent;
-  
-  //Setteurs
+   //Setteurs
   changeNomAgent(String value){
     _nomCompletAgent = value ;
     notifyListeners();
@@ -85,12 +84,5 @@ class AgentProvider extends ChangeNotifier {
   removeAgent(String idAgent){
     firebaseservice.removeAgent(idAgent);
   }
-  testfunction(){
-    print('id$idA');
-    print('nom $_nomCompletAgent');
-      print('email$_emailAgent');
-        print('telephone $_telephoneAgent');
-          print('pays $_paysAgent');
-            print('nom $_urlPhotoAgent');
-  }
+  
 }
