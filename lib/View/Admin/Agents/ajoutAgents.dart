@@ -296,9 +296,10 @@ final _frisky2 = GlobalKey<FormState>();
                                   child: FlatButton(
                                    
                                      onPressed: ()  async{
-                                        await uploadImage(agentProvider.idA);
+                                        await uploadImage(agentProvider.nomA);
                                        if (_frisky2.currentState.validate()){
                                         agentProvider.saveAgent();
+                                        print(agentProvider.idA);
                                          Navigator.of(context).pop();
                                     
                                               }

@@ -8,6 +8,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:sahelhabitat/Model/terrainModel.dart';
 import 'package:sahelhabitat/Provider/terrain_provider.dart';
+import 'package:sahelhabitat/View/Admin/SideBarNavigationAdmin/pages/myorderspage.dart';
 class EditTerrain extends StatefulWidget {
   final TerrainModel terrainModel;
   EditTerrain([this.terrainModel]);
@@ -385,11 +386,9 @@ final _frisky2 = GlobalKey<FormState>();
                                         // await uploadImage(terrainProvider.idT);
                                        if (_frisky2.currentState.validate()){
                                         await terrainProvider.saveTerrain();
-                                       print(terrainProvider.descriptionT);
-                                        return 'falll';
-                                    
-                                              }
-                                              return 'baye cheikh arrete de faire genre';
+                                          Navigator.of(context).push(MaterialPageRoute(builder: (context)=> MyOrdersPage() ));
+                                         }
+                                           
                                        },
                                                       child: Text(
                                       "Ajouter Agent",

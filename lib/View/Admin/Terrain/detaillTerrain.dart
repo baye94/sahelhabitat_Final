@@ -6,6 +6,7 @@ import 'package:readmore/readmore.dart';
 import 'package:sahelhabitat/Model/terrainModel.dart';
 import 'package:sahelhabitat/Provider/terrain_provider.dart';
 import 'package:sahelhabitat/View/Admin/Terrain/editTerrain.dart';
+import 'package:sahelhabitat/View/SideBarNavigation/pages/myorderspage.dart';
 
 class DetailTerrain extends StatefulWidget {
   final TerrainModel terrainModel;
@@ -65,7 +66,7 @@ class _DetailTerrainState extends State<DetailTerrain> {
                   children: <Widget>[
                     GestureDetector(
                       onTap: () async{
-                        // _showMyDialog();
+                        _showMyDialog();
                          },
                        child: Icon(
                   Icons.delete,
@@ -210,9 +211,8 @@ class _DetailTerrainState extends State<DetailTerrain> {
             child: Text('Approuver'),
             onPressed: ()  async{
               await terrainProvider.removeTerrain(widget.terrainModel.idTerrain);
-            //  Navigator.of(context).push(MaterialPageRoute(builder: (contex) => MyAccountsPage()));
+               Navigator.of(context).push(MaterialPageRoute(builder: (context)=> MyOrdersPage() ));
 
-            //   Navigator.of(context).pop();
             },
           ),
         ],

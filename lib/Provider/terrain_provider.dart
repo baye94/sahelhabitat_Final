@@ -14,7 +14,7 @@ class TerrainProvider extends ChangeNotifier{
    var uuid = Uuid();
    final firebaseservice = ServiceFirebase();
    //Getters
-   String get idT => _idTerrain;
+   String get idT =>_idTerrain;
    String get localiteT => _localiteTerrain;
    double get surfaceT => _surface;
    String get sufficesurfaceT => _suffixeSurface;
@@ -55,7 +55,7 @@ class TerrainProvider extends ChangeNotifier{
     
       if(idT == null){
         var newTerrain = TerrainModel(
-          idTerrain:uuid.v4(),
+          idTerrain: uuid.v4(),
           localiteTerrain: localiteT,
           prixTerrain: prixT,
           devicePrixTerrain: devicePrixT,
@@ -87,7 +87,7 @@ class TerrainProvider extends ChangeNotifier{
     _localiteTerrain =terrainModel.localiteTerrain;
     _prixTerrain = terrainModel.prixTerrain;
     _devicePrixTerrain = terrainModel.devicePrixTerrain;
-    _descriptionTerrain = terrainModel.devicePrixTerrain;
+    _descriptionTerrain = terrainModel.descriptionTerrain;
     _urlPhotoTerrain =terrainModel.urlPhotoTerrain;
     _surface = terrainModel.surface;
     _suffixeSurface = terrainModel.suffixeSurface;

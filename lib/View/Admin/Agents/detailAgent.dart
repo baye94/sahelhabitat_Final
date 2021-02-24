@@ -89,7 +89,7 @@ class _DetailAgentState extends State<DetailAgent> {
                     Icons.mode_edit,
                     color: Colors.orange,),
                     onTap: (){
-                    //  Navigator.of(context).push(MaterialPageRoute(builder: (contex) => EditAgent(widget.agentModel)));
+                     Navigator.of(context).push(MaterialPageRoute(builder: (contex) => EditAgent(widget.agentModel)));
                      AlertDialog(
                        title: Text('aliou'),
                      );
@@ -246,7 +246,7 @@ class _DetailAgentState extends State<DetailAgent> {
               await agentProvider.removeAgent(widget.agentModel.idAgent);
              Navigator.of(context).push(MaterialPageRoute(builder: (contex) => MyAccountsPage()));
 
-              Navigator.of(context).pop();
+              // Navigator.of(context).pop();
             },
           ),
         ],
