@@ -14,6 +14,7 @@ class MaisonVendreProvider extends ChangeNotifier {
    int _nombreChambreMaisonVendre;
    int _anneeConstructionMaisonVendre;
    String _description;
+   String _urlPhotoMaisonVendre;
     var uuid = Uuid();
    final firebaseservice = ServiceFirebase();
    //Getters
@@ -28,6 +29,7 @@ class MaisonVendreProvider extends ChangeNotifier {
    int    get nombreChambreMV => _nombreChambreMaisonVendre;
    int    get anneeConsMV  => _anneeConstructionMaisonVendre;
    String get description => _description;
+   String get urlPhotoMV => _urlPhotoMaisonVendre;
   //SETTERS
   changePaysMainsonV(String value){
     _paysMaisonVendre = value;
@@ -70,6 +72,10 @@ class MaisonVendreProvider extends ChangeNotifier {
     _description =value;
     notifyListeners();
   }
+  changeUrlPhotoMaisonV(String value){
+    _urlPhotoMaisonVendre = value ;
+    notifyListeners();
+  }
   saveTerrain(){
     if(idMV == null){
         var newMaison = MaisonVendre(
@@ -83,7 +89,8 @@ class MaisonVendreProvider extends ChangeNotifier {
       garageMaisonVendre :garageMV,
       nombreChambreMaisonVendre:nombreChambreMV ,
       anneeConstructionMaisonVendre :anneeConsMV,
-      description :description
+      description :description,
+      urlPhotoMaisonVendre: urlPhotoMV
       );
         firebaseservice.saveMaison(newMaison);
         
@@ -99,7 +106,8 @@ class MaisonVendreProvider extends ChangeNotifier {
       garageMaisonVendre :_garageMaisonVendre,
       nombreChambreMaisonVendre:_nombreChambreMaisonVendre ,
       anneeConstructionMaisonVendre :_anneeConstructionMaisonVendre,
-      description :_description);
+      description :_description,
+      urlPhotoMaisonVendre: _urlPhotoMaisonVendre);
       firebaseservice.saveMaison(updateMaison);
        }
     }
@@ -118,5 +126,6 @@ class MaisonVendreProvider extends ChangeNotifier {
   _nombreChambreMaisonVendre = maisonVendre.nombreChambreMaisonVendre;
   _anneeConstructionMaisonVendre = maisonVendre.anneeConstructionMaisonVendre;
   _description = maisonVendre.description;
+  _urlPhotoMaisonVendre = maisonVendre.urlPhotoMaisonVendre;
    }
 }

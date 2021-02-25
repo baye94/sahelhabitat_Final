@@ -16,6 +16,7 @@ class MaisonLouerProvider extends ChangeNotifier{
    int _anneeConstructionMaisonLouer;
    String _description;
    String _typeLouer;
+   String _urlPhotoMaisonLouer;
     var uuid = Uuid();
    final firebaseservice = ServiceFirebase();
    //Getters
@@ -31,6 +32,7 @@ class MaisonLouerProvider extends ChangeNotifier{
    int    get anneeConsML  => _anneeConstructionMaisonLouer;
    String get descriptionML => _description;
    String get typeLouerML =>  _typeLouer;
+   String get urlPhotoML => _urlPhotoMaisonLouer;
     //SETTERS
   changePaysMainsonL(String value){
     _paysMaisonLouer = value;
@@ -77,6 +79,10 @@ class MaisonLouerProvider extends ChangeNotifier{
     _typeLouer =value;
     notifyListeners();
   }
+  changeUrlPhotoMaisonL(String value){
+    _urlPhotoMaisonLouer = value;
+    notifyListeners();
+  }
    saveTerrain(){
     if(_idMaisonLouer == null){
         var newMaison = MaisonLouer(
@@ -91,7 +97,9 @@ class MaisonLouerProvider extends ChangeNotifier{
       nombreChambreMaisonLouer:nombreChambreML ,
       anneeConstructionMaisonLouer :anneeConsML,
       description :descriptionML,
-      typeLouer: typeLouerML
+      typeLouer: typeLouerML,
+      urlPhotoMaisonLouer: urlPhotoML
+      
       );
         firebaseservice.saveLouer(newMaison);
         
@@ -108,7 +116,8 @@ class MaisonLouerProvider extends ChangeNotifier{
       nombreChambreMaisonLouer:_nombreChambreMaisonLouer ,
       anneeConstructionMaisonLouer :_anneeConstructionMaisonLouer,
       description :_description,
-      typeLouer: _typeLouer
+      typeLouer: _typeLouer,
+      urlPhotoMaisonLouer: _urlPhotoMaisonLouer
       );
       firebaseservice.saveLouer(updateMaison);
        }
