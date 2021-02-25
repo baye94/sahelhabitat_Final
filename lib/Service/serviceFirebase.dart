@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:sahelhabitat/Model/agentModel.dart';
+import 'package:sahelhabitat/Model/maisonLouer.dart';
 import 'package:sahelhabitat/Model/maisonVendre.dart';
 import 'package:sahelhabitat/Model/terrainModel.dart';
 
@@ -48,5 +49,15 @@ class ServiceFirebase {
   }
   Future<void> removeMaisonVendre(String idTerrain){
     return _db.collection('Maison A Vendre').doc(idTerrain).delete();
+  }
+  //gestion maison a Louer
+   Future<void> saveLouer(MaisonLouer maisonLouer){
+    return _db.collection('Maison A Louer').doc(maisonLouer.idMaisonLouer).set(maisonLouer.toMap());
+  }
+  Stream<List<MaisonVendre>> getMaisonLouer(){
+    return _db.collection('Maison A Louer').snapshots().map((snapshots) => snapshots.docs.map((document) => MaisonVendre.fromFirestore(document.data())).toList());
+  }
+  Future<void> removeMaisonLouer(String idMaison){
+    return _db.collection('Maison A Louer').doc(idMaison).delete();
   }
 }

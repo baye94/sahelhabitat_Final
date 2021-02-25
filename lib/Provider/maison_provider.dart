@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sahelhabitat/Model/maisonVendre.dart';
 import 'package:sahelhabitat/Service/serviceFirebase.dart';
 import 'package:uuid/uuid.dart';
 class MaisonVendreProvider extends ChangeNotifier {
@@ -69,5 +70,40 @@ class MaisonVendreProvider extends ChangeNotifier {
     _description =value;
     notifyListeners();
   }
-  
+  saveTerrain(){
+    if(idMV == null){
+        var newMaison = MaisonVendre(
+      idMaisonVendre:uuid.v4(),
+      paysMaisonVendre :paysMV,
+      localiteMaisonVendre :localiteMV,
+      prixMaisonVendre :prixMV,
+      deviceMaisonVendre :deviceMV,
+      surfaceMaisonVendre:surfaceMV,
+      suffixSurfaceMaisonVendre: suffixeMV ,
+      garageMaisonVendre :garageMV,
+      nombreChambreMaisonVendre:nombreChambreMV ,
+      anneeConstructionMaisonVendre :anneeConsMV,
+      description :description
+      );
+        firebaseservice.saveMaison(newMaison);
+        
+      }else{
+         var updateMaison = MaisonVendre(
+      idMaisonVendre:_idMaisonVendre,
+      paysMaisonVendre :_paysMaisonVendre ,
+      localiteMaisonVendre :_localiteMaisonVendre ,
+      prixMaisonVendre :_prixMaisonVendre,
+      deviceMaisonVendre :_deviceMaisonVendre,
+      surfaceMaisonVendre:_surfaceMaisonVendre,
+      suffixSurfaceMaisonVendre: _suffixSurfaceMaisonVendre ,
+      garageMaisonVendre :_garageMaisonVendre,
+      nombreChambreMaisonVendre:_nombreChambreMaisonVendre ,
+      anneeConstructionMaisonVendre :_anneeConstructionMaisonVendre,
+      description :_description);
+      firebaseservice.saveMaison(updateMaison);
+       }
+    }
+    removeMaison(String idMaison){
+    firebaseservice.removeMaisonVendre(idMaison);
+  }
 }

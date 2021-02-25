@@ -4,7 +4,7 @@ class MaisonVendre{
   final String localiteMaisonVendre;
   final double prixMaisonVendre;
   final String deviceMaisonVendre;
-  final double surfaceMaisonVendre;
+  final int surfaceMaisonVendre;
   final String suffixSurfaceMaisonVendre;
   final int garageMaisonVendre;
   final int nombreChambreMaisonVendre;
