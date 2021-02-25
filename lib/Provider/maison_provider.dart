@@ -76,7 +76,7 @@ class MaisonVendreProvider extends ChangeNotifier {
     _urlPhotoMaisonVendre = value ;
     notifyListeners();
   }
-  saveTerrain(){
+  saveMaisonVendre(){
     if(idMV == null){
         var newMaison = MaisonVendre(
       idMaisonVendre:uuid.v4(),

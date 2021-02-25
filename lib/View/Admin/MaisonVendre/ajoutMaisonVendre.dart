@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:provider/provider.dart';
+import 'package:sahelhabitat/Provider/maison_provider.dart';
+import 'package:sahelhabitat/Provider/terrain_provider.dart';
 
 class AjoutMaisonVendre extends StatefulWidget {
   @override
@@ -28,6 +31,7 @@ final _frisky2 = GlobalKey<FormState>();
      if(permissionStatus.isGranted){
        image = await _picker.getImage(source: ImageSource.gallery);
        _image = File(image.path) ;
+       
       // imageAgentAvantSAve =_image ;
        setState(() {
          imageAgentAvantSAve =_image ;
@@ -45,7 +49,7 @@ final _frisky2 = GlobalKey<FormState>();
       if ( imageAgentAvantSAve.path.isNotEmpty){
        
         TaskSnapshot snapshot = await _storage.ref()
-        .child('Terrains/$agent')
+        .child('Maison A vendre/$agent')
         .putFile(imageAgentAvantSAve)
         ;
         downloadUrl =  await snapshot.ref.getDownloadURL();
@@ -55,6 +59,9 @@ final _frisky2 = GlobalKey<FormState>();
            });
          
       } else {
+       
+        
+      
         print('No Path Received');
       }
 
@@ -64,6 +71,7 @@ final _frisky2 = GlobalKey<FormState>();
  }
   @override
   Widget build(BuildContext context) {
+    final maisonVendreProvider = Provider.of<MaisonVendreProvider>(context);
     return Scaffold(
        appBar: AppBar(
           elevation: 0.0,
@@ -151,7 +159,7 @@ final _frisky2 = GlobalKey<FormState>();
                                               
                                               },
                                            onChanged: (value){
-                                            //  terrainProvider.changeLocaliteTerrain(value);
+                                             maisonVendreProvider.changeLocaliteMaisonV(value);
                                               },
                                         ),
                                       ),
@@ -176,7 +184,8 @@ final _frisky2 = GlobalKey<FormState>();
                                               
                                               },
                                            onChanged: (value){
-                                            //  terrainProvider.changePrixTerrain(double.parse(value));
+                                          
+                                            maisonVendreProvider.changePaysMainsonV(value);
                                            },
                                         ),
                                       ),
@@ -202,6 +211,7 @@ final _frisky2 = GlobalKey<FormState>();
                                               },
                                            onChanged: (value){
                                               // terrainProvider.changeSurface(double.parse(value));
+                                              maisonVendreProvider.changeSurfaceMaisonV(int.parse(value));
                                             
                                            },
                                         ),
@@ -227,7 +237,7 @@ final _frisky2 = GlobalKey<FormState>();
                                               
                                               },
                                            onChanged: (value){
-                                            //  terrainProvider.changeSuffixeSurface(value);
+                                            maisonVendreProvider.changeSuffixeSurfaceMaisonV(value);
                                            },
                                         ),
                                       ),
@@ -253,6 +263,7 @@ final _frisky2 = GlobalKey<FormState>();
                                               },
                                            onChanged: (value){
                                             //  terrainProvider.changePrixTerrain(double.parse(value));
+                                            maisonVendreProvider.changePrixMaisonV(double.parse(value));
                                            },
                                         ),
                                       ),
@@ -277,7 +288,7 @@ final _frisky2 = GlobalKey<FormState>();
                                               
                                               },
                                            onChanged: (value){
-                                            //  terrainProvider.changeDevicePrixTerrain(value);
+                                            maisonVendreProvider.changeDeviceMaisonV(value);
                                            },
                                         ),
                                       ),
@@ -322,12 +333,12 @@ final _frisky2 = GlobalKey<FormState>();
                                             ),
                                             validator: (val){
                                                 if(val.isEmpty){
-                                                  return ' Prix';
+                                                  return ' Nombre chambre';
                                                 }
                                               
                                               },
                                            onChanged: (value){
-                                            //  terrainProvider.changePrixTerrain(double.parse(value));
+                                           maisonVendreProvider.changeNombreChambreMaison(int.parse(value));
                                            },
                                         ),
                                       ),
@@ -347,12 +358,12 @@ final _frisky2 = GlobalKey<FormState>();
                                             ),
                                             validator: (val){
                                                 if(val.isEmpty){
-                                                  return ' Prix';
+                                                  return ' Annee construction';
                                                 }
                                               
                                               },
                                            onChanged: (value){
-                                            //  terrainProvider.changePrixTerrain(double.parse(value));
+                                          maisonVendreProvider.changeAnneContructionMaisonV(int.parse(value));
                                            },
                                         ),
                                       ),
@@ -379,7 +390,7 @@ final _frisky2 = GlobalKey<FormState>();
                                               
                                               },
                                            onChanged: (value){
-                                            //  terrainProvider.changeDescription(value);
+                                             maisonVendreProvider.changeDescriptionMaisonV(value);
                                            },
                                         ),
                                       ),
@@ -395,10 +406,14 @@ final _frisky2 = GlobalKey<FormState>();
                                 child: Center(
                                   child: FlatButton(
                                      onPressed: ()  async{
-                                        // await uploadImage(terrainProvider.localiteT);
-                                         // terrainProvider.changeUrlPhoto(imageUrl);
+                                       if(imageAgentAvantSAve.path.isEmpty){
+                                         AlertDialog(title: Text('path manqaute'));
+                                         }else{
+                                        await uploadImage(maisonVendreProvider.localiteMV);
+                                        maisonVendreProvider.changeUrlPhotoMaisonV(imageUrl);
+                                         }
                                        if (_frisky2.currentState.validate()){
-                                        // await terrainProvider.saveTerrain();
+                                        await maisonVendreProvider.saveMaisonVendre();
                                            Navigator.of(context).pop();
                                         return 'falll';
                                     
