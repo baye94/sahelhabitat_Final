@@ -106,4 +106,17 @@ class MaisonVendreProvider extends ChangeNotifier {
     removeMaison(String idMaison){
     firebaseservice.removeMaisonVendre(idMaison);
   }
+   loadValues(MaisonVendre maisonVendre){
+   _idMaisonVendre = maisonVendre.idMaisonVendre;
+  _paysMaisonVendre = maisonVendre.paysMaisonVendre;
+  _localiteMaisonVendre = maisonVendre.localiteMaisonVendre;
+  _prixMaisonVendre = maisonVendre.prixMaisonVendre;
+  _deviceMaisonVendre = maisonVendre.deviceMaisonVendre;
+  _surfaceMaisonVendre = maisonVendre.surfaceMaisonVendre;
+  _suffixSurfaceMaisonVendre = maisonVendre.suffixSurfaceMaisonVendre;
+  _garageMaisonVendre = maisonVendre.garageMaisonVendre;
+  _nombreChambreMaisonVendre = maisonVendre.nombreChambreMaisonVendre;
+  _anneeConstructionMaisonVendre = maisonVendre.anneeConstructionMaisonVendre;
+  _description = maisonVendre.description;
+   }
 }

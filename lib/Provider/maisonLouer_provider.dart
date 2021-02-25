@@ -116,4 +116,18 @@ class MaisonLouerProvider extends ChangeNotifier{
     removeMaison(String idMaison){
     firebaseservice.removeMaisonLouer(idMaison);
   }
+   loadValues(MaisonLouer maisonLouer){
+   _idMaisonLouer = maisonLouer.idMaisonLouer;
+  _paysMaisonLouer = maisonLouer.paysMaisonLouer;
+  _localiteMaisonLouer = maisonLouer.localiteMaisonLouer;
+  _prixMaisonLouer = maisonLouer.prixMaisonLouer;
+  _deviceMaisonLouer = maisonLouer.deviceMaisonLouer;
+  _surfaceMaisonLouer = maisonLouer.surfaceMaisonLouer;
+  _suffixSurfaceMaisonLouer = maisonLouer.suffixSurfaceMaisonLouer;
+  _garageMaisonLouer = maisonLouer.garageMaisonLouer;
+  _nombreChambreMaisonLouer = maisonLouer.nombreChambreMaisonLouer;
+  _anneeConstructionMaisonLouer = maisonLouer.anneeConstructionMaisonLouer;
+  _description = maisonLouer.description;
+  _typeLouer = maisonLouer.typeLouer;
+   }
 }
