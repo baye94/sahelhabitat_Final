@@ -83,7 +83,7 @@ class MaisonLouerProvider extends ChangeNotifier{
     _urlPhotoMaisonLouer = value;
     notifyListeners();
   }
-   saveTerrain(){
+   saveMaisonLouer(){
     if(_idMaisonLouer == null){
         var newMaison = MaisonLouer(
       idMaisonLouer:uuid.v4(),

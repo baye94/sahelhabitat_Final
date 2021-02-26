@@ -67,10 +67,10 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    setState(() {
-      S.load(Locale(S.of(context).localeName, ''));
+    // setState(() {
+    //   S.load(Locale(S.of(context).localeName, ''));
       
-    });
+    // });
     
      return MaterialApp(
       debugShowCheckedModeBanner: false,

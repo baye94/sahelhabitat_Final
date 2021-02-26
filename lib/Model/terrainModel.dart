@@ -17,7 +17,7 @@
      'descriptionTerrain':descriptionTerrain,
      'urlPhoto':urlPhotoTerrain,
      'surface':surface,
-    'suffixeSurface':suffixeSurface,
+     'suffixeSurface':suffixeSurface,
    };
   
  }

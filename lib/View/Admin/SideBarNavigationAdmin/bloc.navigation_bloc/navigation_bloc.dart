@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:sahelhabitat/View/Admin/SideBarNavigationAdmin/pages/terrains.dart';
 import '../pages/myaccountspage.dart';
 import '../pages/myorderspage.dart';
 import '../pages/louer.dart';
@@ -9,6 +10,7 @@ enum NavigationEvents {
   MyAccountClickedEvent,
   MyOrdersClickedEvent,
   LouerClickedEvent,
+  TerrainClickedEvent,
 }
 
 abstract class NavigationStates {}
@@ -32,6 +34,9 @@ class NavigationBloc extends Bloc<NavigationEvents, NavigationStates> {
         break;
       case NavigationEvents.LouerClickedEvent:
         yield LouerPage();
+        break;
+        case NavigationEvents.TerrainClickedEvent:
+        yield Terrains();
         break;
     }
   }

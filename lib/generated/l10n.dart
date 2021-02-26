@@ -13,7 +13,7 @@ import 'intl/messages_all.dart';
 // ignore_for_file: avoid_redundant_argument_values
 
 class S {
-  S(this.localeName);
+  S();
   
   static S current;
   
@@ -25,7 +25,7 @@ class S {
     final localeName = Intl.canonicalizedLocale(name); 
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
-      S.current = S(localeName);
+      S.current = S();
       
       return S.current;
     });
@@ -34,7 +34,7 @@ class S {
   static S of(BuildContext context) {
     return Localizations.of<S>(context, S);
   }
- final String localeName;
+
   /// `Hello world!`
   String get HelloWorld {
     return Intl.message(

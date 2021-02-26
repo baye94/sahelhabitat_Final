@@ -6,18 +6,18 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
-import 'package:sahelhabitat/Model/maisonVendre.dart';
-import 'package:sahelhabitat/Provider/maison_provider.dart';
+import 'package:sahelhabitat/Model/maisonLouer.dart';
+import 'package:sahelhabitat/Provider/maisonLouer_provider.dart';
 
-class EditeMaisonVendre extends StatefulWidget {
-   final MaisonVendre maisonVendre;
-  EditeMaisonVendre([this.maisonVendre]);
+class EditeMaisonLouer extends StatefulWidget {
+  final MaisonLouer maisonLouer;
+  EditeMaisonLouer([this.maisonLouer]);
   @override
-  _EditeMaisonVendreState createState() => _EditeMaisonVendreState();
+  _EditeMaisonLouerState createState() => _EditeMaisonLouerState();
 }
 
-class _EditeMaisonVendreState extends State<EditeMaisonVendre> {
-final localiteController = TextEditingController();
+class _EditeMaisonLouerState extends State<EditeMaisonLouer> {
+  final localiteController = TextEditingController();
 final paysController = TextEditingController();
 final prixController = TextEditingController();
 final deviceController = TextEditingController();
@@ -27,7 +27,7 @@ final garage = TextEditingController();
 final nombreChambre = TextEditingController();
 final anneConstruction = TextEditingController();
 final description = TextEditingController();
-
+final typeLocation = TextEditingController();
 @override
   void dispose() {
     localiteController .dispose();
@@ -40,11 +40,13 @@ final description = TextEditingController();
     nombreChambre.dispose();
     anneConstruction.dispose();
     description.dispose();
+    typeLocation.dispose();
     super.dispose();
   }
+ 
    @override
   void initState() {
-    if (widget.maisonVendre == null) {
+    if (widget.maisonLouer == null) {
       //New Record
       localiteController .text = "";
       paysController.text = "";
@@ -56,29 +58,31 @@ final description = TextEditingController();
       nombreChambre.text="";
       anneConstruction.text = "";
       description.text ="";
+      typeLocation.text = "";
             new Future.delayed(Duration.zero, () {
         // final productProvider = Provider.of<ProductProvider>(context,listen: false);
-         final agentProvider = Provider.of<MaisonVendreProvider>(context,listen: false);
-        agentProvider.loadValues(MaisonVendre());
+         final agentProvider = Provider.of<MaisonLouerProvider>(context,listen: false);
+        agentProvider.loadValues(MaisonLouer());
       });
     } else {
       //Controller Update
-      localiteController .text=widget.maisonVendre.localiteMaisonVendre;
-      paysController.text=widget.maisonVendre.paysMaisonVendre;
-      prixController.text = widget.maisonVendre.prixMaisonVendre.toString();
-      deviceController.text = widget.maisonVendre.deviceMaisonVendre;
-      surfaceController.text = widget.maisonVendre.surfaceMaisonVendre.toString();
-      sufficeController.text = widget.maisonVendre.suffixSurfaceMaisonVendre;
-      garage.text = widget.maisonVendre.garageMaisonVendre.toString();
-      nombreChambre.text = widget.maisonVendre.nombreChambreMaisonVendre.toString();
-      anneConstruction.text  = widget.maisonVendre.anneeConstructionMaisonVendre.toString();
-      description.text = widget.maisonVendre.description;
+      localiteController .text=widget.maisonLouer.localiteMaisonLouer;
+      paysController.text=widget.maisonLouer.paysMaisonLouer;
+      prixController.text = widget.maisonLouer.prixMaisonLouer.toString();
+      deviceController.text = widget.maisonLouer.deviceMaisonLouer;
+      surfaceController.text = widget.maisonLouer.surfaceMaisonLouer.toString();
+      sufficeController.text = widget.maisonLouer.suffixSurfaceMaisonLouer;
+      garage.text = widget.maisonLouer.garageMaisonLouer.toString();
+      nombreChambre.text = widget.maisonLouer.nombreChambreMaisonLouer.toString();
+      anneConstruction.text  = widget.maisonLouer.anneeConstructionMaisonLouer.toString();
+      description.text = widget.maisonLouer.description;
+      typeLocation.text = widget.maisonLouer.typeLouer;
 
       //State Update
       new Future.delayed(Duration.zero, () {
         
-        final agentProvider = Provider.of<MaisonVendreProvider>(context,listen:false);
-        agentProvider.loadValues(widget.maisonVendre);
+        final agentProvider = Provider.of<MaisonLouerProvider>(context,listen:false);
+        agentProvider.loadValues(widget.maisonLouer);
       });
       
     }
@@ -86,7 +90,6 @@ final description = TextEditingController();
     super.initState();
 
   }
-
   String imageUrl;
 String photo ="";
 FirebaseStorage _storage = FirebaseStorage.instance;
@@ -121,7 +124,7 @@ final _frisky2 = GlobalKey<FormState>();
       if ( imageAgentAvantSAve.path.isNotEmpty){
        
         TaskSnapshot snapshot = await _storage.ref()
-        .child('Maison A vendre/$agent')
+        .child('Maison A Louer/$agent')
         .putFile(imageAgentAvantSAve)
         ;
         downloadUrl =  await snapshot.ref.getDownloadURL();
@@ -143,9 +146,8 @@ final _frisky2 = GlobalKey<FormState>();
  }
   @override
   Widget build(BuildContext context) {
-      final maisonVendreProvider = Provider.of<MaisonVendreProvider>(context);
-
-     return Scaffold(
+    final maisonLouerProvider = Provider.of<MaisonLouerProvider>(context);
+    return Scaffold(
        appBar: AppBar(
           elevation: 0.0,
           backgroundColor: Colors.white,
@@ -233,7 +235,7 @@ final _frisky2 = GlobalKey<FormState>();
                                               
                                               },
                                            onChanged: (value){
-                                             maisonVendreProvider.changeLocaliteMaisonV(value);
+                                             maisonLouerProvider.changeLocaliteMaisonL(value);
                                               },
                                         ),
                                       ),
@@ -260,7 +262,7 @@ final _frisky2 = GlobalKey<FormState>();
                                               },
                                            onChanged: (value){
                                           
-                                            maisonVendreProvider.changePaysMainsonV(value);
+                                            maisonLouerProvider.changePaysMainsonL(value);
                                            },
                                         ),
                                       ),
@@ -287,7 +289,7 @@ final _frisky2 = GlobalKey<FormState>();
                                               },
                                            onChanged: (value){
                                               // terrainProvider.changeSurface(double.parse(value));
-                                              maisonVendreProvider.changeSurfaceMaisonV(int.parse(value));
+                                              maisonLouerProvider.changeSurfaceMaisonL(int.parse(value));
                                             
                                            },
                                         ),
@@ -314,7 +316,7 @@ final _frisky2 = GlobalKey<FormState>();
                                               
                                               },
                                            onChanged: (value){
-                                            maisonVendreProvider.changeSuffixeSurfaceMaisonV(value);
+                                            maisonLouerProvider.changeSuffixeSurfaceMaisonL(value);
                                            },
                                         ),
                                       ),
@@ -341,7 +343,7 @@ final _frisky2 = GlobalKey<FormState>();
                                               },
                                            onChanged: (value){
                                             //  terrainProvider.changePrixTerrain(double.parse(value));
-                                            maisonVendreProvider.changePrixMaisonV(double.parse(value));
+                                            maisonLouerProvider.changePrixMaisonL(double.parse(value));
                                            },
                                         ),
                                       ),
@@ -367,7 +369,7 @@ final _frisky2 = GlobalKey<FormState>();
                                               
                                               },
                                            onChanged: (value){
-                                            maisonVendreProvider.changeDeviceMaisonV(value);
+                                            maisonLouerProvider.changeDeviceMaisonL(value);
                                            },
                                         ),
                                       ),
@@ -419,7 +421,7 @@ final _frisky2 = GlobalKey<FormState>();
                                               
                                               },
                                            onChanged: (value){
-                                           maisonVendreProvider.changeNombreChambreMaison(int.parse(value));
+                                           maisonLouerProvider.changeNombreChambreMaisonL(int.parse(value));
                                            },
                                         ),
                                       ),
@@ -445,11 +447,37 @@ final _frisky2 = GlobalKey<FormState>();
                                               
                                               },
                                            onChanged: (value){
-                                          maisonVendreProvider.changeAnneContructionMaisonV(int.parse(value));
+                                          maisonLouerProvider.changeAnneContructionMaisonL(int.parse(value));
                                            },
                                         ),
                                       ),
-                                      
+                                               Container(
+                                        padding: EdgeInsets.all(10),
+                                        decoration: BoxDecoration(
+                                              border: Border(
+                                                  bottom: BorderSide(
+                                                      color: Colors.grey[200]))),
+                                        child: TextFormField(
+                                          controller: typeLocation,
+                                          maxLines: 20,
+                                            decoration: InputDecoration(
+                                                hintText: "TYPE DE LOCATION ",
+                                                hintStyle:
+                                                TextStyle(color: Colors.grey),
+                                                border: InputBorder.none,
+                                               
+                                            ),
+                                            validator: (val){
+                                                if(val.isEmpty){
+                                                  return ' TYPE DE LOCATION';
+                                                }
+                                              
+                                              },
+                                           onChanged: (value){
+                                             maisonLouerProvider.changeTypeLocationML(value);
+                                           },
+                                        ),
+                                      ),
                                        Container(
                                         padding: EdgeInsets.all(10),
                                         decoration: BoxDecoration(
@@ -473,7 +501,7 @@ final _frisky2 = GlobalKey<FormState>();
                                               
                                               },
                                            onChanged: (value){
-                                             maisonVendreProvider.changeDescriptionMaisonV(value);
+                                             maisonLouerProvider.changeDescriptionMaisonL(value);
                                            },
                                         ),
                                       ),
@@ -492,11 +520,11 @@ final _frisky2 = GlobalKey<FormState>();
                                        if(imageAgentAvantSAve.path.isEmpty){
                                          AlertDialog(title: Text('path manqaute'));
                                          }else{
-                                        // await uploadImage(maisonVendreProvider.localiteMV);
-                                        maisonVendreProvider.changeUrlPhotoMaisonV(widget.maisonVendre.urlPhotoMaisonVendre);
+                                        await uploadImage(maisonLouerProvider.localiteML);
+                                        maisonLouerProvider.changeUrlPhotoMaisonL(widget.maisonLouer.urlPhotoMaisonLouer);
                                          }
                                        if (_frisky2.currentState.validate()){
-                                        await maisonVendreProvider.saveMaisonVendre();
+                                        await maisonLouerProvider.saveMaisonLouer();
                                            Navigator.of(context).pop();
                                         return 'falll';
                                     
@@ -524,5 +552,6 @@ final _frisky2 = GlobalKey<FormState>();
         
       ),
     );
+    
   }
 }

@@ -128,11 +128,20 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                         },
                       ),
                       MenuItem(
-                        icon: Icons.card_giftcard,
+                        icon: Icons.hotel_rounded,
                         title: "A Louer",
                         onTap: (){
                            onIconPressed();
                            BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.LouerClickedEvent);
+
+                        },
+                      ),
+                       MenuItem(
+                        icon: Icons.terrain,
+                        title: "Terrains",
+                        onTap: (){
+                           onIconPressed();
+                           BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.TerrainClickedEvent);
 
                         },
                       ),
@@ -143,10 +152,10 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                         indent: 32,
                         endIndent: 32,
                       ),
-                      MenuItem(
-                        icon: Icons.settings,
-                        title: "Settings",
-                      ),
+                      // MenuItem(
+                      //   icon: Icons.settings,
+                      //   title: "Settings",
+                      // ),
                       MenuItem(
                         icon: Icons.exit_to_app,
                         title: "Logout",

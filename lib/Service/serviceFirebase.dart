@@ -55,7 +55,7 @@ class ServiceFirebase {
     return _db.collection('Maison A Louer').doc(maisonLouer.idMaisonLouer).set(maisonLouer.toMap());
   }
   Stream<List<MaisonVendre>> getMaisonLouer(){
-    return _db.collection('Maison A Louer').snapshots().map((snapshots) => snapshots.docs.map((document) => MaisonVendre.fromFirestore(document.data())).toList());
+    // return _db.collection('Maison A Louer').snapshots().map((snapshots) => snapshots.docs.map((document) => MaisonLouer.fromFirestore(document.data())).toList());
   }
   Future<void> removeMaisonLouer(String idMaison){
     return _db.collection('Maison A Louer').doc(idMaison).delete();
