@@ -122,7 +122,7 @@ class MaisonLouerProvider extends ChangeNotifier{
       firebaseservice.saveLouer(updateMaison);
        }
     }
-    removeMaison(String idMaison){
+    removeMaisonLouer(String idMaison){
     firebaseservice.removeMaisonLouer(idMaison);
   }
    loadValues(MaisonLouer maisonLouer){

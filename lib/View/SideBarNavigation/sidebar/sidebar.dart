@@ -113,23 +113,35 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                       ),
                       MenuItem(
                         icon: Icons.person,
-                        title: "My Account",
+                        title: "Agent",
                         onTap: () {
                           onIconPressed();
                           BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.MyAccountClickedEvent);
                         },
                       ),
                       MenuItem(
-                        icon: Icons.shopping_basket,
-                        title: "My Orders",
+                        icon: Icons.home_work_rounded,
+                        title: "Vendre",
                         onTap: () {
                           onIconPressed();
                           BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.MyOrdersClickedEvent);
                         },
                       ),
                       MenuItem(
-                        icon: Icons.card_giftcard,
-                        title: "Wishlist",
+                        icon: Icons.hotel_rounded,
+                        title: "Louer",
+                          onTap: () {
+                          onIconPressed();
+                          BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.LouersClickedEvent);
+                        },
+                      ),
+                        MenuItem(
+                        icon: Icons.terrain,
+                        title: "Terrains",
+                          onTap: () {
+                          onIconPressed();
+                          BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.TerrainClickedEvent);
+                        },
                       ),
                       Divider(
                         height: 64,
@@ -138,10 +150,10 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                         indent: 32,
                         endIndent: 32,
                       ),
-                      MenuItem(
-                        icon: Icons.settings,
-                        title: "Settings",
-                      ),
+                      // MenuItem(
+                      //   icon: Icons.settings,
+                      //   title: "Settings",
+                      // ),
                       MenuItem(
                         icon: Icons.exit_to_app,
                         title: "Logout",

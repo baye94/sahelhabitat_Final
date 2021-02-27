@@ -1,13 +1,14 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:sahelhabitat/Model/maisonLouer.dart';
 import 'package:sahelhabitat/Provider/maisonLouer_provider.dart';
+import 'package:sahelhabitat/View/Admin/SideBarNavigationAdmin/pages/Louer.dart';
 
 class EditeMaisonLouer extends StatefulWidget {
   final MaisonLouer maisonLouer;
@@ -178,32 +179,16 @@ final _frisky2 = GlobalKey<FormState>();
                         child: new SizedBox(
                           width: 185.0,
                           height: 185.0,
-                          child: ( imageAgentAvantSAve!=null)?Image.file(
-                            File(imageAgentAvantSAve.path),
-                            fit: BoxFit.fill,
-                          ):Image.network(
-                            "https://images.unsplash.com/photo-1502164980785-f8aa41d53611?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
-                            fit: BoxFit.fill,
-                            filterQuality: FilterQuality.low,
-                          ),
+                          child: CachedNetworkImage(
+               imageUrl:widget.maisonLouer.urlPhotoMaisonLouer , 
+                  fit: BoxFit.cover,
+                  
+                  )
                         ),
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 100.0),
-                    child: IconButton(
-                      icon: Icon(
-                        FontAwesomeIcons.camera,
-                        size: 30.0,
-                        color: Colors.orange[900],
-                      ),
-                      onPressed: () {
-                        getImage2();
-                       
-                      },
-                    ),
-                  ),
+                 
                 ],
               ),
             
@@ -517,15 +502,11 @@ final _frisky2 = GlobalKey<FormState>();
                                 child: Center(
                                   child: FlatButton(
                                      onPressed: ()  async{
-                                       if(imageAgentAvantSAve.path.isEmpty){
-                                         AlertDialog(title: Text('path manqaute'));
-                                         }else{
-                                        await uploadImage(maisonLouerProvider.localiteML);
                                         maisonLouerProvider.changeUrlPhotoMaisonL(widget.maisonLouer.urlPhotoMaisonLouer);
-                                         }
+                                        
                                        if (_frisky2.currentState.validate()){
                                         await maisonLouerProvider.saveMaisonLouer();
-                                           Navigator.of(context).pop();
+                                           Navigator.of(context).push(MaterialPageRoute(builder: (context) => LouerPage()));
                                         return 'falll';
                                     
                                               }

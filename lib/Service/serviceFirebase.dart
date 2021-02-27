@@ -58,6 +58,6 @@ class ServiceFirebase {
     return _db.collection('Louer').snapshots().map((snapshots) => snapshots.docs.map((document) => MaisonLouer.fromFirestore(document.data())).toList());
   }
   Future<void> removeMaisonLouer(String idMaison){
-    return _db.collection('Maison A Louer').doc(idMaison).delete();
+    return _db.collection('Louer').doc(idMaison).delete();
   }
 }

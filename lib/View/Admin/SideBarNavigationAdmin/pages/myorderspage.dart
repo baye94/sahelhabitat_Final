@@ -18,7 +18,6 @@ class _MyOrdersPageAdminState extends State<MyOrdersPageAdmin> {
   @override
   Widget build(BuildContext context) {
   final maisons = Provider.of<List<MaisonVendre>>(context);
-  final terrains = Provider.of<List<TerrainModel>>(context);
     return Scaffold(
        appBar: AppBar(
           elevation: 0.0,

@@ -1,46 +1,48 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sahelhabitat/Model/maisonLouer.dart';
-import 'package:sahelhabitat/View/Admin/MaisonLouer/ajoutMaisonLouer.dart';
-import 'package:sahelhabitat/View/Admin/MaisonLouer/detailmaisonLouer.dart';
-import 'package:sahelhabitat/View/Admin/SideBarNavigationAdmin/bloc.navigation_bloc/navigation_bloc.dart';
+import 'package:sahelhabitat/Model/terrainModel.dart';
+import 'package:sahelhabitat/View/Admin/Terrain/detaillTerrain.dart';
+import 'package:sahelhabitat/View/SideBarNavigation/bloc.navigation_bloc/navigation_bloc.dart';
 
-class LouerPage extends StatefulWidget with NavigationStates {
+class TerrainU extends StatefulWidget  with NavigationStates{
   @override
-  _LouerPageState createState() => _LouerPageState();
+  _TerrainUState createState() => _TerrainUState();
 }
 
-class _LouerPageState extends State<LouerPage> {
+class _TerrainUState extends State<TerrainU> {
   @override
   Widget build(BuildContext context) {
-    final louer = Provider.of<List<MaisonLouer>>(context);
+   final terrains = Provider.of<List<TerrainModel>>(context);
+ 
     return Scaffold(
-      appBar: AppBar(
-                      elevation: 0.0,
-                      backgroundColor: Colors.white,
-                      actions: <Widget>[
-                        Image(image: AssetImage('assets/logo.png'),
-                          width: 100,
-                          height: 100,
-                        ),
-                      ]
-                  ),
-     body:( louer!=null ) 
+       appBar: AppBar(
+          elevation: 0.0,
+          backgroundColor: Colors.white,
+           actions: <Widget>[
+            Image(image: AssetImage('assets/logo.png'),
+            width: 100,
+              height: 100,
+              
+            ),
+          ]
+      ),
+        body:( terrains !=null ) 
          ? ListView.builder(
-            itemCount: louer.length,
+            itemCount: terrains.length,
             itemBuilder:(context,index){
-               return
+         return
         Column(
           children:<Widget> [
-          
             ListTile(
                onTap: (){
                  print('Avant la modification des donnees');
-                 print(louer[index].toMap());
+                 print(terrains[index].localiteTerrain.toUpperCase());
+                 print(terrains[index].urlPhotoTerrain);
+               
                    // Navigator.of(context).push(MaterialPageRoute(
                    //     builder: (context) => EditAgent(agents[index])));
- Navigator.of(context).push(MaterialPageRoute(builder: (context) => DetailMaisonLouer(louer[index])));                  },
+ Navigator.of(context).push(MaterialPageRoute(builder: (context) =>DetailTerrain(terrains[index])));                  },
                subtitle: Container(
                    child: Card(
             elevation: 8.0,
@@ -57,9 +59,9 @@ class _LouerPageState extends State<LouerPage> {
                              fit: BoxFit.cover,
                              height: 100,
                              width: 250,
-                              imageUrl: louer[index].urlPhotoMaisonLouer,
+                              imageUrl: terrains[index].urlPhotoTerrain,
                               errorWidget: (context, url, error) => Icon(Icons.error),
-                              ),
+),
        
                            ),
                          Expanded(
@@ -72,7 +74,7 @@ class _LouerPageState extends State<LouerPage> {
                crossAxisAlignment: CrossAxisAlignment.start,
                children: [
                                 
-                 Padding(padding: EdgeInsets.only(left: 8) ,child: Text(louer[index].localiteMaisonLouer,style:TextStyle(fontWeight: FontWeight.bold , fontSize: 16),
+                 Padding(padding: EdgeInsets.only(left: 8) ,child: Text(terrains[index].localiteTerrain,style:TextStyle(fontWeight: FontWeight.bold , fontSize: 16),
                   maxLines: 2,
                  overflow: TextOverflow.ellipsis,),),
                  Padding(padding: EdgeInsets.all( 8) ,
@@ -83,7 +85,7 @@ class _LouerPageState extends State<LouerPage> {
                        Icon(Icons.money , color: Colors.orange, size: 16,),
                        Container(
                          margin: EdgeInsets.only(left: 8,),
-                         child: Text('${louer[index].prixMaisonLouer} ${louer[index].deviceMaisonLouer}'),
+                         child: Text('${terrains[index].prixTerrain} ${terrains[index].devicePrixTerrain}'),
                        )
                      ],
                    ),
@@ -96,7 +98,7 @@ class _LouerPageState extends State<LouerPage> {
                        Icon(Icons.space_bar_outlined, color: Colors.orange, size: 16,),
                        Container(
                          margin: EdgeInsets.only(left: 8,),
-                         child: Text('${louer[index].surfaceMaisonLouer} ${louer[index].suffixSurfaceMaisonLouer}'),
+                         child: Text('${terrains[index].surface} ${terrains[index].suffixeSurface}'),
                        )
                      ],
                    ),
@@ -151,17 +153,7 @@ class _LouerPageState extends State<LouerPage> {
 
             }
         ):Center(child: CircularProgressIndicator()),
-         floatingActionButton: FloatingActionButton(
-        onPressed: () {
-           Navigator.push(
-            context,
-          MaterialPageRoute(builder: (context) => AjoutMaisonLouer()),
-     );
-        },
-        child: Icon(Icons.add),
-        backgroundColor: Colors.orange[900],
-        
-      ),
+      
     );
   }
 }

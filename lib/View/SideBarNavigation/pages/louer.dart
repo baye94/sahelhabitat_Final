@@ -2,18 +2,17 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sahelhabitat/Model/maisonLouer.dart';
-import 'package:sahelhabitat/View/Admin/MaisonLouer/ajoutMaisonLouer.dart';
 import 'package:sahelhabitat/View/Admin/MaisonLouer/detailmaisonLouer.dart';
-import 'package:sahelhabitat/View/Admin/SideBarNavigationAdmin/bloc.navigation_bloc/navigation_bloc.dart';
+import 'package:sahelhabitat/View/SideBarNavigation/bloc.navigation_bloc/navigation_bloc.dart';
 
-class LouerPage extends StatefulWidget with NavigationStates {
+class LouerU extends StatefulWidget with NavigationStates{
   @override
-  _LouerPageState createState() => _LouerPageState();
+  _LouerUState createState() => _LouerUState();
 }
 
-class _LouerPageState extends State<LouerPage> {
+class _LouerUState extends State<LouerU> {
   @override
-  Widget build(BuildContext context) {
+   Widget build(BuildContext context) {
     final louer = Provider.of<List<MaisonLouer>>(context);
     return Scaffold(
       appBar: AppBar(
@@ -151,17 +150,7 @@ class _LouerPageState extends State<LouerPage> {
 
             }
         ):Center(child: CircularProgressIndicator()),
-         floatingActionButton: FloatingActionButton(
-        onPressed: () {
-           Navigator.push(
-            context,
-          MaterialPageRoute(builder: (context) => AjoutMaisonLouer()),
-     );
-        },
-        child: Icon(Icons.add),
-        backgroundColor: Colors.orange[900],
         
-      ),
     );
   }
 }
