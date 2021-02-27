@@ -84,7 +84,7 @@ class MaisonLouerProvider extends ChangeNotifier{
     notifyListeners();
   }
    saveMaisonLouer(){
-    if(_idMaisonLouer == null){
+    if(idML == null){
         var newMaison = MaisonLouer(
       idMaisonLouer:uuid.v4(),
       paysMaisonLouer :paysML,

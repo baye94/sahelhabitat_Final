@@ -30,7 +30,7 @@ class NavigationBloc extends Bloc<NavigationEvents, NavigationStates> {
         yield MyAccountsPage();
         break;
       case NavigationEvents.MyOrdersClickedEvent:
-        yield MyOrdersPage();
+        yield MyOrdersPageAdmin();
         break;
       case NavigationEvents.LouerClickedEvent:
         yield LouerPage();

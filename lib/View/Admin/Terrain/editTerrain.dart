@@ -386,7 +386,7 @@ final _frisky2 = GlobalKey<FormState>();
                                         // await uploadImage(terrainProvider.idT);
                                        if (_frisky2.currentState.validate()){
                                         await terrainProvider.saveTerrain();
-                                          Navigator.of(context).push(MaterialPageRoute(builder: (context)=> MyOrdersPage() ));
+                                          Navigator.of(context).push(MaterialPageRoute(builder: (context)=> MyOrdersPageAdmin() ));
                                          }
                                            
                                        },

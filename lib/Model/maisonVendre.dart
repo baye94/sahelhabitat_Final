@@ -2,13 +2,13 @@ class MaisonVendre{
   final String idMaisonVendre;
   final String paysMaisonVendre;
   final String localiteMaisonVendre;
-  final double prixMaisonVendre;
+  final String prixMaisonVendre;
   final String deviceMaisonVendre;
-  final int surfaceMaisonVendre;
+  final String surfaceMaisonVendre;
   final String suffixSurfaceMaisonVendre;
-  final int garageMaisonVendre;
-  final int nombreChambreMaisonVendre;
-  final int anneeConstructionMaisonVendre;
+  final String garageMaisonVendre;
+  final String nombreChambreMaisonVendre;
+  final String anneeConstructionMaisonVendre;
   final String description;
   final String urlPhotoMaisonVendre;
 MaisonVendre({
@@ -41,17 +41,17 @@ MaisonVendre({
       'urlPhoto':urlPhotoMaisonVendre
     };
   }
- MaisonVendre.fromFirestore( Map<String ,dynamic > firestore)
- :idMaisonVendre =firestore['idMaison'],
+ MaisonVendre.fromFirestore( Map< String ,dynamic > firestore)
+ :idMaisonVendre = firestore['idMaison'],
  paysMaisonVendre = firestore['paysMaison'],
  localiteMaisonVendre = firestore['localiteMaison'],
- prixMaisonVendre = firestore['prixMaison'],
- deviceMaisonVendre = firestore['devicePrix'],
+ prixMaisonVendre = firestore['prixMaison'] ,
+ deviceMaisonVendre =  firestore['devicePrix'],
  surfaceMaisonVendre = firestore['surface'],
  suffixSurfaceMaisonVendre = firestore['suffixSurface'],
  garageMaisonVendre = firestore['garageMaison'],
- nombreChambreMaisonVendre = firestore['nombreChambre'],
- anneeConstructionMaisonVendre = firestore['anneeConstruction'],
- description =firestore['description'],
+ nombreChambreMaisonVendre = firestore['nombreChambre'] ,
+ anneeConstructionMaisonVendre =firestore['anneeConstruction'],
+ description = firestore['description'],
  urlPhotoMaisonVendre = firestore['urlPhoto'];
   }

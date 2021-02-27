@@ -211,7 +211,7 @@ final _frisky2 = GlobalKey<FormState>();
                                               },
                                            onChanged: (value){
                                               // terrainProvider.changeSurface(double.parse(value));
-                                              maisonVendreProvider.changeSurfaceMaisonV(int.parse(value));
+                                              maisonVendreProvider.changeSurfaceMaisonV(value);
                                             
                                            },
                                         ),
@@ -263,7 +263,7 @@ final _frisky2 = GlobalKey<FormState>();
                                               },
                                            onChanged: (value){
                                             //  terrainProvider.changePrixTerrain(double.parse(value));
-                                            maisonVendreProvider.changePrixMaisonV(double.parse(value));
+                                            maisonVendreProvider.changePrixMaisonV(value);
                                            },
                                         ),
                                       ),
@@ -313,7 +313,7 @@ final _frisky2 = GlobalKey<FormState>();
                                               
                                               },
                                            onChanged: (value){
-                                            //  terrainProvider.changePrixTerrain(double.parse(value));
+                                           maisonVendreProvider.changeGarageMaisonV(value);
                                            },
                                         ),
                                       ),
@@ -338,7 +338,7 @@ final _frisky2 = GlobalKey<FormState>();
                                               
                                               },
                                            onChanged: (value){
-                                           maisonVendreProvider.changeNombreChambreMaison(int.parse(value));
+                                           maisonVendreProvider.changeNombreChambreMaison(value);
                                            },
                                         ),
                                       ),
@@ -363,7 +363,7 @@ final _frisky2 = GlobalKey<FormState>();
                                               
                                               },
                                            onChanged: (value){
-                                          maisonVendreProvider.changeAnneContructionMaisonV(int.parse(value));
+                                          maisonVendreProvider.changeAnneContructionMaisonV(value);
                                            },
                                         ),
                                       ),
@@ -414,7 +414,8 @@ final _frisky2 = GlobalKey<FormState>();
                                          }
                                        if (_frisky2.currentState.validate()){
                                         await maisonVendreProvider.saveMaisonVendre();
-                                           Navigator.of(context).pop();
+                                        print('ok c cool');
+                                          //  Navigator.of(context).pop();
                                         return 'falll';
                                     
                                               }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sahelhabitat/View/Admin/MaisonLouer/ajoutMaisonLouer.dart';
 import 'package:sahelhabitat/View/Admin/SideBarNavigationAdmin/bloc.navigation_bloc/navigation_bloc.dart';
 
 class LouerPage extends StatefulWidget with NavigationStates {
@@ -24,6 +25,17 @@ class _LouerPageState extends State<LouerPage> {
         color: Colors.white,
         child: Text('data'),
         ),
+         floatingActionButton: FloatingActionButton(
+        onPressed: () {
+           Navigator.push(
+            context,
+          MaterialPageRoute(builder: (context) => AjoutMaisonLouer()),
+     );
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.orange[900],
+        
+      ),
     );
   }
 }

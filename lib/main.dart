@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sahelhabitat/Model/maisonLouer.dart';
 import 'package:sahelhabitat/Provider/agent_provider.dart';
 import 'package:sahelhabitat/Provider/maisonLouer_provider.dart';
 import 'package:sahelhabitat/Provider/maison_provider.dart';
@@ -31,7 +30,7 @@ class MyApp extends StatelessWidget {
             ChangeNotifierProvider(create: (context)=> TerrainProvider()),
             StreamProvider(create: (context) => servicefirestore.getTerrain()),
             ChangeNotifierProvider(create: (context) => MaisonVendreProvider()),
-            StreamProvider(create: (context)=>servicefirestore.getMaisonVendre()),
+            StreamProvider(create: (context)=> servicefirestore.getMaisonVendre()),
             ChangeNotifierProvider(create: (context) => MaisonLouerProvider()),
             StreamProvider(create: (context) => servicefirestore.getMaisonLouer())
           ],

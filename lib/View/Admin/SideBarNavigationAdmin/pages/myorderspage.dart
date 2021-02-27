@@ -3,22 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sahelhabitat/Model/maisonVendre.dart';
 import 'package:sahelhabitat/Model/terrainModel.dart';
-import 'package:sahelhabitat/View/Admin/Terrain/detaillTerrain.dart';
+import 'package:sahelhabitat/View/Admin/MaisonVendre/detailMaisonVendre.dart';
 import '../../tempo.dart';
 import '../bloc.navigation_bloc/navigation_bloc.dart';
 
-class MyOrdersPage extends StatefulWidget with NavigationStates {
+class MyOrdersPageAdmin extends StatefulWidget with NavigationStates {
   @override
-  _MyOrdersPageState createState() => _MyOrdersPageState();
+  _MyOrdersPageAdminState createState() => _MyOrdersPageAdminState();
 }
 
-class _MyOrdersPageState extends State<MyOrdersPage> {
+class _MyOrdersPageAdminState extends State<MyOrdersPageAdmin> {
 
  
   @override
   Widget build(BuildContext context) {
-  final terrains = Provider.of<List<TerrainModel>>(context);
   final maisons = Provider.of<List<MaisonVendre>>(context);
+  final terrains = Provider.of<List<TerrainModel>>(context);
     return Scaffold(
        appBar: AppBar(
           elevation: 0.0,
@@ -29,24 +29,23 @@ class _MyOrdersPageState extends State<MyOrdersPage> {
               height: 100,
               
             ),
-          ]
+             ]
       ),
-        body:( terrains !=null ) 
+        body:( maisons!=null ) 
          ? ListView.builder(
             itemCount: maisons.length,
             itemBuilder:(context,index){
-         return
+               return
         Column(
           children:<Widget> [
+          
             ListTile(
                onTap: (){
                  print('Avant la modification des donnees');
-                 print(terrains[index].localiteTerrain.toUpperCase());
-                 print(terrains[index].urlPhotoTerrain);
                  print(maisons[index].toMap());
                    // Navigator.of(context).push(MaterialPageRoute(
                    //     builder: (context) => EditAgent(agents[index])));
- Navigator.of(context).push(MaterialPageRoute(builder: (context) =>DetailTerrain(terrains[index])));                  },
+ Navigator.of(context).push(MaterialPageRoute(builder: (context) => DetailMaisonVendre(maisons[index])));                  },
                subtitle: Container(
                    child: Card(
             elevation: 8.0,
@@ -63,9 +62,9 @@ class _MyOrdersPageState extends State<MyOrdersPage> {
                              fit: BoxFit.cover,
                              height: 100,
                              width: 250,
-                              imageUrl: terrains[index].urlPhotoTerrain,
+                              imageUrl: maisons[index].urlPhotoMaisonVendre,
                               errorWidget: (context, url, error) => Icon(Icons.error),
-),
+                              ),
        
                            ),
                          Expanded(
@@ -78,7 +77,7 @@ class _MyOrdersPageState extends State<MyOrdersPage> {
                crossAxisAlignment: CrossAxisAlignment.start,
                children: [
                                 
-                 Padding(padding: EdgeInsets.only(left: 8) ,child: Text(terrains[index].localiteTerrain,style:TextStyle(fontWeight: FontWeight.bold , fontSize: 16),
+                 Padding(padding: EdgeInsets.only(left: 8) ,child: Text(maisons[index].localiteMaisonVendre,style:TextStyle(fontWeight: FontWeight.bold , fontSize: 16),
                   maxLines: 2,
                  overflow: TextOverflow.ellipsis,),),
                  Padding(padding: EdgeInsets.all( 8) ,
@@ -89,7 +88,7 @@ class _MyOrdersPageState extends State<MyOrdersPage> {
                        Icon(Icons.money , color: Colors.orange, size: 16,),
                        Container(
                          margin: EdgeInsets.only(left: 8,),
-                         child: Text('${terrains[index].prixTerrain} ${terrains[index].devicePrixTerrain}'),
+                         child: Text('${maisons[index].prixMaisonVendre} ${maisons[index].deviceMaisonVendre}'),
                        )
                      ],
                    ),
@@ -102,7 +101,7 @@ class _MyOrdersPageState extends State<MyOrdersPage> {
                        Icon(Icons.space_bar_outlined, color: Colors.orange, size: 16,),
                        Container(
                          margin: EdgeInsets.only(left: 8,),
-                         child: Text('${terrains[index].surface} ${terrains[index].suffixeSurface}'),
+                         child: Text('${maisons[index].surfaceMaisonVendre} ${maisons[index].suffixSurfaceMaisonVendre}'),
                        )
                      ],
                    ),

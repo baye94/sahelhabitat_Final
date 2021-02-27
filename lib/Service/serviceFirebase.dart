@@ -42,20 +42,20 @@ class ServiceFirebase {
   }
   //gestion maison a vendre
    Future<void> saveMaison(MaisonVendre maisonVendre){
-    return _db.collection('Maison A Vendre').doc(maisonVendre.idMaisonVendre).set(maisonVendre.toMap());
+    return _db.collection('Vendre').doc(maisonVendre.idMaisonVendre).set(maisonVendre.toMap());
   }
   Stream<List<MaisonVendre>> getMaisonVendre(){
-    return _db.collection('Maison A Vendre').snapshots().map((snapshots) => snapshots.docs.map((document) => MaisonVendre.fromFirestore(document.data())).toList());
+    return _db.collection('Vendre').snapshots().map((snapshots) => snapshots.docs.map((document) => MaisonVendre.fromFirestore(document.data())).toList());
   }
   Future<void> removeMaisonVendre(String idTerrain){
-    return _db.collection('Maison A Vendre').doc(idTerrain).delete();
+    return _db.collection('Vendre').doc(idTerrain).delete();
   }
   //gestion maison a Louer
    Future<void> saveLouer(MaisonLouer maisonLouer){
-    return _db.collection('Maison A Louer').doc(maisonLouer.idMaisonLouer).set(maisonLouer.toMap());
+    return _db.collection('Louer').doc(maisonLouer.idMaisonLouer).set(maisonLouer.toMap());
   }
-  Stream<List<MaisonVendre>> getMaisonLouer(){
-    // return _db.collection('Maison A Louer').snapshots().map((snapshots) => snapshots.docs.map((document) => MaisonLouer.fromFirestore(document.data())).toList());
+  Stream<List<MaisonLouer>> getMaisonLouer(){
+    return _db.collection('Louer').snapshots().map((snapshots) => snapshots.docs.map((document) => MaisonLouer.fromFirestore(document.data())).toList());
   }
   Future<void> removeMaisonLouer(String idMaison){
     return _db.collection('Maison A Louer').doc(idMaison).delete();

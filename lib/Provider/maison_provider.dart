@@ -6,13 +6,13 @@ class MaisonVendreProvider extends ChangeNotifier {
    String _idMaisonVendre;
    String _paysMaisonVendre;
    String _localiteMaisonVendre;
-   double _prixMaisonVendre;
+   String _prixMaisonVendre;
    String _deviceMaisonVendre;
-   int _surfaceMaisonVendre;
+   String _surfaceMaisonVendre;
    String _suffixSurfaceMaisonVendre;
-   int _garageMaisonVendre;
-   int _nombreChambreMaisonVendre;
-   int _anneeConstructionMaisonVendre;
+   String _garageMaisonVendre;
+   String _nombreChambreMaisonVendre;
+   String _anneeConstructionMaisonVendre;
    String _description;
    String _urlPhotoMaisonVendre;
     var uuid = Uuid();
@@ -21,13 +21,13 @@ class MaisonVendreProvider extends ChangeNotifier {
    String get idMV =>_idMaisonVendre;
    String get paysMV => _paysMaisonVendre;
    String get localiteMV => _localiteMaisonVendre;
-   double get prixMV => _prixMaisonVendre;
+   String get prixMV => _prixMaisonVendre;
    String get deviceMV => _deviceMaisonVendre;
-   int    get surfaceMV => _surfaceMaisonVendre;
+   String get surfaceMV => _surfaceMaisonVendre;
    String get suffixeMV => _suffixSurfaceMaisonVendre;
-   int    get garageMV =>_garageMaisonVendre;
-   int    get nombreChambreMV => _nombreChambreMaisonVendre;
-   int    get anneeConsMV  => _anneeConstructionMaisonVendre;
+   String get garageMV =>_garageMaisonVendre;
+   String get nombreChambreMV => _nombreChambreMaisonVendre;
+   String get anneeConsMV  => _anneeConstructionMaisonVendre;
    String get description => _description;
    String get urlPhotoMV => _urlPhotoMaisonVendre;
   //SETTERS
@@ -39,7 +39,7 @@ class MaisonVendreProvider extends ChangeNotifier {
     _localiteMaisonVendre= value;
     notifyListeners();
   }
-  changePrixMaisonV(double value){
+  changePrixMaisonV(String  value){
     _prixMaisonVendre = value ;
     notifyListeners();
   }
@@ -47,7 +47,7 @@ class MaisonVendreProvider extends ChangeNotifier {
     _deviceMaisonVendre = value;
     notifyListeners();
   }
-  changeSurfaceMaisonV(int value){
+  changeSurfaceMaisonV(String  value){
     _surfaceMaisonVendre =value;
     notifyListeners()
     ;
@@ -56,15 +56,15 @@ class MaisonVendreProvider extends ChangeNotifier {
     _suffixSurfaceMaisonVendre = value;
     notifyListeners();
   }
-  changeGarageMaisonV(int value){
+  changeGarageMaisonV(String  value){
     _garageMaisonVendre = value;
     notifyListeners();
   }
-  changeNombreChambreMaison(int value){
+  changeNombreChambreMaison(String  value){
     _nombreChambreMaisonVendre =value;
     notifyListeners();
   }
-  changeAnneContructionMaisonV(int value){
+  changeAnneContructionMaisonV(String  value){
     _anneeConstructionMaisonVendre =value ;
     notifyListeners();
   }
@@ -95,7 +95,7 @@ class MaisonVendreProvider extends ChangeNotifier {
         firebaseservice.saveMaison(newMaison);
         
       }else{
-         var updateMaison = MaisonVendre(
+      var updateMaison = MaisonVendre(
       idMaisonVendre:_idMaisonVendre,
       paysMaisonVendre :_paysMaisonVendre ,
       localiteMaisonVendre :_localiteMaisonVendre ,

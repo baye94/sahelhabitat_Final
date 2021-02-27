@@ -2,12 +2,13 @@ import 'dart:io';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:sahelhabitat/Model/maisonVendre.dart';
 import 'package:sahelhabitat/Provider/maison_provider.dart';
+import 'package:sahelhabitat/View/Admin/SideBarNavigationAdmin/pages/myorderspage.dart';
+
 
 class EditeMaisonVendre extends StatefulWidget {
    final MaisonVendre maisonVendre;
@@ -176,31 +177,28 @@ final _frisky2 = GlobalKey<FormState>();
                         child: new SizedBox(
                           width: 185.0,
                           height: 185.0,
-                          child: ( imageAgentAvantSAve!=null)?Image.file(
-                            File(imageAgentAvantSAve.path),
-                            fit: BoxFit.fill,
-                          ):Image.network(
-                            "https://images.unsplash.com/photo-1502164980785-f8aa41d53611?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+                          child:Image.network(
+                           widget.maisonVendre.urlPhotoMaisonVendre,
                             fit: BoxFit.fill,
                             filterQuality: FilterQuality.low,
-                          ),
+                          )
                         ),
                       ),
                     ),
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 100.0),
-                    child: IconButton(
-                      icon: Icon(
-                        FontAwesomeIcons.camera,
-                        size: 30.0,
-                        color: Colors.orange[900],
-                      ),
-                      onPressed: () {
-                        getImage2();
+                    // child: IconButton(
+                    //   icon: Icon(
+                    //     FontAwesomeIcons.camera,
+                    //     size: 30.0,
+                    //     color: Colors.orange[900],
+                    //   ),
+                    //   onPressed: () {
+                    //     getImage2();
                        
-                      },
-                    ),
+                    //   },
+                    // ),
                   ),
                 ],
               ),
@@ -287,7 +285,7 @@ final _frisky2 = GlobalKey<FormState>();
                                               },
                                            onChanged: (value){
                                               // terrainProvider.changeSurface(double.parse(value));
-                                              maisonVendreProvider.changeSurfaceMaisonV(int.parse(value));
+                                              maisonVendreProvider.changeSurfaceMaisonV(value);
                                             
                                            },
                                         ),
@@ -341,7 +339,7 @@ final _frisky2 = GlobalKey<FormState>();
                                               },
                                            onChanged: (value){
                                             //  terrainProvider.changePrixTerrain(double.parse(value));
-                                            maisonVendreProvider.changePrixMaisonV(double.parse(value));
+                                            maisonVendreProvider.changePrixMaisonV(value);
                                            },
                                         ),
                                       ),
@@ -419,7 +417,7 @@ final _frisky2 = GlobalKey<FormState>();
                                               
                                               },
                                            onChanged: (value){
-                                           maisonVendreProvider.changeNombreChambreMaison(int.parse(value));
+                                           maisonVendreProvider.changeNombreChambreMaison(value);
                                            },
                                         ),
                                       ),
@@ -445,7 +443,7 @@ final _frisky2 = GlobalKey<FormState>();
                                               
                                               },
                                            onChanged: (value){
-                                          maisonVendreProvider.changeAnneContructionMaisonV(int.parse(value));
+                                          maisonVendreProvider.changeAnneContructionMaisonV(value);
                                            },
                                         ),
                                       ),
@@ -489,15 +487,14 @@ final _frisky2 = GlobalKey<FormState>();
                                 child: Center(
                                   child: FlatButton(
                                      onPressed: ()  async{
-                                       if(imageAgentAvantSAve.path.isEmpty){
-                                         AlertDialog(title: Text('path manqaute'));
-                                         }else{
+                                      
                                         // await uploadImage(maisonVendreProvider.localiteMV);
                                         maisonVendreProvider.changeUrlPhotoMaisonV(widget.maisonVendre.urlPhotoMaisonVendre);
-                                         }
+                                         
                                        if (_frisky2.currentState.validate()){
                                         await maisonVendreProvider.saveMaisonVendre();
-                                           Navigator.of(context).pop();
+                                        Navigator.of(context).pop();
+                    //  Navigator.of(context).push(MaterialPageRoute(builder: (contex) => MyOrdersPageAdmin()));
                                         return 'falll';
                                     
                                               }
