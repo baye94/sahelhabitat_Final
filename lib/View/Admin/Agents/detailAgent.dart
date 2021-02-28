@@ -19,8 +19,8 @@ class DetailAgent extends StatefulWidget {
 class _DetailAgentState extends State<DetailAgent> {
   AgentProvider agentProvider = AgentProvider();
   String url;
+  // ignore: unused_field
   Future<void> _launched;
-  String _phone ;
   Future<void> _makePhoneCall(String url) async {
     if (await canLaunch(url)) {
       await launch(url);
@@ -28,14 +28,6 @@ class _DetailAgentState extends State<DetailAgent> {
       throw 'Could not launch $url';
     }
   }
-  _launchURL() async {
-  const url = 'https://flutter.dev';
-  if (await canLaunch(url)) {
-    await launch(url);
-  } else {
-    throw 'Could not launch $url';
-  }
-}
   @override
   Widget build(BuildContext context) {
     

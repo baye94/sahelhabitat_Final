@@ -159,6 +159,7 @@ final _frisky2 = GlobalKey<FormState>();
                                                 border: InputBorder.none,
                                                
                                             ),
+                                            // ignore: missing_return
                                             validator: (val){
                                                 if(val.isEmpty){
                                                   return ' Nom complet';
@@ -210,6 +211,7 @@ final _frisky2 = GlobalKey<FormState>();
                                                 border: InputBorder.none
                                             ),
                                            
+                                            // ignore: missing_return
                                             validator: (val){
                                                 if(val.isEmpty){
                                                   return ' Email ?';
@@ -238,6 +240,7 @@ final _frisky2 = GlobalKey<FormState>();
                                                 TextStyle(color: Colors.grey),
                                                 border: InputBorder.none
                                             ),
+                                            // ignore: missing_return
                                             validator: (val){
                                                 if(val.isEmpty){
                                                   return 'Pays residence';
@@ -264,6 +267,7 @@ final _frisky2 = GlobalKey<FormState>();
                                                 
                                             ),
                                           
+                                            // ignore: missing_return
                                             validator: (val){
                                               val = imageAgentAvantSAve.path;
                                               if(val.isEmpty){

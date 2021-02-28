@@ -15,6 +15,8 @@ class home2 extends StatefulWidget {
 }
 
 class _home2State extends State<home2> {
+
+  
    final int _numPages = 3;
   final PageController _pageController = PageController(initialPage: 0);
   int page1 = 0;

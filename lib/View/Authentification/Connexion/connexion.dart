@@ -1,17 +1,41 @@
 
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sahelhabitat/Service/serviceFirebase.dart';
 import 'package:sahelhabitat/View/Admin/SideBarNavigationAdmin/sidebar/sidebar_layout.dart';
 import 'package:sahelhabitat/View/Authentification/Inscription/Animation/FadeAnimation.dart';
 import 'package:sahelhabitat/View/Authentification/Inscription/inscription.dart';
 import 'package:sahelhabitat/View/Authentification/resetPassword.dart';
 import 'package:sahelhabitat/View/SideBarNavigation/sidebar/sidebar_layout.dart';
+import 'package:sahelhabitat/View/splashScreen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+String finalemail;
 class connexion extends StatefulWidget {
    @override
   _connexionState createState() => _connexionState();
 }
 class _connexionState extends State<connexion> {
+  //  @override
+  // void initState() {
+  //   getValideData().whenComplete(() async{
+  //     Timer(Duration(seconds: 2),() => Get.to(
+  //       finalemail ==null ? connexion() :SideBarLayout()
+  //     ));
+  //   });
+  //   super.initState();
+    
+  // }
+  Future getValideData() async{
+  final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  var obtenirMail = sharedPreferences.getString('email');
+  setState(() {
+    finalemail =obtenirMail;
+  });
+  print('Email envoier est $finalemail');
+}
   final _forminskey =GlobalKey<FormState>();
   String _emailC ;
   String _passC;
@@ -206,6 +230,7 @@ class _connexionState extends State<connexion> {
                                   child: FlatButton(
                                       onPressed: () async { 
                                          print('aye cheikh fall is the best');
+                                         final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
                                              if (_forminskey.currentState.validate()) {
                                              try {
   UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -217,12 +242,16 @@ class _connexionState extends State<connexion> {
     context,
      MaterialPageRoute(builder: (context) => SideBarLayoutAdmin()),
      );
-
-  }else
-   Navigator.push(
-    context,
-     MaterialPageRoute(builder: (context) => SideBarLayout()),
-     );
+   sharedPreferences.setString('email', _emailC);
+  //  Get.to(SideBarLayoutAdmin()); 
+  }else{
+  //  Navigator.push(
+  //   context,
+  //    MaterialPageRoute(builder: (context) => SideBarLayout()),
+  //    );
+      sharedPreferences.setString('email', _emailC);
+   Get.to(SplashScreen()); 
+  }
 } on FirebaseAuthException catch (e) {
   if (e.code == 'user-not-found') {
     _showMyDialog('le compte néxiste pas .' ,

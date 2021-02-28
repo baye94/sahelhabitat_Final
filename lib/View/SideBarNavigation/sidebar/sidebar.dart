@@ -2,7 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:sahelhabitat/View/Authentification/Connexion/connexion.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../bloc.navigation_bloc/navigation_bloc.dart';
 import '../sidebar/menu_item.dart';
@@ -157,6 +160,12 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                       MenuItem(
                         icon: Icons.exit_to_app,
                         title: "Logout",
+                        onTap: () async{
+                         final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+                         sharedPreferences.remove('email');
+                         Get.to(connexion());
+
+                        },
                       ),
                     ],
                   ),
