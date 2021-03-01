@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:sahelhabitat/Model/maisonLouer.dart';
 import 'package:sahelhabitat/View/Admin/MaisonLouer/detailmaisonLouer.dart';
 import 'package:sahelhabitat/View/SideBarNavigation/bloc.navigation_bloc/navigation_bloc.dart';
+import 'package:sahelhabitat/View/SideBarNavigation/pages/detailLouer.dart';
 
 class LouerU extends StatefulWidget with NavigationStates{
   @override
@@ -39,7 +40,7 @@ class _LouerUState extends State<LouerU> {
                  print(louer[index].toMap());
                    // Navigator.of(context).push(MaterialPageRoute(
                    //     builder: (context) => EditAgent(agents[index])));
- Navigator.of(context).push(MaterialPageRoute(builder: (context) => DetailMaisonLouer(louer[index])));                  },
+ Navigator.of(context).push(MaterialPageRoute(builder: (context) => DetailLouers(louer[index])));                  },
                subtitle: Container(
                    child: Card(
             elevation: 8.0,

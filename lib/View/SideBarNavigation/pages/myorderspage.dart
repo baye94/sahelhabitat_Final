@@ -2,19 +2,15 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sahelhabitat/Model/maisonVendre.dart';
-import 'package:sahelhabitat/Model/terrainModel.dart';
-import 'package:sahelhabitat/View/Admin/MaisonVendre/detailMaisonVendre.dart';
 import 'package:sahelhabitat/View/Admin/tempo.dart';
+import 'package:sahelhabitat/View/SideBarNavigation/pages/detailVendre.dart';
 import '../bloc.navigation_bloc/navigation_bloc.dart';
 
 class MyOrdersPage extends StatefulWidget with NavigationStates {
   @override
   _MyOrdersPageState createState() => _MyOrdersPageState();
 }
-
 class _MyOrdersPageState extends State<MyOrdersPage> {
-
- 
   @override
   Widget build(BuildContext context) {
   final maisons = Provider.of<List<MaisonVendre>>(context);
@@ -42,9 +38,7 @@ class _MyOrdersPageState extends State<MyOrdersPage> {
                onTap: (){
                  print('Avant la modification des donnees');
                  print(maisons[index].toMap());
-                   // Navigator.of(context).push(MaterialPageRoute(
-                   //     builder: (context) => EditAgent(agents[index])));
- Navigator.of(context).push(MaterialPageRoute(builder: (context) => DetailMaisonVendre(maisons[index])));                  },
+ Navigator.of(context).push(MaterialPageRoute(builder: (context) => DetailVendre(maisons[index])));                  },
                subtitle: Container(
                    child: Card(
             elevation: 8.0,

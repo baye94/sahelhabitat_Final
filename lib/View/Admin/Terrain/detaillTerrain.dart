@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:readmore/readmore.dart';
 import 'package:sahelhabitat/Model/terrainModel.dart';
 import 'package:sahelhabitat/Provider/terrain_provider.dart';
 import 'package:sahelhabitat/View/Admin/Terrain/editTerrain.dart';

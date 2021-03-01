@@ -1,11 +1,16 @@
-// import 'dart:html';
+import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:provider/provider.dart';
+import 'package:sahelhabitat/Model/agentModel.dart';
+import 'package:sahelhabitat/View/SideBarNavigation/pages/test.dart';
 import 'package:sahelhabitat/View/splashScreen.dart';
 import '../bloc.navigation_bloc/navigation_bloc.dart';
+import 'package:flutter/services.dart';
 final List<String> imgList = [
   'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
   'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
@@ -13,8 +18,8 @@ final List<String> imgList = [
   'https://images.unsplash.com/photo-1523205771623-e0faa4d2813d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=89719a0d55dd05e2deae4120227e6efc&auto=format&fit=crop&w=1953&q=80',
   'https://images.unsplash.com/photo-1508704019882-f9cf40e475b4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c6e5e3aba713b17aa1fe71ab4f0ae5b&auto=format&fit=crop&w=1352&q=80',
   'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
-      'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
-      'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
+  'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
+   'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
 ];
 final List<Widget> imageSliders = imgList.map((item) => Container(
   child:   Card(
@@ -24,15 +29,7 @@ final List<Widget> imageSliders = imgList.map((item) => Container(
           // color: Colors.blue,
           height: 160,
           width: 500,
-          // child: ListTile(
-          //   title: Text('1625 Main Street',
-          //       style: TextStyle(fontWeight: FontWeight.w500)),
-          //   subtitle: Text('My City, CA 99984'),
-          //   leading: Icon(
-          //     Icons.restaurant_menu,
-          //     color: Colors.blue[500],
-          //   ),
-          // ),
+         
           child: Image(
             image: AssetImage('assets/back2.jpg'),
             fit: BoxFit.cover,
@@ -64,8 +61,11 @@ final List<Widget> imageSliders = imgList.map((item) => Container(
 class HomePage extends StatelessWidget with NavigationStates {
   CarouselController buttonCarouselController = CarouselController();
   final CarouselController _controller = CarouselController();
+
   @override
   Widget build(BuildContext context) {
+      final agents = Provider.of<List<AgentModel>>(context);
+      final i = AgentModel();
     return Scaffold(
       appBar: AppBar(
           elevation: 0.0,
@@ -102,25 +102,28 @@ class HomePage extends StatelessWidget with NavigationStates {
                   autoPlayCurve: Curves.fastOutSlowIn,
                   enlargeCenterPage: true,
                   scrollDirection: Axis.horizontal,),
-                // carouselController: buttonCarouselController,
-                items: [1, 2, 3, 4, 5].map((i) {
+              //  carouselController: buttonCarouselController,
+                
+                items: Provider.of<List<AgentModel>>(context)?.map((i) {
                   return Builder(
-                    builder: (BuildContext context) {
+                    builder:(BuildContext context) {
                       return Column(
                         children: [
                           Card(
                             elevation: 10.9,
                             child: Column(
-
-                              children: [
-
-                               Container(
+                               children: [
+                                 Container(
                                  height: 100,
                                  width: 100,
-                                 child:Image(
-                                    image: AssetImage('assets/fall.jpg'),
-                                   fit: BoxFit.cover,
-                                 ),
+                                  child: CachedNetworkImage(
+                              fit: BoxFit.cover,
+                              height: 100,
+                              width: 250,
+                               imageUrl:i.urlPhotoAgant,
+
+                              //  errorWidget: (context, url, error) => Icon(Icons.error),
+),
                                  decoration: BoxDecoration(
                                      color: Colors.white,
                                      borderRadius: BorderRadius.all(Radius.circular(5)),
@@ -145,10 +148,10 @@ class HomePage extends StatelessWidget with NavigationStates {
                                  ),
                                ),
                                 ListTile(
-                                  title: Text('Omar Ndiaye', textAlign: TextAlign.center,
+                                  title: Text(i.nomCompletAgent, textAlign: TextAlign.center,
                                       style: TextStyle(
                                           fontWeight: FontWeight.w500)),
-                                  subtitle: Text('SENEGAL',textAlign: TextAlign.center),
+                                  subtitle: Text(i.paysAgent,textAlign: TextAlign.center),
                                   // leading: Icon(
                                   //   Icons.restaurant_menu,
                                   //   color: Colors.blue[500],
@@ -156,7 +159,7 @@ class HomePage extends StatelessWidget with NavigationStates {
                                 ),
                                 Divider(),
                                 ListTile(
-                                  title: Text('(221) 778935332',
+                                  title: Text(i.telephoneAgent,
                                       style: TextStyle(
                                           fontWeight: FontWeight.w500)),
                                   leading: Icon(
@@ -165,7 +168,7 @@ class HomePage extends StatelessWidget with NavigationStates {
                                   ),
                                 ),
                                 ListTile(
-                                  title: Text('omar.ndiaye@sahelhabitat.com',textAlign: TextAlign.center),
+                                  title: Text(i.emailAgent,textAlign: TextAlign.center),
                                   leading: Icon(
                                     Icons.contact_mail,
                                     color: Colors.orange[600],
@@ -175,11 +178,17 @@ class HomePage extends StatelessWidget with NavigationStates {
                             ),
                           ),
                           RaisedButton(
-
-                            onPressed: () =>
-                                buttonCarouselController.nextPage(
-                                    duration: Duration(milliseconds: 100),
-                                    curve: Curves.linear),
+ 
+                            onPressed: (){
+                              // Navigator.of(context).push(MaterialPageRoute (builder: (context)=>Test()));
+                              // print(i.toMap());
+                             exit(0);
+                              
+                                // buttonCarouselController.nextPage(
+                                //     duration: Duration(milliseconds: 100),
+                                //     curve: Curves.linear);
+                            },
+                            
                             child: Text('→'),
                             elevation: 5,
                           )
@@ -187,7 +196,7 @@ class HomePage extends StatelessWidget with NavigationStates {
                       );
                     },
                   );
-                }).toList(),
+                })?.toList()??[],
 
               ),
               // SizedBox( height: 30),

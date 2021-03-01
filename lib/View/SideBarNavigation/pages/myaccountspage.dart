@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sahelhabitat/Model/agentModel.dart';
 import 'package:sahelhabitat/View/Admin/Agents/ajoutAgents.dart';
-import 'package:sahelhabitat/View/Admin/Agents/detailAgent.dart';
+import 'package:sahelhabitat/View/SideBarNavigation/pages/detailAgent.dart';
 import '../bloc.navigation_bloc/navigation_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:cached_network_image/cached_network_image.dart';

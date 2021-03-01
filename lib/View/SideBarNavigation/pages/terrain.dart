@@ -2,8 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sahelhabitat/Model/terrainModel.dart';
-import 'package:sahelhabitat/View/Admin/Terrain/detaillTerrain.dart';
 import 'package:sahelhabitat/View/SideBarNavigation/bloc.navigation_bloc/navigation_bloc.dart';
+import 'package:sahelhabitat/View/SideBarNavigation/pages/detailTerrain.dart';
 
 class TerrainU extends StatefulWidget  with NavigationStates{
   @override

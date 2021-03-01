@@ -1,23 +1,22 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
 import 'package:sahelhabitat/Model/maisonVendre.dart';
 import 'package:sahelhabitat/Provider/maison_provider.dart';
-import 'package:sahelhabitat/View/Admin/MaisonVendre/editMaisonVendre.dart';
-import 'package:sahelhabitat/View/Admin/SideBarNavigationAdmin/pages/myorderspage.dart';
 
-class DetailMaisonVendre extends StatefulWidget {
+class DetailVendre extends StatefulWidget {
   final MaisonVendre maisonVendre;
-  DetailMaisonVendre ([this.maisonVendre]);
+  DetailVendre ([this.maisonVendre]);
   @override
-  _DetailMaisonVendreState createState() => _DetailMaisonVendreState();
+  _DetailVendreState createState() => _DetailVendreState();
 }
 
-class _DetailMaisonVendreState extends State<DetailMaisonVendre> {
-  MaisonVendreProvider maisonVendreProvider = MaisonVendreProvider();
+class _DetailVendreState extends State<DetailVendre> {
+ MaisonVendreProvider maisonVendreProvider = MaisonVendreProvider();
+  
   @override
   Widget build(BuildContext context) {
+    
      return Scaffold(
       body: Center(
         child:CustomScrollView(
@@ -49,34 +48,6 @@ class _DetailMaisonVendreState extends State<DetailMaisonVendre> {
                SliverFixedExtentList(
               itemExtent: 50.00,
               delegate: SliverChildListDelegate([
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    GestureDetector(
-                      onTap: () async{
-                        _showMyDialog();
-                         },
-                       child: Icon(
-                  Icons.delete,
-                  color: Colors.orange,
-                  ),
-                    ),
-                  GestureDetector(
-                     child: Icon(
-                    Icons.mode_edit,
-                    color: Colors.orange,),
-                    onTap: (){
-                     Navigator.of(context).push(MaterialPageRoute(builder: (contex) => EditeMaisonVendre(widget.maisonVendre)));
-                     AlertDialog(
-                       title: Text('aliou'),
-                     );
-                    },
-                    
-                  ),
-                 
-
-                  ],
-                ),
                 SizedBox(height:10),
                 
                Card(
@@ -109,6 +80,7 @@ class _DetailMaisonVendreState extends State<DetailMaisonVendre> {
                      style: TextStyle(fontWeight: FontWeight.bold),
                     
                   ),
+                 
                    Icon(
                   Icons.money_outlined,
                   color: Colors.orange,
@@ -203,41 +175,5 @@ class _DetailMaisonVendreState extends State<DetailMaisonVendre> {
     
     );
   }
-   Future<void> _showMyDialog() async {
-  return showDialog<void>(
-    context: context,
-    barrierDismissible: false, // user must tap button!
-    builder: (BuildContext context) {
-      // return AlertDialog
-      return CupertinoAlertDialog(
-        title: Text('Alert', style: TextStyle(fontWeight: FontWeight.bold , color: Colors.red[900]),),
-        content: SingleChildScrollView(
-          child: ListBody(
-            children: <Widget>[
-              Text('vous voulez supprimer cet agent :'),
-              Text(widget.maisonVendre.localiteMaisonVendre),
-            ],
-          ),
-        ),
-        actions: <Widget>[
-          TextButton(
-            child: Text('retour'),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-           TextButton(
-            child: Text('Approuver'),
-            onPressed: ()  async{
-              await maisonVendreProvider.removeMaison(widget.maisonVendre.idMaisonVendre);
-             Navigator.of(context).push(MaterialPageRoute(builder: (contex) => MyOrdersPageAdmin()));
-
-              // Navigator.of(context).pop();
-            },
-          ),
-        ],
-      );
-    },
-  );
-  }
+   
 }
