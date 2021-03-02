@@ -21,7 +21,7 @@ class BorderIcon extends StatelessWidget {
         decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.all(Radius.circular(15.0)),
-            border: Border.all(color: Colors.orange, width: 2)),
+            border: Border.all(color: Colors.grey, width: 2)),
         padding: padding ?? const EdgeInsets.all(8.0),
         child: Center(child: child));
   }

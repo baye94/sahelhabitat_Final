@@ -55,6 +55,7 @@ dependencies:
   shared_preferences: ^0.5.12+4
   get: ^3.25.6
   flutter_platform_widgets: ^0.72.0
+  modal_bottom_sheet: ^1.0.0+1
   flutter_localizations:
     sdk: flutter
 
@@ -90,6 +91,12 @@ flutter:
     - assets/fall.jpg 
     - assets/logo.png
     - assets/logo2.jpg
+    - assets/rent1.png
+    - assets/settings1.png
+    - assets/land1.png
+    - assets/investment1.png
+    - assets/consulting1.png
+    - assets/construction1.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

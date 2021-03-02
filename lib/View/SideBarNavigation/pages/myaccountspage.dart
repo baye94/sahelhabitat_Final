@@ -71,7 +71,7 @@ class _MyAccountsPageState extends State<MyAccountsPage> {
                               width: 250,
                                imageUrl: agents[index].urlPhotoAgant,
                                errorWidget: (context, url, error) => Icon(Icons.error),
-),
+                            ),
        
                             ),
                           Expanded(

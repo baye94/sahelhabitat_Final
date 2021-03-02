@@ -162,13 +162,15 @@ class InformationTile extends StatelessWidget{
           BorderIcon(
               width: tileSize,
               height: tileSize,
-              
-              child: Text(content,style: TextStyle(fontSize: 20 , fontWeight: FontWeight.bold))),
+               child: Image(image:AssetImage(content), fit: BoxFit.cover, ),
+              // child: Text(content,style: TextStyle(fontSize: 20 , fontWeight: FontWeight.bold)),
+              ),
           // addVerticalSpace(15),
           SizedBox(
            height: 10,
           ),
-          Text(name,style: TextStyle(fontSize: 20 , fontWeight: FontWeight.bold))
+          
+          Text(name,style: TextStyle( fontWeight: FontWeight.bold))
         ],
       ),
     );

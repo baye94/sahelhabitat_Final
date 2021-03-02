@@ -5,23 +5,105 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:provider/provider.dart';
 import 'package:sahelhabitat/Model/agentModel.dart';
+import 'package:sahelhabitat/Model/terrainModel.dart';
 import 'package:sahelhabitat/View/SideBarNavigation/pages/test.dart';
-import 'package:sahelhabitat/View/splashScreen.dart';
 import '../bloc.navigation_bloc/navigation_bloc.dart';
-import 'package:flutter/services.dart';
-final List<String> imgList = [
-  'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
-  'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
-  'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=94a1e718d89ca60a6337a6008341ca50&auto=format&fit=crop&w=1950&q=80',
-  'https://images.unsplash.com/photo-1523205771623-e0faa4d2813d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=89719a0d55dd05e2deae4120227e6efc&auto=format&fit=crop&w=1953&q=80',
-  'https://images.unsplash.com/photo-1508704019882-f9cf40e475b4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c6e5e3aba713b17aa1fe71ab4f0ae5b&auto=format&fit=crop&w=1352&q=80',
-  'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
-  'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
-   'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
-];
-final List<Widget> imageSliders = imgList.map((item) => Container(
+class HomePage extends StatelessWidget with NavigationStates {
+  CarouselController buttonCarouselController = CarouselController();
+  final CarouselController _controller = CarouselController();
+  @override
+  Widget build(BuildContext context) {
+     modal(String image , String text){
+ if(Platform.isIOS){
+   return     showCupertinoModalBottomSheet(
+  context: context,
+  builder: (context) {
+      return SingleChildScrollView(
+        controller: ModalScrollController.of(context),
+        child: Container(
+          color: Colors.white,
+          width:MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height/4,
+          child: Column(
+            children:[
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                height: 50,
+                width: 50,
+                child:Image(image: AssetImage(image),
+                fit: BoxFit.cover,
+                ),
+                
+                ),
+                 SizedBox(
+                height: 10,
+              ),
+                Divider(),
+                 SizedBox(
+                height: 10,
+              ),
+                Text(text,
+                textAlign:TextAlign.justify,
+                style: TextStyle(fontSize: 15 ,color: Colors.grey , decoration: TextDecoration.none , fontStyle:FontStyle.italic , fontWeight: FontWeight.normal),
+                ),
+                
+            ]
+          ),
+        )
+      );
+  },
+);
+ }else{
+    return     showMaterialModalBottomSheet(
+  context: context,
+  builder: (context) {
+      return SingleChildScrollView(
+        controller: ModalScrollController.of(context),
+        child: Container(
+          color: Colors.white,
+          width:MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height/4,
+          child: Column(
+            children:[
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                height: 50,
+                width: 50,
+                child:Image(image: AssetImage(image),
+                fit: BoxFit.cover,
+                ),
+                
+                ),
+                 SizedBox(
+                height: 10,
+              ),
+                Divider(),
+                 SizedBox(
+                height: 10,
+              ),
+                Text(text,
+                textAlign:TextAlign.justify,
+                style: TextStyle(fontSize: 15 ,color: Colors.grey , decoration: TextDecoration.none , fontStyle:FontStyle.italic , fontWeight: FontWeight.normal),
+                ),
+                
+            ]
+          ),
+        )
+      );
+  },
+);
+ }
+   }
+      final terrains = Provider.of<List<TerrainModel>>(context);
+      final  listeTerrains = terrains?.map((item) => Container(
+      
   child:   Card(
     child: Column(
       children: [
@@ -30,14 +112,16 @@ final List<Widget> imageSliders = imgList.map((item) => Container(
           height: 160,
           width: 500,
          
-          child: Image(
-            image: AssetImage('assets/back2.jpg'),
-            fit: BoxFit.cover,
-          ),
+          child: CachedNetworkImage(
+                              fit: BoxFit.cover,
+                             
+                               imageUrl: item.urlPhotoTerrain,
+                               errorWidget: (context, url, error) => Icon(Icons.error),
+                            ),
         ),
 
         ListTile(
-          title: Text('Mbour',
+          title: Text(item.localiteTerrain,
               style: TextStyle(fontWeight: FontWeight.w500)),
           leading: Icon(
             Icons.location_city,
@@ -46,7 +130,7 @@ final List<Widget> imageSliders = imgList.map((item) => Container(
         ),
         Expanded(
           child: ListTile(
-            title: Text('Terrain'),
+            title: Text(item.prixTerrain.toString()),
             leading: Icon(
               // Icons.contact_mail,
               Icons.merge_type,
@@ -57,15 +141,7 @@ final List<Widget> imageSliders = imgList.map((item) => Container(
       ],
     ),
   ),
-),).toList();
-class HomePage extends StatelessWidget with NavigationStates {
-  CarouselController buttonCarouselController = CarouselController();
-  final CarouselController _controller = CarouselController();
-
-  @override
-  Widget build(BuildContext context) {
-      final agents = Provider.of<List<AgentModel>>(context);
-      final i = AgentModel();
+),)?.toList()??[];
     return Scaffold(
       appBar: AppBar(
           elevation: 0.0,
@@ -86,11 +162,11 @@ class HomePage extends StatelessWidget with NavigationStates {
           child: Column(
             children: <Widget>[
               SizedBox(height: 30,),
-              Text('AGENTS' , style: TextStyle(fontWeight: FontWeight.bold),),
+              Text('AGENTS' , style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
               SizedBox(height: 30,),
               CarouselSlider(
                 options: CarouselOptions(
-                  height: 430.0,
+                  height: 420.0,
                   aspectRatio: 16 / 9,
                   viewportFraction: 0.8,
                   initialPage: 0,
@@ -110,7 +186,7 @@ class HomePage extends StatelessWidget with NavigationStates {
                       return Column(
                         children: [
                           Card(
-                            elevation: 10.9,
+                            // elevation: 10.9,
                             child: Column(
                                children: [
                                  Container(
@@ -163,14 +239,14 @@ class HomePage extends StatelessWidget with NavigationStates {
                                       style: TextStyle(
                                           fontWeight: FontWeight.w500)),
                                   leading: Icon(
-                                    Icons.contact_phone,
+                                    Icons.phone,
                                     color: Colors.orange[600],
                                   ),
                                 ),
                                 ListTile(
-                                  title: Text(i.emailAgent,textAlign: TextAlign.center),
+                                  title: Text(i.emailAgent,),
                                   leading: Icon(
-                                    Icons.contact_mail,
+                                    Icons.mail,
                                     color: Colors.orange[600],
                                   ),
                                 ),
@@ -182,7 +258,7 @@ class HomePage extends StatelessWidget with NavigationStates {
                             onPressed: (){
                               // Navigator.of(context).push(MaterialPageRoute (builder: (context)=>Test()));
                               // print(i.toMap());
-                             exit(0);
+                            //  exit(0);
                               
                                 // buttonCarouselController.nextPage(
                                 //     duration: Duration(milliseconds: 100),
@@ -190,7 +266,8 @@ class HomePage extends StatelessWidget with NavigationStates {
                             },
                             
                             child: Text('→'),
-                            elevation: 5,
+                            // elevation: 10,
+                
                           )
                         ],
                       );
@@ -199,58 +276,14 @@ class HomePage extends StatelessWidget with NavigationStates {
                 })?.toList()??[],
 
               ),
-              // SizedBox( height: 30),
-            Center(
-              child: Column(
-
-                children:[ Card(
-                  elevation: 10,
-                  child: InkWell(
-                    splashColor: Colors.blue.withAlpha(30),
-                    onTap: () {
-                      print('Card tapped.');
-                    },
-                    child: Container(
-                      width: 300,
-                      height: 100,
-                      child:Column(
-                        children:[ RichText(
-
-                          text: TextSpan(
-                            text: ' ',
-                            style: DefaultTextStyle.of(context).style,
-
-                            children: <TextSpan>[
-                              TextSpan(text: 'Looking to Buy a new property or Sell an existing one ?', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20)),
-                              TextSpan(text: ' Sahel Habitat ',style: TextStyle(fontWeight: FontWeight.bold, color: Colors.orange,fontSize: 20)),
-                              TextSpan(text: ' provides an awesome solution !',style: TextStyle(fontWeight: FontWeight.bold , fontSize: 20)),
-                            ],
-                          ),
-                        ),
-
-                        ]
-                      ),
-
-                    ),
-                  ),
-                ),
-                  RaisedButton(
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => SplashScreen()));
-                    },
-                    child: Text('About'),
-                  ),
-              ]
-              ),
-            ),
-
-               SizedBox( height: 30),
+             
+               SizedBox( height: 0),
               Text('For Sales', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
               SizedBox(height: 30,),
               Column(
                 children: <Widget>[
                   CarouselSlider(
-                     items: imageSliders,
+                     items: listeTerrains,
 
                     options: CarouselOptions(enlargeCenterPage: true, height: 300),
                     carouselController: _controller,
@@ -282,7 +315,56 @@ class HomePage extends StatelessWidget with NavigationStates {
                 ],
               ),
             SizedBox(height: 30,),
-              Text('SERVICES', style: TextStyle(fontWeight: FontWeight.bold),),
+              Text('SERVICES', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+              SizedBox(
+                height: 30,
+              ),
+              SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      physics: BouncingScrollPhysics(),
+                      child: Row(
+                        children: [
+                          InkWell(
+                            child: InformationTile(content: "assets/rent1.png",name: "Lieu",),
+                            onTap: (){
+                          modal("assets/rent1.png", "Nous vous donnons un accès privilégié à une liste de biens dans la catégorie location de biens immobiliers: appartement, maison, atelier, parking");
+                            },
+                          ),
+                         InkWell(
+                           child: InformationTile(content: "assets/construction1.png",name: "Construction",),
+                           onTap: () =>
+                           modal("assets/construction1.png", "Construire une maison est un engagement, un rêve de vie, d'argent, de temps, d'avenir. Sahel Habitat vous conseille à chaque étape clé de votre projet.")
+                           ,
+                         ),
+                         InkWell(
+                           child:InformationTile(content: "assets/consulting1.png",name: "Consultant",),
+                           onTap: () => 
+                           modal("assets/consulting1.png", 'Il est important d\'être conseillé et soutenu pour prendre des décisions importantes dans le cadre d\'un projet spécifique.')
+                           ,
+                         ),
+                        InkWell(
+                         child:InformationTile(content: "assets/investment1.png",name: "Investissement",),
+                         onTap: () =>
+                         modal("assets/investment1.png", 'L\'investissement locatif est avant tout une réflexion qu\'il faut relativiser par rapport à son patrimoine existant.')
+                         ,
+                        ),
+                          InkWell(
+                           child:InformationTile(content: "assets/land1.png",name: "Achat Terrains",),
+                           onTap: () =>
+                           modal( "assets/land1.png", 'L\'achat d\'un terrain est un investissement important. Il est donc nécessaire de se renseigner en détail sur ce bien et les procédures à suivre.')
+                           ,
+                          ),
+                          InkWell(
+                            child: InformationTile(content: "assets/settings1.png",name: "Intendance",),
+                            onTap: () =>
+                            modal("assets/settings1.png", 'Confier un mandat de gestion locative vous permet de déléguer tous les travaux de gestion locative à Sahel Habitat.')
+                            ,
+                          ),
+                          ],
+                      ),
+                    ),
+                    
+                    
               SizedBox(height: 40,),
 
             ],
