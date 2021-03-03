@@ -3,12 +3,9 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:readmore/readmore.dart';
 import 'package:sahelhabitat/Model/maisonLouer.dart';
 import 'package:sahelhabitat/Provider/maisonLouer_provider.dart';
-import 'package:sahelhabitat/View/SideBarNavigation/pages/test.dart';
-import 'package:flutter/services.dart';
 
 class DetailLouers extends StatefulWidget {
   final MaisonLouer maisonLouer;

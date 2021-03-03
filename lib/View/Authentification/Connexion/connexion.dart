@@ -1,7 +1,9 @@
 
 import 'dart:async';
+import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sahelhabitat/Service/serviceFirebase.dart';
@@ -9,14 +11,15 @@ import 'package:sahelhabitat/View/Admin/SideBarNavigationAdmin/sidebar/sidebar_l
 import 'package:sahelhabitat/View/Authentification/Inscription/Animation/FadeAnimation.dart';
 import 'package:sahelhabitat/View/Authentification/Inscription/inscription.dart';
 import 'package:sahelhabitat/View/Authentification/resetPassword.dart';
-import 'package:sahelhabitat/View/SideBarNavigation/sidebar/sidebar_layout.dart';
 import 'package:sahelhabitat/View/splashScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 String finalemail;
+// ignore: camel_case_types
 class connexion extends StatefulWidget {
    @override
   _connexionState createState() => _connexionState();
 }
+// ignore: camel_case_types
 class _connexionState extends State<connexion> {
   //  @override
   // void initState() {
@@ -66,7 +69,7 @@ class _connexionState extends State<connexion> {
                   FadeAnimation(
                       1,
                       Text(
-                        "Registe",
+                        "Connexion",
                         style: TextStyle(color: Colors.white, fontSize: 40),
                       )),
                   SizedBox(
@@ -75,7 +78,7 @@ class _connexionState extends State<connexion> {
                   FadeAnimation(
                       1.3,
                       Text(
-                        "Welcome Back",
+                        "Bienvenue",
                         style: TextStyle(color: Colors.white, fontSize: 18),
                       )),
                 ],
@@ -128,6 +131,7 @@ class _connexionState extends State<connexion> {
                                             border: InputBorder.none
                                         ),
                                           // validator: (val) => val.isEmpty ? " Email ?" : null,
+                                          // ignore: missing_return
                                           validator: (val){
                                             if(val.isEmpty){
                                               return ' Email ?';
@@ -157,7 +161,7 @@ class _connexionState extends State<connexion> {
                                             TextStyle(color: Colors.grey),
                                             border: InputBorder.none
                                         ),
-                                         validator: (val) => val.length<6 ? "Password  ave 6 caracactere min?" : null,
+                                         validator: (val) => val.length<6 ? "le mot de passe doit avoir 6 caractéres au minimun" : null,
                                        onChanged: (val){
                                          _passC = val ;
                                        },
@@ -171,50 +175,63 @@ class _connexionState extends State<connexion> {
                               ),
                             )),
                               SizedBox(
-                              height: 0,
+                              height: 20,
                              
                             ),
-                            
-                            FlatButton (
-                                           onPressed: () { 
-                                                 Navigator.push(
-                                                 context,
-                                                 MaterialPageRoute(builder: (context) => resetPassword()),
-                                                  );
-                                           
-                                            },
-                                           child: Text(
-                                      " forget password?",
-                                      style: TextStyle(
-                                          color: Colors.orange[900],
-                                          fontWeight: FontWeight.bold),
+                            FadeAnimation(
+                              1.6,
+                                  Row(
+                                children: <Widget>[
+                                   FlatButton (
+                                onPressed: () { 
+                                                   if(Platform.isIOS){
+                                                     Navigator.push(
+                                                   context,
+                                                   CupertinoPageRoute(builder: (context) => resetPassword()),
+                                                    );
+                                                   }else{
+                                                     Navigator.push(
+                                                   context,
+                                                   MaterialPageRoute(builder: (context) => resetPassword()),
+                                                    );
+                                                   }
+                                             
+                                              },
+                                             child: Text(
+                                        " mot de pass oublié",
+                                        style: TextStyle(
+                                            color: Colors.orange[900],
+                                            fontWeight: FontWeight.normal),
+                                      ),
                                     ),
-                                  ),
-                            SizedBox(
-                              height: 30,
+                                     FlatButton (
+                                             onPressed: () { 
+                                                   if(Platform.isIOS){
+                                                  Navigator.push(
+                                                   context,
+                                                   CupertinoPageRoute(builder: (context) => inscription()),
+                                                    );
+                                                   }else{
+                                                    Navigator.push(
+                                                   context,
+                                                   MaterialPageRoute(builder: (context) => inscription()),
+                                                    );
+                                                   }
+                                             
+                                              },
+                                             child: Text(
+                                        "créer un nouveau compte",
+                                        style: TextStyle(
+                                            color: Colors.orange[900],
+                                            fontWeight: FontWeight.normal),
+                                      ),
+                                    ),
+ 
+                                ],
+                              ),
                             ),
-                            
-                            FlatButton (
-                                           onPressed: () { 
-                                                 Navigator.push(
-                                                 context,
-                                                 MaterialPageRoute(builder: (context) => inscription()),
-                                                  );
-                                           
-                                            },
-                                           child: Text(
-                                      "create compte?",
-                                      style: TextStyle(
-                                          color: Colors.orange[900],
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                        SizedBox(
-                          height: 30,
-                        ),
-
-                     
-                        FadeAnimation(
+                            SizedBox(height: 20),
+                             FadeAnimation(
                             1.6,
                             Container(
                               height: 50,
@@ -233,7 +250,7 @@ class _connexionState extends State<connexion> {
                                          final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
                                              if (_forminskey.currentState.validate()) {
                                              try {
-  UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+   await FirebaseAuth.instance.signInWithEmailAndPassword(
     email: _emailC,
     password: _passC
   );
@@ -280,7 +297,7 @@ class _connexionState extends State<connexion> {
   //                                                },
                                                   
                                                     child: Text(
-                                      "Register",
+                                      "Connexion",
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold),

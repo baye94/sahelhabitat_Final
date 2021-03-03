@@ -97,6 +97,11 @@ flutter:
     - assets/investment1.png
     - assets/consulting1.png
     - assets/construction1.png
+    - assets/garage.png
+    - assets/bain.png
+    - assets/chambre1.png
+    - assets/garage1.png
+    - assets/chambre23.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

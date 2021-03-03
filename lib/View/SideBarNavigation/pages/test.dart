@@ -151,6 +151,7 @@ class InformationTile extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     final ThemeData themeData = Theme.of(context);
     final Size size = MediaQuery.of(context).size;
     final double tileSize = size.width*0.20;

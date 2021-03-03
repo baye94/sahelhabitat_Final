@@ -11,6 +11,7 @@ import 'package:sahelhabitat/Model/agentModel.dart';
 import 'package:sahelhabitat/Model/terrainModel.dart';
 import 'package:sahelhabitat/View/SideBarNavigation/pages/test.dart';
 import '../bloc.navigation_bloc/navigation_bloc.dart';
+// ignore: must_be_immutable
 class HomePage extends StatelessWidget with NavigationStates {
   CarouselController buttonCarouselController = CarouselController();
   final CarouselController _controller = CarouselController();
@@ -142,232 +143,271 @@ class HomePage extends StatelessWidget with NavigationStates {
     ),
   ),
 ),)?.toList()??[];
-    return Scaffold(
-      appBar: AppBar(
-          elevation: 0.0,
-          backgroundColor: Colors.white,
-          // title: new  Text("fall"),
-          // leading:  Image.asset('assets/logo.png', height: 52.0,),
-          actions: <Widget>[
-            Image(image: AssetImage('assets/logo.png'),
-              // fit: BoxFit.values(100,122),
-              width: 100,
-              height: 100,
-            ),
-          ]
+Future<bool> _onBackPressed(){
+ return showDialog(
+   context: context,
+   builder: (context) {
+    if(Platform.isIOS){
+       return
+     CupertinoAlertDialog(
+     title: Text('Vous voullez quitter l\application'),
+     actions: [
+       FlatButton(
+         onPressed:()=>Navigator.pop(context , false), 
+         child: Text('No')),
+           FlatButton(
+         onPressed:()=>Navigator.pop(context , true), 
+         child: Text('Oui'))
+     ],
+   );
+    }else{
+       return
+     AlertDialog(
+     title: Text('Vous voullez quitter l\application'),
+     actions: [
+       FlatButton(
+         onPressed:()=>Navigator.pop(context , false), 
+         child: Text('No')),
+           FlatButton(
+         onPressed:()=>Navigator.pop(context , true), 
+         child: Text('Oui'))
+     ],
+   );
+    }
+   
+   }
+   );
 
-      ),
-      body: Container(
-        child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              SizedBox(height: 30,),
-              Text('AGENTS' , style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
-              SizedBox(height: 30,),
-              CarouselSlider(
-                options: CarouselOptions(
-                  height: 420.0,
-                  aspectRatio: 16 / 9,
-                  viewportFraction: 0.8,
-                  initialPage: 0,
-                  enableInfiniteScroll: true,
-                  reverse: false,
-                  autoPlay: false,
-                  autoPlayInterval: Duration(seconds: 3),
-                  autoPlayAnimationDuration: Duration(milliseconds: 800),
-                  autoPlayCurve: Curves.fastOutSlowIn,
-                  enlargeCenterPage: true,
-                  scrollDirection: Axis.horizontal,),
-              //  carouselController: buttonCarouselController,
-                
-                items: Provider.of<List<AgentModel>>(context)?.map((i) {
-                  return Builder(
-                    builder:(BuildContext context) {
-                      return Column(
-                        children: [
-                          Card(
-                            // elevation: 10.9,
-                            child: Column(
-                               children: [
-                                 Container(
-                                 height: 100,
-                                 width: 100,
-                                  child: CachedNetworkImage(
-                              fit: BoxFit.cover,
-                              height: 100,
-                              width: 250,
-                               imageUrl:i.urlPhotoAgant,
+}
+    return WillPopScope(
+           onWillPop: _onBackPressed,
+          child: Scaffold(
+        appBar: AppBar(
+            elevation: 0.0,
+            backgroundColor: Colors.white,
+            // title: new  Text("fall"),
+            // leading:  Image.asset('assets/logo.png', height: 52.0,),
+            actions: <Widget>[
+              Image(image: AssetImage('assets/logo.png'),
+                // fit: BoxFit.values(100,122),
+                width: 100,
+                height: 100,
+              ),
+            ]
 
-                              //  errorWidget: (context, url, error) => Icon(Icons.error),
+        ),
+        body: Container(
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                SizedBox(height: 30,),
+                Text('AGENTS' , style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+                SizedBox(height: 30,),
+                CarouselSlider(
+                  options: CarouselOptions(
+                    height: 420.0,
+                    aspectRatio: 16 / 9,
+                    viewportFraction: 0.8,
+                    initialPage: 0,
+                    enableInfiniteScroll: true,
+                    reverse: false,
+                    autoPlay: false,
+                    autoPlayInterval: Duration(seconds: 3),
+                    autoPlayAnimationDuration: Duration(milliseconds: 800),
+                    autoPlayCurve: Curves.fastOutSlowIn,
+                    enlargeCenterPage: true,
+                    scrollDirection: Axis.horizontal,),
+                //  carouselController: buttonCarouselController,
+                  
+                  items: Provider.of<List<AgentModel>>(context)?.map((i) {
+                    return Builder(
+                      builder:(BuildContext context) {
+                        return Column(
+                          children: [
+                            Card(
+                              // elevation: 10.9,
+                              child: Column(
+                                 children: [
+                                   Container(
+                                   height: 100,
+                                   width: 100,
+                                    child: CachedNetworkImage(
+                                fit: BoxFit.cover,
+                                height: 100,
+                                width: 250,
+                                 imageUrl:i.urlPhotoAgant,
+
+                                //  errorWidget: (context, url, error) => Icon(Icons.error),
 ),
-                                 decoration: BoxDecoration(
-                                     color: Colors.white,
-                                     borderRadius: BorderRadius.all(Radius.circular(5)),
-                                     boxShadow: [
-                                       BoxShadow(
-                                         color:Colors.orange[600],
+                                   decoration: BoxDecoration(
+                                       color: Colors.white,
+                                       borderRadius: BorderRadius.all(Radius.circular(5)),
+                                       boxShadow: [
+                                         BoxShadow(
+                                           color:Colors.orange[600],
 
-                                         offset: Offset(4.0,4.0),
-                                         blurRadius: 0.0,
-                                         spreadRadius: 0.0,
-                                         // color: Colors.white.withOpacity(.7)
-                                       ),
-                                       BoxShadow(
-                                         color:Colors.orange[600],
-                                         offset: Offset(4.0,4.0),
-                                         blurRadius: 0.0,
-                                         spreadRadius: 0.0,
-                                         // color: Colors.black.withOpacity(.15)
+                                           offset: Offset(4.0,4.0),
+                                           blurRadius: 0.0,
+                                           spreadRadius: 0.0,
+                                           // color: Colors.white.withOpacity(.7)
+                                         ),
+                                         BoxShadow(
+                                           color:Colors.orange[600],
+                                           offset: Offset(4.0,4.0),
+                                           blurRadius: 0.0,
+                                           spreadRadius: 0.0,
+                                           // color: Colors.black.withOpacity(.15)
 
-                                       ),
-                                     ]
+                                         ),
+                                       ]
+                                   ),
                                  ),
-                               ),
-                                ListTile(
-                                  title: Text(i.nomCompletAgent, textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w500)),
-                                  subtitle: Text(i.paysAgent,textAlign: TextAlign.center),
-                                  // leading: Icon(
-                                  //   Icons.restaurant_menu,
-                                  //   color: Colors.blue[500],
-                                  // ),
-                                ),
-                                Divider(),
-                                ListTile(
-                                  title: Text(i.telephoneAgent,
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w500)),
-                                  leading: Icon(
-                                    Icons.phone,
-                                    color: Colors.orange[600],
+                                  ListTile(
+                                    title: Text(i.nomCompletAgent, textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w500)),
+                                    subtitle: Text(i.paysAgent,textAlign: TextAlign.center),
+                                    // leading: Icon(
+                                    //   Icons.restaurant_menu,
+                                    //   color: Colors.blue[500],
+                                    // ),
                                   ),
-                                ),
-                                ListTile(
-                                  title: Text(i.emailAgent,),
-                                  leading: Icon(
-                                    Icons.mail,
-                                    color: Colors.orange[600],
+                                  Divider(),
+                                  ListTile(
+                                    title: Text(i.telephoneAgent,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w500)),
+                                    leading: Icon(
+                                      Icons.phone,
+                                      color: Colors.orange[600],
+                                    ),
                                   ),
-                                ),
-                              ],
+                                  ListTile(
+                                    title: Text(i.emailAgent,),
+                                    leading: Icon(
+                                      Icons.mail,
+                                      color: Colors.orange[600],
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                          RaisedButton(
+                            RaisedButton(
  
-                            onPressed: (){
-                              // Navigator.of(context).push(MaterialPageRoute (builder: (context)=>Test()));
-                              // print(i.toMap());
-                            //  exit(0);
+                              onPressed: (){
+                                // Navigator.of(context).push(MaterialPageRoute (builder: (context)=>Test()));
+                                // print(i.toMap());
+                              //  exit(0);
+                                
+                                  // buttonCarouselController.nextPage(
+                                  //     duration: Duration(milliseconds: 100),
+                                  //     curve: Curves.linear);
+                              },
                               
-                                // buttonCarouselController.nextPage(
-                                //     duration: Duration(milliseconds: 100),
-                                //     curve: Curves.linear);
-                            },
-                            
-                            child: Text('→'),
-                            // elevation: 10,
-                
-                          )
-                        ],
-                      );
-                    },
-                  );
-                })?.toList()??[],
-
-              ),
-             
-               SizedBox( height: 0),
-              Text('For Sales', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
-              SizedBox(height: 30,),
-              Column(
-                children: <Widget>[
-                  CarouselSlider(
-                     items: listeTerrains,
-
-                    options: CarouselOptions(enlargeCenterPage: true, height: 300),
-                    carouselController: _controller,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Flexible(
-                        child: RaisedButton(
-                          onPressed: () => _controller.previousPage(),
-                          child: Text('←'),
-                        ),
-                      ),
-                      // Flexible(
-                      //   child: RaisedButton(
-                      //     onPressed: () => _controller.nextPage(),
-                      //     child: Text('→'),
-                      //   ),
-                      // ),
-
-                      Flexible(
-                        child: RaisedButton(
-                          onPressed: () => _controller.nextPage(),
-                          child: Text('→'),
-                        ),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            SizedBox(height: 30,),
-              Text('SERVICES', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
-              SizedBox(
-                height: 30,
-              ),
-              SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      physics: BouncingScrollPhysics(),
-                      child: Row(
-                        children: [
-                          InkWell(
-                            child: InformationTile(content: "assets/rent1.png",name: "Lieu",),
-                            onTap: (){
-                          modal("assets/rent1.png", "Nous vous donnons un accès privilégié à une liste de biens dans la catégorie location de biens immobiliers: appartement, maison, atelier, parking");
-                            },
-                          ),
-                         InkWell(
-                           child: InformationTile(content: "assets/construction1.png",name: "Construction",),
-                           onTap: () =>
-                           modal("assets/construction1.png", "Construire une maison est un engagement, un rêve de vie, d'argent, de temps, d'avenir. Sahel Habitat vous conseille à chaque étape clé de votre projet.")
-                           ,
-                         ),
-                         InkWell(
-                           child:InformationTile(content: "assets/consulting1.png",name: "Consultant",),
-                           onTap: () => 
-                           modal("assets/consulting1.png", 'Il est important d\'être conseillé et soutenu pour prendre des décisions importantes dans le cadre d\'un projet spécifique.')
-                           ,
-                         ),
-                        InkWell(
-                         child:InformationTile(content: "assets/investment1.png",name: "Investissement",),
-                         onTap: () =>
-                         modal("assets/investment1.png", 'L\'investissement locatif est avant tout une réflexion qu\'il faut relativiser par rapport à son patrimoine existant.')
-                         ,
-                        ),
-                          InkWell(
-                           child:InformationTile(content: "assets/land1.png",name: "Achat Terrains",),
-                           onTap: () =>
-                           modal( "assets/land1.png", 'L\'achat d\'un terrain est un investissement important. Il est donc nécessaire de se renseigner en détail sur ce bien et les procédures à suivre.')
-                           ,
-                          ),
-                          InkWell(
-                            child: InformationTile(content: "assets/settings1.png",name: "Intendance",),
-                            onTap: () =>
-                            modal("assets/settings1.png", 'Confier un mandat de gestion locative vous permet de déléguer tous les travaux de gestion locative à Sahel Habitat.')
-                            ,
-                          ),
+                              child: Text('→'),
+                              // elevation: 10,
+                  
+                            )
                           ],
-                      ),
-                    ),
-                    
-                    
-              SizedBox(height: 40,),
+                        );
+                      },
+                    );
+                  })?.toList()??[],
 
-            ],
+                ),
+               
+                 SizedBox( height: 0),
+                Text('For Sales', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+                SizedBox(height: 30,),
+                Column(
+                  children: <Widget>[
+                    CarouselSlider(
+                       items: listeTerrains,
+
+                      options: CarouselOptions(enlargeCenterPage: true, height: 300),
+                      carouselController: _controller,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Flexible(
+                          child: RaisedButton(
+                            onPressed: () => _controller.previousPage(),
+                            child: Text('←'),
+                          ),
+                        ),
+                        // Flexible(
+                        //   child: RaisedButton(
+                        //     onPressed: () => _controller.nextPage(),
+                        //     child: Text('→'),
+                        //   ),
+                        // ),
+
+                        Flexible(
+                          child: RaisedButton(
+                            onPressed: () => _controller.nextPage(),
+                            child: Text('→'),
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              SizedBox(height: 30,),
+                Text('SERVICES', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+                SizedBox(
+                  height: 30,
+                ),
+                SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        physics: BouncingScrollPhysics(),
+                        child: Row(
+                          children: [
+                            InkWell(
+                              child: InformationTile(content: "assets/rent1.png",name: "Lieu",),
+                              onTap: (){
+                            modal("assets/rent1.png", "Nous vous donnons un accès privilégié à une liste de biens dans la catégorie location de biens immobiliers: appartement, maison, atelier, parking");
+                              },
+                            ),
+                           InkWell(
+                             child: InformationTile(content: "assets/construction1.png",name: "Construction",),
+                             onTap: () =>
+                             modal("assets/construction1.png", "Construire une maison est un engagement, un rêve de vie, d'argent, de temps, d'avenir. Sahel Habitat vous conseille à chaque étape clé de votre projet.")
+                             ,
+                           ),
+                           InkWell(
+                             child:InformationTile(content: "assets/consulting1.png",name: "Consultant",),
+                             onTap: () => 
+                             modal("assets/consulting1.png", 'Il est important d\'être conseillé et soutenu pour prendre des décisions importantes dans le cadre d\'un projet spécifique.')
+                             ,
+                           ),
+                          InkWell(
+                           child:InformationTile(content: "assets/investment1.png",name: "Investissement",),
+                           onTap: () =>
+                           modal("assets/investment1.png", 'L\'investissement locatif est avant tout une réflexion qu\'il faut relativiser par rapport à son patrimoine existant.')
+                           ,
+                          ),
+                            InkWell(
+                             child:InformationTile(content: "assets/land1.png",name: "Achat Terrains",),
+                             onTap: () =>
+                             modal( "assets/land1.png", 'L\'achat d\'un terrain est un investissement important. Il est donc nécessaire de se renseigner en détail sur ce bien et les procédures à suivre.')
+                             ,
+                            ),
+                            InkWell(
+                              child: InformationTile(content: "assets/settings1.png",name: "Intendance",),
+                              onTap: () =>
+                              modal("assets/settings1.png", 'Confier un mandat de gestion locative vous permet de déléguer tous les travaux de gestion locative à Sahel Habitat.')
+                              ,
+                            ),
+                            ],
+                        ),
+                      ),
+                      
+                      
+                SizedBox(height: 40,),
+
+              ],
+            ),
           ),
         ),
       ),

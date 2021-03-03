@@ -27,26 +27,6 @@ class MyApp extends StatefulWidget  {
 }
 
 class _MyAppState extends State<MyApp> {
-  
-// @override
-//   void initState() {
-    
-//     getValideData().whenComplete(() async{
-//       Timer(Duration(seconds: 2),() => Get.to(
-//         finalemail ==null ? home2() :SideBarLayout()
-//       ));
-//     });
-//     super.initState();
-    
-//   }
-//   Future getValideData() async{
-//   final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-//   var obtenirMail = sharedPreferences.getString('email');
-//   setState(() {
-//     finalemail =obtenirMail;
-//   });
-//   print('Email envoier est $finalemail');
-// }
   @override
   Widget build(BuildContext context) {
     
@@ -78,6 +58,7 @@ class _MyAppState extends State<MyApp> {
             ],
             supportedLocales: S.delegate.supportedLocales,
       home: MyHomePage(title: 'Flutter Page'),
+     
           ),
     );
   }

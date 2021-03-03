@@ -19,6 +19,7 @@ abstract class NavigationStates {}
 class NavigationBloc extends Bloc<NavigationEvents, NavigationStates> {
     NavigationBloc() : super(HomePage());
   @override
+  // ignore: override_on_non_overriding_member
   NavigationStates get initialState => MyAccountsPage();
 
   @override

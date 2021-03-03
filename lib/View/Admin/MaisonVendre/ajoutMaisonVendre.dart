@@ -7,7 +7,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:sahelhabitat/Provider/maison_provider.dart';
-import 'package:sahelhabitat/Provider/terrain_provider.dart';
 
 class AjoutMaisonVendre extends StatefulWidget {
   @override
@@ -152,6 +151,7 @@ final _frisky2 = GlobalKey<FormState>();
                                                 border: InputBorder.none,
                                                
                                             ),
+                                            // ignore: missing_return
                                             validator: (val){
                                                 if(val.isEmpty){
                                                   return ' Localite';
@@ -177,6 +177,7 @@ final _frisky2 = GlobalKey<FormState>();
                                                 border: InputBorder.none,
                                                
                                             ),
+                                            // ignore: missing_return
                                             validator: (val){
                                                 if(val.isEmpty){
                                                   return ' Pays';
@@ -203,6 +204,7 @@ final _frisky2 = GlobalKey<FormState>();
                                                 border: InputBorder.none,
                                                
                                             ),
+                                            // ignore: missing_return
                                             validator: (val){
                                                 if(val.isEmpty){
                                                   return ' superficie';
@@ -230,6 +232,7 @@ final _frisky2 = GlobalKey<FormState>();
                                                 border: InputBorder.none,
                                                
                                             ),
+                                            // ignore: missing_return
                                             validator: (val){
                                                 if(val.isEmpty){
                                                   return ' Prefixe superficie';
@@ -255,6 +258,7 @@ final _frisky2 = GlobalKey<FormState>();
                                                 border: InputBorder.none,
                                                
                                             ),
+                                            // ignore: missing_return
                                             validator: (val){
                                                 if(val.isEmpty){
                                                   return ' Prix';
@@ -281,6 +285,7 @@ final _frisky2 = GlobalKey<FormState>();
                                                 border: InputBorder.none,
                                                
                                             ),
+                                            // ignore: missing_return
                                             validator: (val){
                                                 if(val.isEmpty){
                                                   return ' Prefixe prix';
@@ -306,6 +311,7 @@ final _frisky2 = GlobalKey<FormState>();
                                                 border: InputBorder.none,
                                                
                                             ),
+                                            // ignore: missing_return
                                             validator: (val){
                                                 if(val.isEmpty){
                                                   return ' Garage';
@@ -331,6 +337,7 @@ final _frisky2 = GlobalKey<FormState>();
                                                 border: InputBorder.none,
                                                
                                             ),
+                                            // ignore: missing_return
                                             validator: (val){
                                                 if(val.isEmpty){
                                                   return ' Nombre chambre';
@@ -356,6 +363,7 @@ final _frisky2 = GlobalKey<FormState>();
                                                 border: InputBorder.none,
                                                
                                             ),
+                                            // ignore: missing_return
                                             validator: (val){
                                                 if(val.isEmpty){
                                                   return ' Annee construction';
@@ -383,6 +391,7 @@ final _frisky2 = GlobalKey<FormState>();
                                                 border: InputBorder.none,
                                                
                                             ),
+                                            // ignore: missing_return
                                             validator: (val){
                                                 if(val.isEmpty){
                                                   return ' description';

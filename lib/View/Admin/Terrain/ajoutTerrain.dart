@@ -147,6 +147,7 @@ final _frisky2 = GlobalKey<FormState>();
                                                 border: InputBorder.none,
                                                
                                             ),
+                                            // ignore: missing_return
                                             validator: (val){
                                                 if(val.isEmpty){
                                                   return ' Localite';
@@ -173,6 +174,7 @@ final _frisky2 = GlobalKey<FormState>();
                                                 border: InputBorder.none,
                                                
                                             ),
+                                            // ignore: missing_return
                                             validator: (val){
                                                 if(val.isEmpty){
                                                   return ' superficie';
@@ -199,6 +201,7 @@ final _frisky2 = GlobalKey<FormState>();
                                                 border: InputBorder.none,
                                                
                                             ),
+                                            // ignore: missing_return
                                             validator: (val){
                                                 if(val.isEmpty){
                                                   return ' Prefixe superficie';
@@ -224,6 +227,7 @@ final _frisky2 = GlobalKey<FormState>();
                                                 border: InputBorder.none,
                                                
                                             ),
+                                            // ignore: missing_return
                                             validator: (val){
                                                 if(val.isEmpty){
                                                   return ' Prix';
@@ -249,6 +253,7 @@ final _frisky2 = GlobalKey<FormState>();
                                                 border: InputBorder.none,
                                                
                                             ),
+                                            // ignore: missing_return
                                             validator: (val){
                                                 if(val.isEmpty){
                                                   return ' Prefixe prix';
@@ -277,6 +282,7 @@ final _frisky2 = GlobalKey<FormState>();
                                                 
                                             ),
                                           
+                                            // ignore: missing_return
                                             validator: (val){
                                               val = imageAgentAvantSAve.path;
                                               if(val.isEmpty){
@@ -312,6 +318,7 @@ final _frisky2 = GlobalKey<FormState>();
                                                 border: InputBorder.none,
                                                
                                             ),
+                                            // ignore: missing_return
                                             validator: (val){
                                                 if(val.isEmpty){
                                                   return ' description';

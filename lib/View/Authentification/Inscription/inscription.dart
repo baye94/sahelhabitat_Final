@@ -1,16 +1,21 @@
 
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sahelhabitat/Service/serviceFirebase.dart';
 import 'package:sahelhabitat/View/Authentification/Connexion/connexion.dart';
 import 'Animation/FadeAnimation.dart';
 
 
+// ignore: camel_case_types
 class inscription extends StatefulWidget {
   @override
   _inscriptionState createState() => _inscriptionState();
 }
 
+// ignore: camel_case_types
 class _inscriptionState extends State<inscription> {
   final _forminskey =GlobalKey<FormState>();
 
@@ -49,7 +54,7 @@ class _inscriptionState extends State<inscription> {
                   FadeAnimation(
                       1,
                       Text(
-                        "Register",
+                        "Inscription",
                         style: TextStyle(color: Colors.white, fontSize: 40),
                       )),
                   SizedBox(
@@ -58,7 +63,7 @@ class _inscriptionState extends State<inscription> {
                   FadeAnimation(
                       1.3,
                       Text(
-                        "Welcome Back",
+                        "Bienvenue",
                         style: TextStyle(color: Colors.white, fontSize: 18),
                       )),
                 ],
@@ -110,12 +115,13 @@ class _inscriptionState extends State<inscription> {
                                             TextStyle(color: Colors.grey),
                                             border: InputBorder.none
                                         ),
+                                        // ignore: missing_return
                                         validator: (val){
                                             if(val.isEmpty){
-                                              return ' Email ?';
+                                              return 'Ajouter une adresse Email ?';
                                             }
                                             if (val.contains('@')==false) {
-                                              return ' respect email foromat @';
+                                              return ' il faut respecter le format d\' email @';
                                             }
                                           },
                                        onChanged: (val){
@@ -133,7 +139,7 @@ class _inscriptionState extends State<inscription> {
                                                   color: Colors.grey[200]))),
                                       child: TextFormField(
                                         decoration: InputDecoration(
-                                            hintText: "Passwod",
+                                            hintText: "mot de pass",
                                             hintStyle:
                                             TextStyle(color: Colors.grey),
                                             border: InputBorder.none
@@ -154,7 +160,7 @@ class _inscriptionState extends State<inscription> {
                                                   color: Colors.grey[200]))),
                                       child:TextFormField(
                                         decoration: InputDecoration(
-                                            hintText: " Confirm Passwrd",
+                                            hintText: " Confirmer mot de pass",
                                             hintStyle:
                                             TextStyle(color: Colors.grey),
                                             border: InputBorder.none
@@ -162,7 +168,7 @@ class _inscriptionState extends State<inscription> {
                                         onChanged: (val){
                                          confpass = val ;
                                        },
-                                        validator: (val) => confpass != pass ? " not correspond pass ggword": null,
+                                        validator: (val) => confpass != pass ? " les mots de passe ne correspondent pas": null,
                                        obscureText: true,
                                       ),
                                     ),
@@ -174,21 +180,32 @@ class _inscriptionState extends State<inscription> {
                               height: 30,
                             ),
                             
-                            FlatButton (
-                                           onPressed: () { 
-                                                 Navigator.push(
-                                                 context,
-                                                 MaterialPageRoute(builder: (context) => connexion()),
-                                                  );
-                                           
-                                            },
-                                           child: Text(
-                                      "you have compte ?",
-                                      style: TextStyle(
-                                          color: Colors.orange[900],
-                                          fontWeight: FontWeight.bold),
+                            FadeAnimation(
+                              1.6,
+                                            FlatButton (
+                                             onPressed: () { 
+                                                   if(Platform.isIOS){
+                                                      Navigator.push(
+                                                   context,
+                                                   CupertinoPageRoute(builder: (context) => connexion()),
+                                                    );
+
+                                                   }else{
+                                                    Navigator.push(
+                                                   context,
+                                                   MaterialPageRoute(builder: (context) => connexion()),
+                                                    );
+                                                   }
+                                             
+                                              },
+                                             child: Text(
+                                        "j\'ai deja un compte",
+                                        style: TextStyle(
+                                            color: Colors.orange[900],
+                                            fontWeight: FontWeight.normal),
+                                      ),
                                     ),
-                                  ),
+                            ),
 
                                 
                         SizedBox(
@@ -212,14 +229,22 @@ class _inscriptionState extends State<inscription> {
                                            onPressed: () async { 
                                                 if (_forminskey.currentState.validate()) {
                                                    try {
-  UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+  await FirebaseAuth.instance.createUserWithEmailAndPassword(
     email: emailU,
     password: pass
   );
+  if(Platform.isIOS){
     Navigator.push(
-                      context,
-                         MaterialPageRoute(builder: (context) => connexion()),
-                         );
+                    context,
+                    CupertinoPageRoute(builder: (context) => connexion()),
+                   );
+
+  }else{
+    Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => connexion()),
+                   );
+  }
 
 } on FirebaseAuthException catch (e) {
   if (e.code == 'weak-password') {
@@ -230,36 +255,10 @@ class _inscriptionState extends State<inscription> {
 } catch (e) {
   print(e);
 }
-// User user = FirebaseAuth.instance.currentUser;
-
-// if (!user.emailVerified) {
-//   await user.sendEmailVerification();
-// }
-
-// User user = FirebaseAuth.instance.currentUser;
-
-// if (!user.emailVerified) {
-
-// var actionCodeSettings = ActionCodeSettings(
-//         url: 'https://www.example.com/?email=${user.email}',
-//         dynamicLinkDomain: "example.page.link",
-//         android: {
-//           "packageName": "com.example.sahelhabitat",
-//           "installApp": true,
-//           "minimumVersion": "12"
-//         },
-//         iOS: {"bundleId": "com.example.sahelhabitat"},
-//         handleCodeInApp: true);
-
-// await user.sendEmailVerification(actionCodeSettings);
-
-// }
-
-                                              
-                                             }
-                                             },
+ }
+                     },
                                            child: Text(
-                                      "Register",
+                                      "Inscrire",
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold),
@@ -282,7 +281,34 @@ class _inscriptionState extends State<inscription> {
     );
   }
   Future<void> _showMyDialog() async {
-  return showDialog<void>(
+  if(Platform.isIOS){
+    return showDialog<void>(
+    context: context,
+    barrierDismissible: false, // user must tap button!
+    builder: (BuildContext context) {
+      return CupertinoAlertDialog(
+        title: Text('Alert error', style: TextStyle(fontWeight: FontWeight.bold , color: Colors.red[900]),),
+        content: SingleChildScrollView(
+          child: ListBody(
+            children: <Widget>[
+              Text('ce compte existe deja.'),
+              Text('est ce vous pouves utiliser un autre compte svp ?'),
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            child: Text('Approve'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
+  }else{
+    return showDialog<void>(
     context: context,
     barrierDismissible: false, // user must tap button!
     builder: (BuildContext context) {
@@ -307,6 +333,8 @@ class _inscriptionState extends State<inscription> {
       );
     },
   );
+  }
+
 }
 }
 

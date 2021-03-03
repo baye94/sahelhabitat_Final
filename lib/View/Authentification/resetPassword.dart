@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:sahelhabitat/Service/serviceFirebase.dart';
 import 'package:sahelhabitat/View/Authentification/Inscription/Animation/FadeAnimation.dart';
 
+// ignore: camel_case_types
 class resetPassword extends StatefulWidget {
   @override
   _resetPasswordState createState() => _resetPasswordState();
 }
 
+// ignore: camel_case_types
 class _resetPasswordState extends State<resetPassword> {
    final _forminskey =GlobalKey<FormState>();
   String _emailR ;
@@ -35,21 +37,8 @@ class _resetPasswordState extends State<resetPassword> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  FadeAnimation(
-                      1,
-                      Text(
-                        "Registe",
-                        style: TextStyle(color: Colors.white, fontSize: 40),
-                      )),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  FadeAnimation(
-                      1.3,
-                      Text(
-                        "Welcome Back",
-                        style: TextStyle(color: Colors.white, fontSize: 18),
-                      )),
+                 
+                  
                 ],
               ),
             ),
@@ -100,6 +89,7 @@ class _resetPasswordState extends State<resetPassword> {
                                             border: InputBorder.none
                                         ),
                                           // validator: (val) => val.isEmpty ? " Email ?" : null,
+                                          // ignore: missing_return
                                           validator: (val){
                                             if(val.isEmpty){
                                               return ' Email ?';
@@ -123,17 +113,10 @@ class _resetPasswordState extends State<resetPassword> {
                               SizedBox(
                               height: 30,
                             ),
-                            
-                           
-                            
-                            
-                           
-                        SizedBox(
+                             SizedBox(
                           height: 30,
                         ),
-
-                     
-                        FadeAnimation(
+                          FadeAnimation(
                             1.6,
                             Container(
                               height: 50,
@@ -165,7 +148,7 @@ class _resetPasswordState extends State<resetPassword> {
                                             },
                                                   
                                                     child: Text(
-                                      "Register",
+                                      "Envoyer",
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold),

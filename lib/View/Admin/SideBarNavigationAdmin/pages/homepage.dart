@@ -61,6 +61,7 @@ final List<Widget> imageSliders = imgList.map((item) => Container(
     ),
   ),
 ),).toList();
+// ignore: must_be_immutable
 class HomePage extends StatelessWidget with NavigationStates {
   CarouselController buttonCarouselController = CarouselController();
   final CarouselController _controller = CarouselController();

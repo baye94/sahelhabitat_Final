@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sahelhabitat/Model/maisonVendre.dart';
-import 'package:sahelhabitat/Model/terrainModel.dart';
 import 'package:sahelhabitat/View/Admin/MaisonVendre/detailMaisonVendre.dart';
 import '../../tempo.dart';
 import '../bloc.navigation_bloc/navigation_bloc.dart';

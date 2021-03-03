@@ -116,32 +116,66 @@ class _DetailVendreState extends State<DetailVendre> {
         child:  Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                 Text('Garage:'),
-                 Text(
+                  Text(
                   // 
                   ('${widget.maisonVendre.garageMaisonVendre}'),
                    style: TextStyle(fontWeight: FontWeight.bold),
                 ),
-              
-               Text('Chambres:'),
-                 Text(
-                  // 
-                  ('${widget.maisonVendre.nombreChambreMaisonVendre} '),
-                   style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              
+              Icon(
+                Icons.airport_shuttle_outlined,
+                color: Colors.orange,) 
               ],
             ),
-      ),       
+      ),  
        Card(
                  elevation: 5,
                 //  shadowColor: Colors.orange,
         child:  Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                
-              
-              //  Text('Chambres:'),
+             
+                 Text(
+                  // 
+                  ('${widget.maisonVendre.nombreChambreMaisonVendre} '),
+                   style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              //    Image(image: AssetImage('assets/chambre23.png'),
+              // color: Colors.black,
+              // height: 30,
+              // ),
+              Icon(
+                  Icons.king_bed_outlined,
+                  color: Colors.orange,
+                  size: 30,
+                ),
+              ],
+            ),
+      ), 
+      Card(
+                 elevation: 5,
+                //  shadowColor: Colors.orange,
+        child:  Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+             
+                 Text(
+                  // 
+                  (' salle de bains '),
+                   style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                 Image(image: AssetImage('assets/bain.png'),
+              color: Colors.orange,
+              height: 30,
+              ),
+              ],
+            ),
+      ),      
+       Card(
+                 elevation: 5,
+                //  shadowColor: Colors.orange,
+        child:  Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
                  Text(
                   // 
                   ('${widget.maisonVendre.anneeConstructionMaisonVendre} '),

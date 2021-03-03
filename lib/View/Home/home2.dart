@@ -1,19 +1,20 @@
 
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/services.dart';
 import 'package:sahelhabitat/View/Authentification/Inscription/inscription.dart';
 import 'package:sahelhabitat/View/Home/style.dart';
 
-
-
-
-
+// ignore: camel_case_types
 class home2 extends StatefulWidget {
   @override
   _home2State createState() => _home2State();
 }
 
+// ignore: camel_case_types
 class _home2State extends State<home2> {
 
   
@@ -82,7 +83,7 @@ class _home2State extends State<home2> {
   );
                      },
                     child: Text(
-                      'Skip',
+                      'Sauter',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 20.0,
@@ -125,12 +126,12 @@ class _home2State extends State<home2> {
                             ),
                             SizedBox(height: 30.0),
                             Text(
-                              'Connect people\naround the world',
+                              'Acheter\n un terrain',
                               style: kTitleStyle,
                             ),
                             SizedBox(height: 15.0),
                             Text(
-                              'Lorem ipsum dolor sit amet, consect adipiscing elit, sed do eiusmod tempor incididunt ut labore et.',
+                              'L\'achat d\'un terrain est un investissement important. Il est donc nécessaire de se renseigner en détail sur ce bien et les procédures à suivre.',
                               style: kSubtitleStyle,
                             ),
                           ],
@@ -157,15 +158,18 @@ class _home2State extends State<home2> {
                                ),
                               ),
                             ),
-                            SizedBox(height: 30.0),
+                            SizedBox(height: 20.0),
                             Text(
-                              'Live your life smarter\nwith us!',
+                              'Construire une maison\n pour vous',
                               style: kTitleStyle,
                             ),
-                            SizedBox(height: 15.0),
-                            Text(
-                              'Lorem ipsum dolor sit amet, consect adipiscing elit, sed do eiusmod tempor incididunt ut labore et.',
-                              style: kSubtitleStyle,
+                            SizedBox(height: 10.0),
+                            Expanded(
+                              flex: 2,
+                                     child: Text(
+                                'Construire une maison est un engagement, un rêve de vie, d\'argent, de temps, d\'avenir. Sahel Habitat vous conseille à chaque étape clé de votre projet.',
+                                style: kSubtitleStyle,
+                              ),
                             ),
                           ],
                         ),
@@ -193,12 +197,12 @@ class _home2State extends State<home2> {
                             ),
                             SizedBox(height: 30.0),
                             Text(
-                              'Get a new experience\nof imagination',
+                              'Gestion locative\n de vos maisons',
                               style: kTitleStyle,
                             ),
                             SizedBox(height: 15.0),
                             Text(
-                              'Lorem ipsum dolor sit amet, consect adipiscing elit, sed do eiusmod tempor incididunt ut labore et.',
+                              'Confier un mandat de gestion locative vous permet de déléguer tous les travaux de gestion locative à Sahel Habitat',
                               style: kSubtitleStyle,
                             ),
                           ],
@@ -227,7 +231,7 @@ class _home2State extends State<home2> {
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
                                 Text(
-                                  'Next',
+                                  'Suivant',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 22.0,
@@ -257,19 +261,27 @@ class _home2State extends State<home2> {
               width: double.infinity,
               color: Colors.white,
               child: GestureDetector(
-                onTap: () => print('Get started'),
+                onTap: () => print('Commencer'),
                 child: Center(
                   child: Padding(
                     padding: EdgeInsets.only(bottom: 30.0),
                     child: FlatButton (
                                  onPressed: () { 
-                                    Navigator.push(
+                                   if(Platform.isIOS){
+                                      Navigator.push(
+                                                 context,
+                               CupertinoPageRoute(builder: (context) => inscription()),
+                                       );
+
+                                   }else{
+                                      Navigator.push(
                                                  context,
                                MaterialPageRoute(builder: (context) => inscription()),
-  );
+                                       );
+                                   }
                                   },
                                   child: Text(
-                        'Get started',
+                        'Commencer',
                         style: TextStyle(
                           // color: Color(0xFF5B16D0),
                           color: Colors.orange[900],
