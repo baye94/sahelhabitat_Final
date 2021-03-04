@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:readmore/readmore.dart';
 import 'package:sahelhabitat/Model/maisonLouer.dart';
 import 'package:sahelhabitat/Provider/maisonLouer_provider.dart';
@@ -20,6 +21,95 @@ class _DetailLouersState extends State<DetailLouers> {
     
   @override
   Widget build(BuildContext context) {
+    modal(String text,String photo){
+    if(Platform.isIOS){
+   return     showCupertinoModalBottomSheet(
+  context: context,
+  builder: (context) {
+      return SingleChildScrollView(
+        controller: ModalScrollController.of(context),
+        child: Container(
+          color: Colors.white,
+          width:MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height/1.9,
+          child: Column(
+            children:[
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                height: 50,
+                width: 50,
+                child:CachedNetworkImage(
+                  imageUrl:photo,
+                  fit: BoxFit.cover,
+
+                )
+                
+                ),
+                 SizedBox(
+                height: 10,
+              ),
+                Divider(),
+                 SizedBox(
+                height: 10,
+              ),
+                Text(text,
+                textAlign:TextAlign.justify,
+                style: TextStyle(fontSize: 15 ,color: Colors.grey , decoration: TextDecoration.none , fontStyle:FontStyle.italic , fontWeight: FontWeight.normal),
+                ),
+                
+            ]
+          ),
+        )
+      );
+  },
+);
+ }else{
+    return     showMaterialModalBottomSheet(
+  context: context,
+  builder: (context) {
+      return SingleChildScrollView(
+        controller: ModalScrollController.of(context),
+        child: Container(
+          color: Colors.white,
+          width:MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height/1.9,
+          child: Column(
+            children:[
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                height: 50,
+                width: 50,
+                 child:CachedNetworkImage(
+                  imageUrl:photo,
+                  fit: BoxFit.cover,
+
+                )
+                
+                ),
+                 SizedBox(
+                height: 10,
+              ),
+                Divider(),
+                 SizedBox(
+                height: 10,
+              ),
+                Text(text,
+                textAlign:TextAlign.justify,
+                style: TextStyle(fontSize: 15 ,color: Colors.grey , decoration: TextDecoration.none , fontStyle:FontStyle.italic , fontWeight: FontWeight.normal),
+                ),
+                
+            ]
+          ),
+        )
+      );
+  },
+);
+ }
+   }
       return Scaffold(
       body: Center(
         child:CustomScrollView(
@@ -102,7 +192,7 @@ class _DetailLouersState extends State<DetailLouers> {
                 ),
                 if(Platform.isIOS)
                    Icon(
-                  Icons.home,
+                  Icons.landscape,
                   color: Colors.orange,
                    )
                 else
@@ -116,29 +206,67 @@ class _DetailLouersState extends State<DetailLouers> {
               ],
             ),
       ),
+        Card(
+                 elevation: 5,
+                //  shadowColor: Colors.orange,
+        child:  Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+             
+                 Text(
+                  // 
+                  ('${widget.maisonLouer.nombreChambreMaisonLouer} '),
+                   style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              //    Image(image: AssetImage('assets/chambre23.png'),
+              // color: Colors.black,
+              // height: 30,
+              // ),
+              Icon(
+                  Icons.king_bed_outlined,
+                  color: Colors.orange,
+                  size: 30,
+                ),
+              ],
+            ),
+      ), 
+      Card(
+                 elevation: 5,
+                //  shadowColor: Colors.orange,
+        child:  Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+             
+                 Text(
+                  // 
+                  ('${widget.maisonLouer.nombreSalleBains}'),
+                   style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                 Image(image: AssetImage('assets/bain.png'),
+              color: Colors.orange,
+              height: 30,
+              ),
+              ],
+            ),
+      ),      
        Card(
                  elevation: 5,
                 //  shadowColor: Colors.orange,
         child:  Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                 Text('Garage:'),
-                 Text(
+                  Text(
                   // 
                   ('${widget.maisonLouer.garageMaisonLouer}'),
                    style: TextStyle(fontWeight: FontWeight.bold),
                 ),
-              
-               Text('Chambres:'),
-                 Text(
-                  // 
-                  ('${widget.maisonLouer.nombreChambreMaisonLouer} '),
-                   style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              
+              Icon(
+                Icons.airport_shuttle_outlined,
+                color: Colors.orange,) 
               ],
             ),
-      ),       
+      ), 
+           
        Card(
                  elevation: 5,
                 //  shadowColor: Colors.orange,
@@ -161,16 +289,31 @@ class _DetailLouersState extends State<DetailLouers> {
               ],
             ),
       ),       
-      SizedBox(height: 05,),
-      ReadMoreText(
-  'Flutter is Google’s mobile UI open source framework to build high-quality native (super fast) interfaces for iOS and Android apps with the unified codebase.',
-  trimLines: 2,
-  colorClickableText: Colors.orange,
-  trimMode: TrimMode.Line,
-  trimCollapsedText: 'Show more',
-  trimExpandedText: 'Show less',
-  moreStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.bold , color: Colors.orange),
-),
+     Card(
+                 elevation: 5,
+                //  shadowColor: Colors.orange,
+        child:  Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                
+              
+              //  Text('Chambres:'),
+                 Text(
+                  // 
+                  ('Paiement/${widget.maisonLouer.typeLouer} '),
+                   style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+               
+              ],
+            ),
+      ), 
+     FlatButton(
+  onPressed: (){
+    modal(widget.maisonLouer.description,widget.maisonLouer.urlPhotoMaisonLouer);
+  }, 
+  child: Text('Description',
+  style: TextStyle(color: Colors.orange , fontWeight: FontWeight.normal),
+  ))
 
               ]
               ),

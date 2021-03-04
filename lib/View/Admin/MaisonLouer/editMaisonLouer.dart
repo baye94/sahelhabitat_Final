@@ -29,6 +29,7 @@ final nombreChambre = TextEditingController();
 final anneConstruction = TextEditingController();
 final description = TextEditingController();
 final typeLocation = TextEditingController();
+final nombreSalleBainsController = TextEditingController();
 @override
   void dispose() {
     localiteController .dispose();
@@ -42,6 +43,7 @@ final typeLocation = TextEditingController();
     anneConstruction.dispose();
     description.dispose();
     typeLocation.dispose();
+    nombreSalleBainsController.dispose();
     super.dispose();
   }
  
@@ -60,6 +62,7 @@ final typeLocation = TextEditingController();
       anneConstruction.text = "";
       description.text ="";
       typeLocation.text = "";
+      nombreSalleBainsController.text = "";
             new Future.delayed(Duration.zero, () {
         // final productProvider = Provider.of<ProductProvider>(context,listen: false);
          final agentProvider = Provider.of<MaisonLouerProvider>(context,listen: false);
@@ -78,6 +81,7 @@ final typeLocation = TextEditingController();
       anneConstruction.text  = widget.maisonLouer.anneeConstructionMaisonLouer.toString();
       description.text = widget.maisonLouer.description;
       typeLocation.text = widget.maisonLouer.typeLouer;
+      nombreSalleBainsController.text = widget.maisonLouer.nombreSalleBains;
 
       //State Update
       new Future.delayed(Duration.zero, () {
@@ -470,6 +474,32 @@ final _frisky2 = GlobalKey<FormState>();
                                               },
                                            onChanged: (value){
                                              maisonLouerProvider.changeTypeLocationML(value);
+                                           },
+                                        ),
+                                      ),
+                                       Container(
+                                        padding: EdgeInsets.all(10),
+                                        decoration: BoxDecoration(
+                                              border: Border(
+                                                  bottom: BorderSide(
+                                                      color: Colors.grey[200]))),
+                                        child: TextFormField(
+                                            controller: nombreSalleBainsController,
+                                            decoration: InputDecoration(
+                                                hintText: "Nombre salle de bains",
+                                                hintStyle:
+                                                TextStyle(color: Colors.grey),
+                                                border: InputBorder.none,
+                                                 ),
+                                            // ignore: missing_return
+                                            validator: (val){
+                                                if(val.isEmpty){
+                                                  return ' Nombre salle de bains';
+                                                }
+                                              
+                                              },
+                                           onChanged: (value){
+                                             maisonLouerProvider.changeNombreSalleBian(value);
                                            },
                                         ),
                                       ),

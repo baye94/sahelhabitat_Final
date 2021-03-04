@@ -15,6 +15,7 @@ class MaisonVendreProvider extends ChangeNotifier {
    String _anneeConstructionMaisonVendre;
    String _description;
    String _urlPhotoMaisonVendre;
+   String _nombreSalleBains;
     var uuid = Uuid();
    final firebaseservice = ServiceFirebase();
    //Getters
@@ -30,6 +31,7 @@ class MaisonVendreProvider extends ChangeNotifier {
    String get anneeConsMV  => _anneeConstructionMaisonVendre;
    String get description => _description;
    String get urlPhotoMV => _urlPhotoMaisonVendre;
+   String get nombreSalleBainsMV => _nombreSalleBains;
   //SETTERS
   changePaysMainsonV(String value){
     _paysMaisonVendre = value;
@@ -76,6 +78,10 @@ class MaisonVendreProvider extends ChangeNotifier {
     _urlPhotoMaisonVendre = value ;
     notifyListeners();
   }
+  changeNombreSalleBainsV(String value){
+    _nombreSalleBains = value;
+    notifyListeners();
+  }
   saveMaisonVendre(){
     if(idMV == null){
         var newMaison = MaisonVendre(
@@ -90,7 +96,8 @@ class MaisonVendreProvider extends ChangeNotifier {
       nombreChambreMaisonVendre:nombreChambreMV ,
       anneeConstructionMaisonVendre :anneeConsMV,
       description :description,
-      urlPhotoMaisonVendre: urlPhotoMV
+      urlPhotoMaisonVendre: urlPhotoMV,
+      nombreSalleBains: nombreSalleBainsMV,
       );
         firebaseservice.saveMaison(newMaison);
         
@@ -107,7 +114,8 @@ class MaisonVendreProvider extends ChangeNotifier {
       nombreChambreMaisonVendre:_nombreChambreMaisonVendre ,
       anneeConstructionMaisonVendre :_anneeConstructionMaisonVendre,
       description :_description,
-      urlPhotoMaisonVendre: _urlPhotoMaisonVendre);
+      urlPhotoMaisonVendre: _urlPhotoMaisonVendre,
+      nombreSalleBains: _nombreSalleBains);
       firebaseservice.saveMaison(updateMaison);
        }
     }
@@ -127,5 +135,6 @@ class MaisonVendreProvider extends ChangeNotifier {
   _anneeConstructionMaisonVendre = maisonVendre.anneeConstructionMaisonVendre;
   _description = maisonVendre.description;
   _urlPhotoMaisonVendre = maisonVendre.urlPhotoMaisonVendre;
+  _nombreSalleBains = maisonVendre.nombreSalleBains;
    }
 }

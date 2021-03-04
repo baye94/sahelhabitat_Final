@@ -123,10 +123,9 @@ class _TerrainUState extends State<TerrainU> {
                        mainAxisSize:MainAxisSize.max ,
                        mainAxisAlignment: MainAxisAlignment.start,
                        children: [
-                         Icon(Icons.money , color: Colors.orange, size: 16,),
-                         Container(
+ Text('\$' ,style: TextStyle(fontWeight: FontWeight.bold , color: Colors.orange , fontSize: 16),) ,                        Container(
                            margin: EdgeInsets.only(left: 8,),
-                           child: Text('${terrains[index].prixTerrain} ${terrains[index].devicePrixTerrain}'),
+                           child: Text('${terrains[index].prixTerrain} '),
                          )
                        ],
                      ),
@@ -136,7 +135,7 @@ class _TerrainUState extends State<TerrainU> {
                        mainAxisSize:MainAxisSize.max ,
                        mainAxisAlignment: MainAxisAlignment.start,
                        children: [
-                         Icon(Icons.space_bar_outlined, color: Colors.orange, size: 16,),
+                         Icon(Icons.landscape, color: Colors.orange, size: 16,),
                          Container(
                            margin: EdgeInsets.only(left: 8,),
                            child: Text('${terrains[index].surface} ${terrains[index].suffixeSurface}'),

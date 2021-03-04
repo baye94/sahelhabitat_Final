@@ -267,10 +267,7 @@ Future<bool> _onBackPressed(){
                                         style: TextStyle(
                                             fontWeight: FontWeight.w500)),
                                     subtitle: Text(i.paysAgent,textAlign: TextAlign.center),
-                                    // leading: Icon(
-                                    //   Icons.restaurant_menu,
-                                    //   color: Colors.blue[500],
-                                    // ),
+                                  
                                   ),
                                   Divider(),
                                   ListTile(
@@ -293,18 +290,8 @@ Future<bool> _onBackPressed(){
                               ),
                             ),
                             RaisedButton(
- 
-                              onPressed: (){
-                                // Navigator.of(context).push(MaterialPageRoute (builder: (context)=>Test()));
-                                // print(i.toMap());
-                              //  exit(0);
-                                
-                                  // buttonCarouselController.nextPage(
-                                  //     duration: Duration(milliseconds: 100),
-                                  //     curve: Curves.linear);
-                              },
-                              
-                              child: Text('→'),
+                               onPressed: (){ },
+                                child: Text('→'),
                               // elevation: 10,
                   
                             )
@@ -315,9 +302,7 @@ Future<bool> _onBackPressed(){
                   })?.toList()??[],
 
                 ),
-               
-                 SizedBox( height: 0),
-                Text('For Sales', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+                Text('A VENDRE', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
                 SizedBox(height: 30,),
                 Column(
                   children: <Widget>[

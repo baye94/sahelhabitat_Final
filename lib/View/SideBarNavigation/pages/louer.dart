@@ -123,10 +123,10 @@ class _LouerUState extends State<LouerU> {
                        mainAxisSize:MainAxisSize.max ,
                        mainAxisAlignment: MainAxisAlignment.start,
                        children: [
-                         Icon(Icons.money , color: Colors.orange, size: 16,),
+                         Text('\$' ,style: TextStyle(fontWeight: FontWeight.bold , color: Colors.orange , fontSize: 16),),
                          Container(
                            margin: EdgeInsets.only(left: 8,),
-                           child: Text('${louer[index].prixMaisonLouer} ${louer[index].deviceMaisonLouer}'),
+                           child: Text('${louer[index].prixMaisonLouer.toString()}'),
                          )
                        ],
                      ),
@@ -136,7 +136,7 @@ class _LouerUState extends State<LouerU> {
                        mainAxisSize:MainAxisSize.max ,
                        mainAxisAlignment: MainAxisAlignment.start,
                        children: [
-                         Icon(Icons.space_bar_outlined, color: Colors.orange, size: 16,),
+                         Icon(Icons.landscape, color: Colors.orange, size: 16,),
                          Container(
                            margin: EdgeInsets.only(left: 8,),
                            child: Text('${louer[index].surfaceMaisonLouer} ${louer[index].suffixSurfaceMaisonLouer}'),

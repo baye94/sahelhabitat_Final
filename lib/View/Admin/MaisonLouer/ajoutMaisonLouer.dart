@@ -382,8 +382,7 @@ final _frisky2 = GlobalKey<FormState>();
                                                   bottom: BorderSide(
                                                       color: Colors.grey[200]))),
                                         child: TextFormField(
-                                          maxLines: 20,
-                                            decoration: InputDecoration(
+                                           decoration: InputDecoration(
                                                 hintText: "TYPE DE LOCATION ",
                                                 hintStyle:
                                                 TextStyle(color: Colors.grey),
@@ -399,6 +398,32 @@ final _frisky2 = GlobalKey<FormState>();
                                               },
                                            onChanged: (value){
                                              maisonLouerProvider.changeTypeLocationML(value);
+                                           },
+                                        ),
+                                      ),
+                                       Container(
+                                        padding: EdgeInsets.all(10),
+                                        decoration: BoxDecoration(
+                                              border: Border(
+                                                  bottom: BorderSide(
+                                                      color: Colors.grey[200]))),
+                                        child: TextFormField(
+                                           decoration: InputDecoration(
+                                                hintText: "Nombre salle de bain",
+                                                hintStyle:
+                                                TextStyle(color: Colors.grey),
+                                                border: InputBorder.none,
+                                               
+                                            ),
+                                            // ignore: missing_return
+                                            validator: (val){
+                                                if(val.isEmpty){
+                                                  return ' Nombre salle de bain';
+                                                }
+                                              
+                                              },
+                                           onChanged: (value){
+                                             maisonLouerProvider.changeNombreSalleBian(value);
                                            },
                                         ),
                                       ),
@@ -450,10 +475,8 @@ final _frisky2 = GlobalKey<FormState>();
                                        if (_frisky2.currentState.validate()){
                                         await maisonLouerProvider.saveMaisonLouer();
                                            Navigator.of(context).pop();
-                                        return 'falll';
-                                    
-                                              }
-                                              return 'baye cheikh arrete de faire genre';
+                                            }
+                                            
                                        },
                                                       child: Text(
                                       "Ajouter Agent",

@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:readmore/readmore.dart';
 import 'package:sahelhabitat/Model/maisonVendre.dart';
 import 'package:sahelhabitat/Provider/maison_provider.dart';
@@ -16,6 +19,95 @@ class _DetailVendreState extends State<DetailVendre> {
   
   @override
   Widget build(BuildContext context) {
+     modal(String text,String photo){
+ if(Platform.isIOS){
+   return     showCupertinoModalBottomSheet(
+  context: context,
+  builder: (context) {
+      return SingleChildScrollView(
+        controller: ModalScrollController.of(context),
+        child: Container(
+          color: Colors.white,
+          width:MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height/1.9,
+          child: Column(
+            children:[
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                height: 50,
+                width: 50,
+                child:CachedNetworkImage(
+                  imageUrl:photo,
+                  fit: BoxFit.cover,
+
+                )
+                
+                ),
+                 SizedBox(
+                height: 10,
+              ),
+                Divider(),
+                 SizedBox(
+                height: 10,
+              ),
+                Text(text,
+                textAlign:TextAlign.justify,
+                style: TextStyle(fontSize: 15 ,color: Colors.grey , decoration: TextDecoration.none , fontStyle:FontStyle.italic , fontWeight: FontWeight.normal),
+                ),
+                
+            ]
+          ),
+        )
+      );
+  },
+);
+ }else{
+    return     showMaterialModalBottomSheet(
+  context: context,
+  builder: (context) {
+      return SingleChildScrollView(
+        controller: ModalScrollController.of(context),
+        child: Container(
+          color: Colors.white,
+          width:MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height/1.9,
+          child: Column(
+            children:[
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                height: 50,
+                width: 50,
+                 child:CachedNetworkImage(
+                  imageUrl:photo,
+                  fit: BoxFit.cover,
+
+                )
+                
+                ),
+                 SizedBox(
+                height: 10,
+              ),
+                Divider(),
+                 SizedBox(
+                height: 10,
+              ),
+                Text(text,
+                textAlign:TextAlign.justify,
+                style: TextStyle(fontSize: 15 ,color: Colors.grey , decoration: TextDecoration.none , fontStyle:FontStyle.italic , fontWeight: FontWeight.normal),
+                ),
+                
+            ]
+          ),
+        )
+      );
+  },
+);
+ }
+   }
     
      return Scaffold(
       body: Center(
@@ -62,7 +154,7 @@ class _DetailVendreState extends State<DetailVendre> {
                   textAlign: TextAlign.center,
                 ),
                  Icon(
-                  Icons.home,
+                  Icons.location_on,
                   color: Colors.orange,
                   ),
                    ],
@@ -76,18 +168,12 @@ class _DetailVendreState extends State<DetailVendre> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text(
-                    ('${widget.maisonVendre.prixMaisonVendre} ${widget.maisonVendre.deviceMaisonVendre}'),
+                    ('${widget.maisonVendre.prixMaisonVendre} '),
                      style: TextStyle(fontWeight: FontWeight.bold),
                     
                   ),
-                 
-                   Icon(
-                  Icons.money_outlined,
-                  color: Colors.orange,
-                  
-                ),
-               
-              ],
+                  Text('\$' ,style: TextStyle(fontWeight: FontWeight.bold , color: Colors.orange , fontSize: 25),)
+                   ],
             ),
       ),
         Card(
@@ -160,7 +246,7 @@ class _DetailVendreState extends State<DetailVendre> {
              
                  Text(
                   // 
-                  (' salle de bains '),
+                  ('${widget.maisonVendre.nombreSalleBains}'),
                    style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                  Image(image: AssetImage('assets/bain.png'),
@@ -189,16 +275,13 @@ class _DetailVendreState extends State<DetailVendre> {
               ],
             ),
       ),       
-      SizedBox(height: 05,),
-      ReadMoreText(
-  'Flutter is Google’s mobile UI open source framework to build high-quality native (super fast) interfaces for iOS and Android apps with the unified codebase.',
-  trimLines: 2,
-  colorClickableText: Colors.orange,
-  trimMode: TrimMode.Line,
-  trimCollapsedText: 'Show more',
-  trimExpandedText: 'Show less',
-  moreStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.bold , color: Colors.orange),
-),
+FlatButton(
+  onPressed: (){
+    modal(widget.maisonVendre.description,widget.maisonVendre.urlPhotoMaisonVendre);
+  }, 
+  child: Text('Description',
+  style: TextStyle(color: Colors.orange , fontWeight: FontWeight.normal),
+  ))
 
               ]
               ),

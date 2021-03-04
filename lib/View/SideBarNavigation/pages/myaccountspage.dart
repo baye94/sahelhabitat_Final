@@ -92,7 +92,7 @@ class _MyAccountsPageState extends State<MyAccountsPage> {
                       }
                       
                     },
-                    title: Text(agents[index].nomCompletAgent.toUpperCase()),
+                    // title: Text(agents[index].nomCompletAgent.toUpperCase()),
                     subtitle: Container(
                       child: Card(
                  elevation: 8.0,
@@ -132,7 +132,7 @@ class _MyAccountsPageState extends State<MyAccountsPage> {
                                           mainAxisSize:MainAxisSize.max ,
                                           mainAxisAlignment: MainAxisAlignment.start,
                                           children: [
-                                            Icon(Icons.account_circle_sharp , color: Colors.orange, size: 16,),
+                                            Icon(Icons.call , color: Colors.orange, size: 16,),
                                             Container(
                                               margin: EdgeInsets.only(left: 8,),
                                               child: Text('${agents[index].telephoneAgent}'),
@@ -145,7 +145,7 @@ class _MyAccountsPageState extends State<MyAccountsPage> {
                                           mainAxisSize:MainAxisSize.max ,
                                           mainAxisAlignment: MainAxisAlignment.start,
                                           children: [
-                                            Icon(Icons.calendar_today  , color: Colors.orange, size: 16,),
+                                            Icon(Icons.location_on , color: Colors.orange, size: 16,),
                                             Container(
                                               margin: EdgeInsets.only(left: 8,),
                                               child: Text('${agents[index].paysAgent}'),
@@ -200,17 +200,7 @@ class _MyAccountsPageState extends State<MyAccountsPage> {
 
             }
              ): Center(child: CircularProgressIndicator()),
-         floatingActionButton: FloatingActionButton(
-          onPressed: () {
-             Navigator.push(
-              context,
-            MaterialPageRoute(builder: (context) => ajoutAgents()),
-       );
-          },
-          child: Icon(Icons.add),
-          backgroundColor: Colors.orange[900],
-          
-        ),
+        
       ),
     );
   }

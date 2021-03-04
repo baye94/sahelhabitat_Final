@@ -26,6 +26,7 @@ final garage = TextEditingController();
 final nombreChambre = TextEditingController();
 final anneConstruction = TextEditingController();
 final description = TextEditingController();
+final nombreSalleBains = TextEditingController();
 
 @override
   void dispose() {
@@ -39,6 +40,7 @@ final description = TextEditingController();
     nombreChambre.dispose();
     anneConstruction.dispose();
     description.dispose();
+    nombreSalleBains.dispose();
     super.dispose();
   }
    @override
@@ -55,6 +57,7 @@ final description = TextEditingController();
       nombreChambre.text="";
       anneConstruction.text = "";
       description.text ="";
+      nombreSalleBains.text ="";
             new Future.delayed(Duration.zero, () {
         // final productProvider = Provider.of<ProductProvider>(context,listen: false);
          final agentProvider = Provider.of<MaisonVendreProvider>(context,listen: false);
@@ -72,7 +75,7 @@ final description = TextEditingController();
       nombreChambre.text = widget.maisonVendre.nombreChambreMaisonVendre.toString();
       anneConstruction.text  = widget.maisonVendre.anneeConstructionMaisonVendre.toString();
       description.text = widget.maisonVendre.description;
-
+      nombreSalleBains.text = widget.maisonVendre.nombreSalleBains;
       //State Update
       new Future.delayed(Duration.zero, () {
         
@@ -427,6 +430,33 @@ final _frisky2 = GlobalKey<FormState>();
                                            },
                                         ),
                                       ),
+                                       Container(
+                                        padding: EdgeInsets.all(10),
+                                        decoration: BoxDecoration(
+                                              border: Border(
+                                                  bottom: BorderSide(
+                                                      color: Colors.grey[200]))),
+                                        child: TextFormField(
+                                          controller: nombreSalleBains,
+                                            decoration: InputDecoration(
+                                                hintText: "Nombre salle de bains",
+                                                hintStyle:
+                                                TextStyle(color: Colors.grey),
+                                                border: InputBorder.none,
+                                               
+                                            ),
+                                            // ignore: missing_return
+                                            validator: (val){
+                                                if(val.isEmpty){
+                                                  return ' Nombre salle de bains';
+                                                }
+                                              
+                                              },
+                                           onChanged: (value){
+                                           maisonVendreProvider.changeNombreChambreMaison(value);
+                                           },
+                                        ),
+                                      ),
                                       Container(
                                         padding: EdgeInsets.all(10),
                                         decoration: BoxDecoration(
@@ -503,10 +533,10 @@ final _frisky2 = GlobalKey<FormState>();
                                         await maisonVendreProvider.saveMaisonVendre();
                                         Navigator.of(context).pop();
                     //  Navigator.of(context).push(MaterialPageRoute(builder: (contex) => MyOrdersPageAdmin()));
-                                        return 'falll';
+                                     
                                     
                                               }
-                                              return 'baye cheikh arrete de faire genre';
+                                             
                                        },
                                                       child: Text(
                                       "Ajouter Agent",

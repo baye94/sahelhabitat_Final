@@ -12,6 +12,7 @@ class MaisonLouer{
   final String description;
   final String typeLouer;
   final String urlPhotoMaisonLouer;
+  final String nombreSalleBains;
   MaisonLouer({
   this.idMaisonLouer,
   this.paysMaisonLouer,
@@ -25,7 +26,8 @@ class MaisonLouer{
   this.anneeConstructionMaisonLouer,
   this.description,
   this.typeLouer,
-  this.urlPhotoMaisonLouer
+  this.urlPhotoMaisonLouer,
+  this.nombreSalleBains
   });
    Map<String ,dynamic> toMap(){
     return{
@@ -41,7 +43,8 @@ class MaisonLouer{
       'anneeConstruction':anneeConstructionMaisonLouer,
       'description':description,
       'typeLocation':typeLouer,
-      'urlPhoto':urlPhotoMaisonLouer
+      'urlPhoto':urlPhotoMaisonLouer,
+      'salleDeBains':nombreSalleBains
     };
   }
  MaisonLouer.fromFirestore( Map<String ,dynamic > firestore)
@@ -57,5 +60,6 @@ class MaisonLouer{
  anneeConstructionMaisonLouer = firestore['anneeConstruction'],
  description =firestore['description'],
  typeLouer = firestore['typeLocation'],
- urlPhotoMaisonLouer = firestore['urlPhoto'];
+ urlPhotoMaisonLouer = firestore['urlPhoto'],
+ nombreSalleBains = firestore['salleDeBains'];
 }

@@ -74,15 +74,11 @@ class _DetailTerrainState extends State<DetailTerrain> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text(
-                    ('${widget.terrainModel.prixTerrain.toString()} ${widget.terrainModel.devicePrixTerrain.toString()}'),
+                    ('${widget.terrainModel.prixTerrain.toString()}'),
                      style: TextStyle(fontWeight: FontWeight.bold),
                     
                   ),
-                  Icon(
-                  Icons.money,
-                  color: Colors.orange,
-                  
-                ),
+                  Text('\$' ,style: TextStyle(fontWeight: FontWeight.bold , color: Colors.orange , fontSize: 25),)
                
               ],
             ),
