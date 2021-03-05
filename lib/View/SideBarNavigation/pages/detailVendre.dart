@@ -29,35 +29,37 @@ class _DetailVendreState extends State<DetailVendre> {
         child: Container(
           color: Colors.white,
           width:MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height/1.9,
-          child: Column(
-            children:[
-              SizedBox(
-                height: 10,
-              ),
-              Container(
-                height: 50,
-                width: 50,
-                child:CachedNetworkImage(
-                  imageUrl:photo,
-                  fit: BoxFit.cover,
+          height: MediaQuery.of(context).size.height/2,
+          child: SingleChildScrollView(
+                      child: Column(
+              children:[
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  height: 50,
+                  width: 50,
+                  child:CachedNetworkImage(
+                    imageUrl:photo,
+                    fit: BoxFit.cover,
 
-                )
-                
+                  )
+                  
+                  ),
+                   SizedBox(
+                  height: 10,
                 ),
-                 SizedBox(
-                height: 10,
-              ),
-                Divider(),
-                 SizedBox(
-                height: 10,
-              ),
-                Text(text,
-                textAlign:TextAlign.justify,
-                style: TextStyle(fontSize: 15 ,color: Colors.grey , decoration: TextDecoration.none , fontStyle:FontStyle.italic , fontWeight: FontWeight.normal),
+                  Divider(),
+                   SizedBox(
+                  height: 10,
                 ),
-                
-            ]
+                  Text(text,
+                  textAlign:TextAlign.justify,
+                  style: TextStyle(fontSize: 15 ,color: Colors.grey , decoration: TextDecoration.none , fontStyle:FontStyle.italic , fontWeight: FontWeight.normal),
+                  ),
+                  
+              ]
+            ),
           ),
         )
       );
@@ -73,34 +75,36 @@ class _DetailVendreState extends State<DetailVendre> {
           color: Colors.white,
           width:MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height/1.9,
-          child: Column(
-            children:[
-              SizedBox(
-                height: 10,
-              ),
-              Container(
-                height: 50,
-                width: 50,
-                 child:CachedNetworkImage(
-                  imageUrl:photo,
-                  fit: BoxFit.cover,
+          child: SingleChildScrollView(
+                      child: Column(
+              children:[
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  height: 50,
+                  width: 50,
+                   child:CachedNetworkImage(
+                    imageUrl:photo,
+                    fit: BoxFit.cover,
 
-                )
-                
+                  )
+                  
+                  ),
+                   SizedBox(
+                  height: 10,
                 ),
-                 SizedBox(
-                height: 10,
-              ),
-                Divider(),
-                 SizedBox(
-                height: 10,
-              ),
-                Text(text,
-                textAlign:TextAlign.justify,
-                style: TextStyle(fontSize: 15 ,color: Colors.grey , decoration: TextDecoration.none , fontStyle:FontStyle.italic , fontWeight: FontWeight.normal),
+                  Divider(),
+                   SizedBox(
+                  height: 10,
                 ),
-                
-            ]
+                  Text(text,
+                  textAlign:TextAlign.justify,
+                  style: TextStyle(fontSize: 15 ,color: Colors.grey , decoration: TextDecoration.none , fontStyle:FontStyle.italic , fontWeight: FontWeight.normal),
+                  ),
+                  
+              ]
+            ),
           ),
         )
       );

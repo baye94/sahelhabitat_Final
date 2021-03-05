@@ -156,7 +156,8 @@ Future<bool> _onBackPressed(){
          onPressed:()=>Navigator.pop(context , false), 
          child: Text('No')),
            FlatButton(
-         onPressed:()=>Navigator.pop(context , true), 
+        //  onPressed:()=>Navigator.pop(context , true), 
+         onPressed:()=>exit(0), 
          child: Text('Oui'))
      ],
    );
@@ -169,7 +170,7 @@ Future<bool> _onBackPressed(){
          onPressed:()=>Navigator.pop(context , false), 
          child: Text('No')),
            FlatButton(
-         onPressed:()=>Navigator.pop(context , true), 
+         onPressed:()=>exit(0), 
          child: Text('Oui'))
      ],
    );

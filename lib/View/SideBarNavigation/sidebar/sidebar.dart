@@ -90,13 +90,7 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                             fontSize: 18,
                           ),
                         ),
-                        // leading: CircleAvatar(
-                        //   child: Icon(
-                        //     Icons.perm_identity,
-                        //     color: Colors.white,
-                        //   ),
-                        //   radius: 40,
-                        // ),
+                      
                       ),
                       Divider(
                         height: 64,
@@ -147,16 +141,13 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                         },
                       ),
                       Divider(
-                        height: 64,
+                        height: 4,
                         thickness: 0.5,
                         color: Colors.white.withOpacity(0.3),
                         indent: 32,
                         endIndent: 32,
                       ),
-                      // MenuItem(
-                      //   icon: Icons.settings,
-                      //   title: "Settings",
-                      // ),
+                    
                       MenuItem(
                         icon: Icons.exit_to_app,
                         title: "Logout",

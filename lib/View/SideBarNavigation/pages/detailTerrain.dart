@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:sahelhabitat/Model/terrainModel.dart';
 import 'package:sahelhabitat/Provider/terrain_provider.dart';
 
@@ -14,6 +17,100 @@ class _DetailTerrainState extends State<DetailTerrain> {
   TerrainProvider terrainProvider = TerrainProvider();
   @override
   Widget build(BuildContext context) {
+    modal(String text,String photo){
+ if(Platform.isIOS){
+   return     showCupertinoModalBottomSheet(
+  context: context,
+  builder: (context) {
+      return SingleChildScrollView(
+        controller: ModalScrollController.of(context),
+        child: Container(
+          color: Colors.white,
+          width:MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height/2,
+          child: SingleChildScrollView(
+                      child: Column(
+              children:[
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  height: 50,
+                  width: 50,
+                  child:CachedNetworkImage(
+                    imageUrl:photo,
+                    fit: BoxFit.cover,
+
+                  )
+                  
+                  ),
+                   SizedBox(
+                  height: 10,
+                ),
+                  Divider(),
+                   SizedBox(
+                  height: 10,
+                ),
+                  Text(text,
+                  textAlign:TextAlign.justify,
+                  style: TextStyle(fontSize: 15 ,color: Colors.grey , decoration: TextDecoration.none , fontStyle:FontStyle.italic , fontWeight: FontWeight.normal),
+                  ),
+                  
+              ]
+            ),
+          ),
+        )
+      );
+  },
+);
+ }else{
+    return     showMaterialModalBottomSheet(
+  context: context,
+  builder: (context) {
+      return SingleChildScrollView(
+        controller: ModalScrollController.of(context),
+        child: Container(
+          color: Colors.white,
+          width:MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height/1.9,
+          child: SingleChildScrollView(
+                      child: Column(
+              children:[
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  height: 50,
+                  width: 50,
+                   child:CachedNetworkImage(
+                    imageUrl:photo,
+                    fit: BoxFit.cover,
+
+                  )
+                  
+                  ),
+                   SizedBox(
+                  height: 10,
+                ),
+                  Divider(),
+                   SizedBox(
+                  height: 10,
+                ),
+                  Text(text,
+                  textAlign:TextAlign.justify,
+                  style: TextStyle(fontSize: 15 ,color: Colors.grey , decoration: TextDecoration.none , fontStyle:FontStyle.italic , fontWeight: FontWeight.normal),
+                  ),
+                  
+              ]
+            ),
+          ),
+        )
+      );
+  },
+);
+ }
+   }
+    
     return Scaffold(
        body: Center(
         child:CustomScrollView(
@@ -105,7 +202,7 @@ class _DetailTerrainState extends State<DetailTerrain> {
           TextButton(
             // color: Colors.white,
             onPressed: (){
-             
+             modal('${widget.terrainModel.descriptionTerrain}', widget.terrainModel.urlPhotoTerrain);
             },
             child: Text('Description',
             style: TextStyle( fontWeight: FontWeight.bold,color: Colors.orange),

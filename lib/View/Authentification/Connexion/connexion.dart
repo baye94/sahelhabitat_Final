@@ -180,55 +180,59 @@ class _connexionState extends State<connexion> {
                             ),
                             FadeAnimation(
                               1.6,
-                                  Row(
+                                  SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                     physics: BouncingScrollPhysics(),
+                                        child: Row(
                                 children: <Widget>[
-                                   FlatButton (
-                                onPressed: () { 
-                                                   if(Platform.isIOS){
-                                                     Navigator.push(
-                                                   context,
-                                                   CupertinoPageRoute(builder: (context) => resetPassword()),
-                                                    );
-                                                   }else{
-                                                     Navigator.push(
-                                                   context,
-                                                   MaterialPageRoute(builder: (context) => resetPassword()),
-                                                    );
-                                                   }
-                                             
-                                              },
-                                             child: Text(
-                                        " mot de pass oublié",
-                                        style: TextStyle(
-                                            color: Colors.orange[900],
-                                            fontWeight: FontWeight.normal),
-                                      ),
-                                    ),
                                      FlatButton (
-                                             onPressed: () { 
-                                                   if(Platform.isIOS){
-                                                  Navigator.push(
-                                                   context,
-                                                   CupertinoPageRoute(builder: (context) => inscription()),
-                                                    );
-                                                   }else{
-                                                    Navigator.push(
-                                                   context,
-                                                   MaterialPageRoute(builder: (context) => inscription()),
-                                                    );
-                                                   }
-                                             
-                                              },
-                                             child: Text(
-                                        "créer un nouveau compte",
-                                        style: TextStyle(
-                                            color: Colors.orange[900],
-                                            fontWeight: FontWeight.normal),
+                                onPressed: () { 
+                                                     if(Platform.isIOS){
+                                                       Navigator.push(
+                                                     context,
+                                                     CupertinoPageRoute(builder: (context) => resetPassword()),
+                                                      );
+                                                     }else{
+                                                       Navigator.push(
+                                                     context,
+                                                     MaterialPageRoute(builder: (context) => resetPassword()),
+                                                      );
+                                                     }
+                                               
+                                                },
+                                               child: Text(
+                                          " mot de pass oublié",
+                                          style: TextStyle(
+                                              color: Colors.orange[900],
+                                              fontWeight: FontWeight.normal),
+                                        ),
                                       ),
-                                    ),
+                                       FlatButton (
+                                               onPressed: () { 
+                                                     if(Platform.isIOS){
+                                                    Navigator.push(
+                                                     context,
+                                                     CupertinoPageRoute(builder: (context) => inscription()),
+                                                      );
+                                                     }else{
+                                                      Navigator.push(
+                                                     context,
+                                                     MaterialPageRoute(builder: (context) => inscription()),
+                                                      );
+                                                     }
+                                               
+                                                },
+                                               child: Text(
+                                          "créer un nouveau compte",
+                                          style: TextStyle(
+                                              color: Colors.orange[900],
+                                              fontWeight: FontWeight.normal),
+                                        ),
+                                      ),
  
                                 ],
                               ),
+                                  ),
                             ),
                             SizedBox(height: 20),
                              FadeAnimation(
