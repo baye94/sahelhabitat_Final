@@ -70,7 +70,7 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/logo2.jpg"
+  image_path: "assets/logo.jpg"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -90,7 +90,7 @@ flutter:
     - assets/back3.jpg 
     - assets/fall.jpg 
     - assets/logo.png
-    - assets/logo2.jpg
+    - assets/logo.jpg
     - assets/rent1.png
     - assets/settings1.png
     - assets/land1.png
