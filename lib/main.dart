@@ -35,10 +35,10 @@ class _MyAppState extends State<MyApp> {
       providers: [
             ChangeNotifierProvider(create: (context) => AgentProvider()),
             StreamProvider(create: (context)=> servicefirestore.getAgents()),
-            ChangeNotifierProvider(create: (context)=> TerrainProvider()),
+            ChangeNotifierProvider(create: (context) => TerrainProvider()),
             StreamProvider(create: (context) => servicefirestore.getTerrain()),
             ChangeNotifierProvider(create: (context) => MaisonVendreProvider()),
-            StreamProvider(create: (context)=> servicefirestore.getMaisonVendre()),
+            StreamProvider(create: (context) => servicefirestore.getMaisonVendre()),
             ChangeNotifierProvider(create: (context) => MaisonLouerProvider()),
             StreamProvider(create: (context) => servicefirestore.getMaisonLouer())
           ],

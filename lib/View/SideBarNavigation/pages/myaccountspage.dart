@@ -29,26 +29,26 @@ class _MyAccountsPageState extends State<MyAccountsPage> {
     if(Platform.isIOS){
        return
      CupertinoAlertDialog(
-     title: Text('Vous voullez quitter l\application'),
+     title: Text('Vous voullez quitter l\'application'),
      actions: [
        FlatButton(
          onPressed:()=>Navigator.pop(context , false), 
          child: Text('No')),
            FlatButton(
-         onPressed:()=>Navigator.pop(context , true), 
+           onPressed:()=>exit(0), 
          child: Text('Oui'))
      ],
    );
     }else{
        return
      AlertDialog(
-     title: Text('Vous voullez quitter l\application'),
+     title: Text('Vous voullez quitter l\'application'),
      actions: [
        FlatButton(
          onPressed:()=>Navigator.pop(context , false), 
          child: Text('No')),
            FlatButton(
-         onPressed:()=>Navigator.pop(context , true), 
+          onPressed:()=>exit(0), 
          child: Text('Oui'))
      ],
    );

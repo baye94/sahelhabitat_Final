@@ -125,17 +125,17 @@ class HomePage extends StatelessWidget with NavigationStates {
           title: Text(item.localiteTerrain,
               style: TextStyle(fontWeight: FontWeight.w500)),
           leading: Icon(
-            Icons.location_city,
+            Icons.location_on,
             color: Colors.orange,
           ),
         ),
         Expanded(
           child: ListTile(
             title: Text(item.prixTerrain.toString()),
-            leading: Icon(
-              // Icons.contact_mail,
-              Icons.merge_type,
-              color: Colors.orange,
+            leading: Text(
+              '\$',
+              style: TextStyle(color:Colors.orange ,fontWeight:FontWeight.bold , fontSize:25,),
+             
             ),
           ),
         ),
@@ -150,7 +150,7 @@ Future<bool> _onBackPressed(){
     if(Platform.isIOS){
        return
      CupertinoAlertDialog(
-     title: Text('Vous voullez quitter l\application'),
+     title: Text('Vous voullez quitter l\'application'),
      actions: [
        FlatButton(
          onPressed:()=>Navigator.pop(context , false), 
@@ -164,7 +164,7 @@ Future<bool> _onBackPressed(){
     }else{
        return
      AlertDialog(
-     title: Text('Vous voullez quitter l\application'),
+     title: Text('Vous voullez quitter l\'application'),
      actions: [
        FlatButton(
          onPressed:()=>Navigator.pop(context , false), 
@@ -206,7 +206,8 @@ Future<bool> _onBackPressed(){
                 SizedBox(height: 30,),
                 CarouselSlider(
                   options: CarouselOptions(
-                    height: 420.0,
+                    // height: 420.0,
+                    height: MediaQuery.of(context).size.height/2,
                     aspectRatio: 16 / 9,
                     viewportFraction: 0.8,
                     initialPage: 0,
@@ -223,80 +224,81 @@ Future<bool> _onBackPressed(){
                   items: Provider.of<List<AgentModel>>(context)?.map((i) {
                     return Builder(
                       builder:(BuildContext context) {
-                        return Column(
-                          children: [
-                            Card(
-                              // elevation: 10.9,
-                              child: Column(
-                                 children: [
-                                   Container(
-                                   height: 100,
-                                   width: 100,
-                                    child: CachedNetworkImage(
-                                fit: BoxFit.cover,
-                                height: 100,
-                                width: 250,
-                                 imageUrl:i.urlPhotoAgant,
-
-                                //  errorWidget: (context, url, error) => Icon(Icons.error),
-),
-                                   decoration: BoxDecoration(
-                                       color: Colors.white,
-                                       borderRadius: BorderRadius.all(Radius.circular(5)),
-                                       boxShadow: [
-                                         BoxShadow(
-                                           color:Colors.orange[600],
-
-                                           offset: Offset(4.0,4.0),
-                                           blurRadius: 0.0,
-                                           spreadRadius: 0.0,
-                                           // color: Colors.white.withOpacity(.7)
-                                         ),
-                                         BoxShadow(
-                                           color:Colors.orange[600],
-                                           offset: Offset(4.0,4.0),
-                                           blurRadius: 0.0,
-                                           spreadRadius: 0.0,
-                                           // color: Colors.black.withOpacity(.15)
-
-                                         ),
-                                       ]
-                                   ),
-                                 ),
-                                  ListTile(
-                                    title: Text(i.nomCompletAgent, textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w500)),
-                                    subtitle: Text(i.paysAgent,textAlign: TextAlign.center),
+                        return SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              Card(
+                                // elevation: 10.9,
+                                child: Column(
+                                   children: [
+                                     Container(
+                                     height: 100,
+                                     width: 100,
+                                      child: CachedNetworkImage(
+                                  fit: BoxFit.cover,
                                   
-                                  ),
-                                  Divider(),
-                                  ListTile(
-                                    title: Text(i.telephoneAgent,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w500)),
-                                    leading: Icon(
-                                      Icons.phone,
-                                      color: Colors.orange[600],
+                                   imageUrl:i.urlPhotoAgant,
+
+                                  //  errorWidget: (context, url, error) => Icon(Icons.error),
+),
+                                     decoration: BoxDecoration(
+                                         color: Colors.white,
+                                         borderRadius: BorderRadius.all(Radius.circular(5)),
+                                         boxShadow: [
+                                           BoxShadow(
+                                             color:Colors.orange[600],
+
+                                             offset: Offset(4.0,4.0),
+                                             blurRadius: 0.0,
+                                             spreadRadius: 0.0,
+                                             // color: Colors.white.withOpacity(.7)
+                                           ),
+                                           BoxShadow(
+                                             color:Colors.orange[600],
+                                             offset: Offset(4.0,4.0),
+                                             blurRadius: 0.0,
+                                             spreadRadius: 0.0,
+                                             // color: Colors.black.withOpacity(.15)
+
+                                           ),
+                                         ]
+                                     ),
+                                   ),
+                                    ListTile(
+                                      title: Text(i.nomCompletAgent, textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w500)),
+                                      subtitle: Text(i.paysAgent,textAlign: TextAlign.center),
+                                    
                                     ),
-                                  ),
-                                  ListTile(
-                                    title: Text(i.emailAgent,),
-                                    leading: Icon(
-                                      Icons.mail,
-                                      color: Colors.orange[600],
+                                    Divider(),
+                                    ListTile(
+                                      title: Text(i.telephoneAgent,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w500)),
+                                      leading: Icon(
+                                        Icons.phone,
+                                        color: Colors.orange[600],
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                    ListTile(
+                                      title: Text(i.emailAgent,),
+                                      leading: Icon(
+                                        Icons.mail,
+                                        color: Colors.orange[600],
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                            RaisedButton(
-                               onPressed: (){ },
-                                child: Text('→'),
-                              // elevation: 10,
+                              RaisedButton(
+                                 onPressed: (){ },
+                                  child: Text('→'),
+                                // elevation: 10,
                   
-                            )
-                          ],
+                              )
+                            ],
+                          ),
                         );
                       },
                     );
@@ -322,12 +324,7 @@ Future<bool> _onBackPressed(){
                             child: Text('←'),
                           ),
                         ),
-                        // Flexible(
-                        //   child: RaisedButton(
-                        //     onPressed: () => _controller.nextPage(),
-                        //     child: Text('→'),
-                        //   ),
-                        // ),
+                       
 
                         Flexible(
                           child: RaisedButton(

@@ -55,7 +55,7 @@ class _DetailAgentState extends State<DetailAgent> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                  Text(
-                  (widget.agentModel.nomCompletAgent),
+                  (widget.agentModel.nomCompletAgent.toUpperCase()),
                    style: TextStyle(fontWeight: FontWeight.bold , ),
                   
                 ),
@@ -73,26 +73,11 @@ class _DetailAgentState extends State<DetailAgent> {
         child:  Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                 RaisedButton(
-          //          onPressed: () => {
-          //          url = widget.agentModel.telephoneAgent ;
-          //  if (await canLaunch()) {
-          //     await launch(widget.agentModel.telephoneAgent);
-          //   } else {
-          //    throw 'Could not launch ${widget.agentModel.telephoneAgent}';
-          //      }
-          //          },
-                onPressed: () =>  {
-                // _launched = _makePhoneCall('mailto:smith@example.org')
-                },
-                 child: Text(
+               Text(
                     (widget.agentModel.telephoneAgent),
                      style: TextStyle(fontWeight: FontWeight.bold),
                     
                   ),
-              ),
-                
-               
                 Icon(
                   Icons.phone,
                   color: Colors.orange,
@@ -135,7 +120,7 @@ class _DetailAgentState extends State<DetailAgent> {
                   
                 ),
                 Icon(
-                  Icons.home,
+                  Icons.location_on,
                   color: Colors.orange,
                   
                 ),
@@ -143,14 +128,14 @@ class _DetailAgentState extends State<DetailAgent> {
               ],
             ),
       ),
-      SizedBox(height: 05,),
+      SizedBox(height: 01,),
       ReadMoreText(
-  'Flutter is Google’s mobile UI open source framework to build high-quality native (super fast) interfaces for iOS and Android apps with the unified codebase.',
+  'Le rôle de ${widget.agentModel.nomCompletAgent} est d\'accompagner votre projet immobilier. Que vous souhaitiez acheter, vendre, mettre en location ou louer un logement.',
   trimLines: 2,
   colorClickableText: Colors.orange,
   trimMode: TrimMode.Line,
-  trimCollapsedText: 'Show more',
-  trimExpandedText: 'Show less',
+  trimCollapsedText: 'plus',
+  trimExpandedText: 'moins',
   moreStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.bold , color: Colors.orange),
 ),
 
