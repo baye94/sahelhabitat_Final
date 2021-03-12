@@ -77,7 +77,7 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                     children: <Widget>[
                       SizedBox(
                         // height: 50,
-                        height: MediaQuery.of(context).size.height/5,
+                        height: MediaQuery.of(context).size.height/6.09,
                       ),
                       ListTile(
                         title: Text(
@@ -95,7 +95,7 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                       ),
                       Divider(
                         // height: 10,
-                        height: MediaQuery.of(context).size.height/20,
+                        height: MediaQuery.of(context).size.height/100,
                         thickness: 0.5,
                         color: Colors.white.withOpacity(0.3),
                         indent: 32,

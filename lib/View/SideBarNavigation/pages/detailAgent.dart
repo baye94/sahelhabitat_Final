@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
 import 'package:sahelhabitat/Model/agentModel.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DetailAgent extends StatefulWidget {
    final AgentModel agentModel;
@@ -68,24 +69,24 @@ class _DetailAgentState extends State<DetailAgent> {
       ),
       
            Card(
-                 elevation: 5,
-                //  shadowColor: Colors.orange,
+                   elevation: 5,
+                  //  shadowColor: Colors.orange,
         child:  Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-               Text(
-                    (widget.agentModel.telephoneAgent),
-                     style: TextStyle(fontWeight: FontWeight.bold),
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                 Text(
+                      (widget.agentModel.telephoneAgent),
+                       style: TextStyle(fontWeight: FontWeight.bold),
+                      
+                    ),
+                  Icon(
+                    Icons.phone,
+                    color: Colors.orange,
                     
                   ),
-                Icon(
-                  Icons.phone,
-                  color: Colors.orange,
-                  
-                ),
-               
-              ],
-            ),
+                 
+                ],
+              ),
       ),
         Card(
                  elevation: 5,
