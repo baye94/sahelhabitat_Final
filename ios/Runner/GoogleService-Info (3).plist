@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>926929916443-87fjhk257bio6mberl2e85o6t4ft1u7p.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.926929916443-87fjhk257bio6mberl2e85o6t4ft1u7p</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBXc6eroHt_Fj5QrkEVuchyT0O_XwTfa1o</string>
+	<key>GCM_SENDER_ID</key>
+	<string>926929916443</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.fall.sahelhabitat</string>
+	<key>PROJECT_ID</key>
+	<string>projetsahelhabitat</string>
+	<key>STORAGE_BUCKET</key>
+	<string>projetsahelhabitat.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:926929916443:ios:47c65cdf7280771e04debe</string>
+	<key>DATABASE_URL</key>
+	<string>https://projetsahelhabitat-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>

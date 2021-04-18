@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
 import 'package:sahelhabitat/Model/agentModel.dart';
-import 'package:url_launcher/url_launcher.dart';
+// ignore: unused_import
 
 class DetailAgent extends StatefulWidget {
    final AgentModel agentModel;

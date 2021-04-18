@@ -24,7 +24,7 @@
   TerrainModel.fromFirestore( Map<String ,dynamic > firestore)
          :idTerrain = firestore['idTerrain'],
          localiteTerrain = firestore['localite'],
-         prixTerrain =firestore['prix'],
+         prixTerrain = firestore['prix'],
          devicePrixTerrain = firestore['device'],
          descriptionTerrain = firestore['descriptionTerrain'],
          urlPhotoTerrain = firestore['urlPhoto'],
