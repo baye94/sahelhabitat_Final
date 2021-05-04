@@ -312,6 +312,7 @@ class _DetailLouersState extends State<DetailLouers> {
               ],
             ),
       ), 
+     // ignore: deprecated_member_use
      FlatButton(
   onPressed: (){
     modal(widget.maisonLouer.description,widget.maisonLouer.urlPhotoMaisonLouer);

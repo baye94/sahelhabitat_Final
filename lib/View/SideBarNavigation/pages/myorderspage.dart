@@ -25,9 +25,11 @@ class _MyOrdersPageState extends State<MyOrdersPage> {
      CupertinoAlertDialog(
      title: Text('Vous voullez quitter l\'application'),
      actions: [
+       // ignore: deprecated_member_use
        FlatButton(
          onPressed:()=>Navigator.pop(context , false), 
          child: Text('No')),
+           // ignore: deprecated_member_use
            FlatButton(
            onPressed:()=>exit(0),
          child: Text('Oui'))
@@ -38,9 +40,11 @@ class _MyOrdersPageState extends State<MyOrdersPage> {
      AlertDialog(
      title: Text('Vous voullez quitter l\'application'),
      actions: [
+       // ignore: deprecated_member_use
        FlatButton(
          onPressed:()=>Navigator.pop(context , false), 
          child: Text('No')),
+           // ignore: deprecated_member_use
            FlatButton(
           onPressed:()=>exit(0),
          child: Text('Oui'))

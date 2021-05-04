@@ -34,12 +34,16 @@ class _MyAppState extends State<MyApp> {
     return MultiProvider(
       providers: [
             ChangeNotifierProvider(create: (context) => AgentProvider()),
+            // ignore: missing_required_param
             StreamProvider(create: (context)=> servicefirestore.getAgents()),
             ChangeNotifierProvider(create: (context) => TerrainProvider()),
+            // ignore: missing_required_param
             StreamProvider(create: (context) => servicefirestore.getTerrain()),
             ChangeNotifierProvider(create: (context) => MaisonVendreProvider()),
+            // ignore: missing_required_param
             StreamProvider(create: (context) => servicefirestore.getMaisonVendre()),
             ChangeNotifierProvider(create: (context) => MaisonLouerProvider()),
+            // ignore: missing_required_param
             StreamProvider(create: (context) => servicefirestore.getMaisonLouer())
           ],
           child: MaterialApp(

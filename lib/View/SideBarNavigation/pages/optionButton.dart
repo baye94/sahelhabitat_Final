@@ -14,6 +14,7 @@ Widget addHorizontalSpace(double width){
   Widget build(BuildContext context) {
     return Container(
       width: width,
+      // ignore: deprecated_member_use
       child: FlatButton(
           color: Colors.blue,
           splashColor: Colors.white.withAlpha(55),

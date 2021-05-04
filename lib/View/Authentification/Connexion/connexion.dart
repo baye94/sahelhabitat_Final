@@ -185,6 +185,7 @@ class _connexionState extends State<connexion> {
                                      physics: BouncingScrollPhysics(),
                                         child: Row(
                                 children: <Widget>[
+                                     // ignore: deprecated_member_use
                                      FlatButton (
                                 onPressed: () { 
                                                      if(Platform.isIOS){
@@ -207,6 +208,7 @@ class _connexionState extends State<connexion> {
                                               fontWeight: FontWeight.normal),
                                         ),
                                       ),
+                                       // ignore: deprecated_member_use
                                        FlatButton (
                                                onPressed: () { 
                                                      if(Platform.isIOS){
@@ -244,10 +246,12 @@ class _connexionState extends State<connexion> {
                                   borderRadius: BorderRadius.circular(50),
                                   color: Colors.orange[900]),
                               child: Center(
+                                // ignore: deprecated_member_use
                                 child: FlatButton(
                                   onPressed:(){
                                     
                                   } ,
+                                  // ignore: deprecated_member_use
                                   child: FlatButton(
                                       onPressed: () async { 
                                          print('aye cheikh fall is the best');

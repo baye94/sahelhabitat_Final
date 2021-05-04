@@ -152,9 +152,11 @@ Future<bool> _onBackPressed(){
      CupertinoAlertDialog(
      title: Text('Vous voullez quitter l\'application'),
      actions: [
+       // ignore: deprecated_member_use
        FlatButton(
          onPressed:()=>Navigator.pop(context , false), 
          child: Text('No')),
+           // ignore: deprecated_member_use
            FlatButton(
         //  onPressed:()=>Navigator.pop(context , true), 
          onPressed:()=>exit(0), 
@@ -166,9 +168,11 @@ Future<bool> _onBackPressed(){
      AlertDialog(
      title: Text('Vous voullez quitter l\'application'),
      actions: [
+       // ignore: deprecated_member_use
        FlatButton(
          onPressed:()=>Navigator.pop(context , false), 
          child: Text('No')),
+           // ignore: deprecated_member_use
            FlatButton(
          onPressed:()=>exit(0), 
          child: Text('Oui'))
@@ -292,6 +296,7 @@ Future<bool> _onBackPressed(){
                                   ],
                                 ),
                               ),
+                              // ignore: deprecated_member_use
                               RaisedButton(
                                  onPressed: (){ },
                                   child: Text('→'),
@@ -320,6 +325,7 @@ Future<bool> _onBackPressed(){
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Flexible(
+                          // ignore: deprecated_member_use
                           child: RaisedButton(
                             onPressed: () => _controller.previousPage(),
                             child: Text('←'),
@@ -328,6 +334,7 @@ Future<bool> _onBackPressed(){
                        
 
                         Flexible(
+                          // ignore: deprecated_member_use
                           child: RaisedButton(
                             onPressed: () => _controller.nextPage(),
                             child: Text('→'),

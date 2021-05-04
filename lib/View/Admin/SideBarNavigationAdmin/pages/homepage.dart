@@ -172,6 +172,7 @@ class HomePage extends StatelessWidget with NavigationStates {
                               ],
                             ),
                           ),
+                          // ignore: deprecated_member_use
                           RaisedButton(
 
                             onPressed: () =>
@@ -223,6 +224,7 @@ class HomePage extends StatelessWidget with NavigationStates {
                     ),
                   ),
                 ),
+                  // ignore: deprecated_member_use
                   RaisedButton(
                     onPressed: () {},
                     child: Text('About'),
@@ -246,6 +248,7 @@ class HomePage extends StatelessWidget with NavigationStates {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Flexible(
+                        // ignore: deprecated_member_use
                         child: RaisedButton(
                           onPressed: () => _controller.previousPage(),
                           child: Text('←'),
@@ -259,6 +262,7 @@ class HomePage extends StatelessWidget with NavigationStates {
                       // ),
 
                       Flexible(
+                        // ignore: deprecated_member_use
                         child: RaisedButton(
                           onPressed: () => _controller.nextPage(),
                           child: Text('→'),

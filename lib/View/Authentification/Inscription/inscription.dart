@@ -182,6 +182,7 @@ class _inscriptionState extends State<inscription> {
                             
                             FadeAnimation(
                               1.6,
+                                            // ignore: deprecated_member_use
                                             FlatButton (
                                              onPressed: () { 
                                                    if(Platform.isIOS){
@@ -222,9 +223,11 @@ class _inscriptionState extends State<inscription> {
                                   borderRadius: BorderRadius.circular(50),
                                   color: Colors.orange[900]),
                               child: Center(
+                                // ignore: deprecated_member_use
                                 child: FlatButton(
                                   onPressed:(){
                                   } ,
+                                  // ignore: deprecated_member_use
                                   child:FlatButton (
                                            onPressed: () async { 
                                                 if (_forminskey.currentState.validate()) {

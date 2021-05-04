@@ -89,6 +89,7 @@ class _home2State extends State<home2> {
               child: Icon(Icons.arrow_back_ios),
             ),
           ),
+          // ignore: deprecated_member_use
           FlatButton(
             onPressed: () { 
                                    if(Platform.isIOS){

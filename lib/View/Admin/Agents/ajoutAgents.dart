@@ -297,7 +297,7 @@ final _frisky2 = GlobalKey<FormState>();
                                     borderRadius: BorderRadius.circular(50),
                                     color: Colors.orange[900]),
                                 child: Center(
-                                  child: FlatButton(
+                                  child: TextButton(
                                    
                                      onPressed: ()  async{
                                         await uploadImage(agentProvider.nomA);

@@ -6,7 +6,7 @@ import 'package:sahelhabitat/Model/agentModel.dart';
 import 'package:sahelhabitat/Provider/agent_provider.dart';
 import 'package:sahelhabitat/View/Admin/Agents/editAgent.dart';
 import 'package:sahelhabitat/View/Admin/SideBarNavigationAdmin/pages/myaccountspage.dart';
-import 'package:url_launcher/url_launcher.dart';
+
 
 class DetailAgent extends StatefulWidget {
    final AgentModel agentModel;
@@ -21,13 +21,6 @@ class _DetailAgentState extends State<DetailAgent> {
   String url;
   // ignore: unused_field
   Future<void> _launched;
-  Future<void> _makePhoneCall(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
   @override
   Widget build(BuildContext context) {
     
@@ -119,7 +112,7 @@ class _DetailAgentState extends State<DetailAgent> {
         child:  Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                 RaisedButton(
+                 ElevatedButton(
           //          onPressed: () => {
           //          url = widget.agentModel.telephoneAgent ;
           //  if (await canLaunch()) {
@@ -128,9 +121,8 @@ class _DetailAgentState extends State<DetailAgent> {
           //    throw 'Could not launch ${widget.agentModel.telephoneAgent}';
           //      }
           //          },
-                onPressed: () =>  {
-                _launched = _makePhoneCall('mailto:smith@example.org')
-                },
+                
+                 onPressed: () {  },
                  child: Text(
                     (widget.agentModel.telephoneAgent),
                      style: TextStyle(fontWeight: FontWeight.bold),

@@ -280,6 +280,7 @@ class _DetailVendreState extends State<DetailVendre> {
               ],
             ),
       ),       
+// ignore: deprecated_member_use
 FlatButton(
   onPressed: (){
     modal(widget.maisonVendre.description,widget.maisonVendre.urlPhotoMaisonVendre);

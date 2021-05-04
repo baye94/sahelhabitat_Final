@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -26,9 +25,11 @@ class _TerrainUState extends State<TerrainU> {
      CupertinoAlertDialog(
      title: Text('Vous voullez quitter l\'application'),
      actions: [
+       // ignore: deprecated_member_use
        FlatButton(
          onPressed:()=>Navigator.pop(context , false), 
          child: Text('No')),
+           // ignore: deprecated_member_use
            FlatButton(
            onPressed:()=>exit(0),
          child: Text('Oui'))
@@ -39,9 +40,11 @@ class _TerrainUState extends State<TerrainU> {
      AlertDialog(
      title: Text('Vous voullez quitter l\'application'),
      actions: [
+       // ignore: deprecated_member_use
        FlatButton(
          onPressed:()=>Navigator.pop(context , false), 
          child: Text('No')),
+           // ignore: deprecated_member_use
            FlatButton(
           onPressed:()=>exit(0), 
          child: Text('Oui'))

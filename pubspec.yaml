@@ -28,34 +28,34 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0
-  simple_animations: ^2.4.2
-  flutter_bloc: ^6.1.1
-  flutter_rx_bloc: ^1.1.2
-  bloc: ^6.1.1
-  carousel_slider: ^2.3.1
+  simple_animations: ^3.1.1
+  flutter_bloc: ^7.0.0
+  flutter_rx_bloc: ^2.0.0
+  bloc: ^7.0.0
+  carousel_slider: ^3.0.0
   flutter_skeleton: ^0.1.0+1
   slimy_card: ^1.0.4
   circle_wheel_scroll: ^0.0.1+1
-  scroll_snap_list: ^0.6.0
-  grouped_list: ^3.7.1
-  firebase_core: ^0.7.0
-  cloud_firestore: ^0.16.0
-  uuid: ^2.2.2
-  provider: ^4.3.3
-  firebase_auth: ^0.20.0+1
-  image_picker: ^0.6.7+22
-  firebase_storage: ^7.0.0
-  font_awesome_flutter: ^8.11.0
-  permission_handler: ^5.1.0+2
+  scroll_snap_list: ^0.8.0
+  grouped_list: ^4.0.0
+  firebase_core: ^1.1.0
+  cloud_firestore: ^1.0.7
+  uuid: ^3.0.4
+  provider: ^5.0.0
+  firebase_auth: ^1.1.2
+  image_picker: ^0.7.4
+  firebase_storage: ^8.0.5
+  font_awesome_flutter: ^9.0.0
+  permission_handler: ^7.0.0   
   path: ^1.7.0
-  cached_network_image: ^2.5.0
+  cached_network_image: ^3.0.0
   expansion_card: ^0.1.0
-  readmore: ^1.0.0
-  url_launcher: ^5.7.10
-  shared_preferences: ^0.5.12+4
-  get: ^3.25.6
-  flutter_platform_widgets: ^0.72.0
-  modal_bottom_sheet: ^1.0.0+1
+  readmore: ^2.0.0
+  shared_preferences: ^2.0.5
+  get: ^4.1.4
+  flutter_platform_widgets: ^1.6.1
+  modal_bottom_sheet: ^2.0.0
+  sa_v1_migration: ^1.1.2
   flutter_localizations:
     sdk: flutter
 
@@ -64,7 +64,7 @@ dependencies:
  
 
 dev_dependencies:
-  flutter_launcher_icons: "^0.8.0"
+  flutter_launcher_icons: ^0.9.0
   flutter_test:
     sdk: flutter
 flutter_icons:
